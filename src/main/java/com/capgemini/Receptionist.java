@@ -1,8 +1,15 @@
 package com.capgemini;
 
-public class Controller {
+public class Receptionist {
+
+    public Receptionist(Guest guest){
+        this.guest = guest;
+        greet();
+    }
 
     private Guest guest;
+
+
 
     //private Room room
 
@@ -13,9 +20,17 @@ public class Controller {
 
     // -----------------------
 
+    public void greet(){
+        guest.greetGuest();
+    }
+
     // public void checkIn();
 
     // public void checkOut();
+
+    // public void pay();
+
+    //
 
 
 }
