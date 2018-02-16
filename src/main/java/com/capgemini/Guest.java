@@ -12,6 +12,8 @@ public class Guest {
 
     private String emailAddress;
 
+    private boolean isCheckedIn;
+
     public Guest (String firstName, String lastName, int passportNumber, int phoneNumber, String emailAddress){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,6 +21,12 @@ public class Guest {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
     }
+
+    public void greetGuest() {
+        System.out.println("Welcome " + this.firstName + " " + this.lastName);
+    }
+
+
 
 
 }
