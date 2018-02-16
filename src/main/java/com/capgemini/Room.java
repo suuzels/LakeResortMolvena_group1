@@ -13,4 +13,6 @@ public abstract class Room {
     private int numberOfBeds;
 
     public abstract void calculateEventPrice();
+
+
 }
