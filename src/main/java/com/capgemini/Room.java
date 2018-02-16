@@ -2,6 +2,8 @@ package com.capgemini;
 
 public abstract class Room {
 
+    public Room(){}
+
     private boolean hasBathtub;
 
     private boolean isOccupied;
@@ -12,7 +14,5 @@ public abstract class Room {
 
     private int numberOfBeds;
 
-    public void eventPrice(){
-
-    }
+    public abstract void calculateEventPrice();
 }
