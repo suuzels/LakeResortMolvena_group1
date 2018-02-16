@@ -4,8 +4,6 @@ public abstract class Room {
 
     public Room(){}
 
-    private boolean hasBathtub;
-
     private boolean isOccupied;
 
     private int roomID;
