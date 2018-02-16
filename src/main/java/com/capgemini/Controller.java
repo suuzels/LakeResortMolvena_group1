@@ -2,7 +2,7 @@ package com.capgemini;
 
 public class Controller {
 
-    private Guest guest
+    private Guest guest;
 
     //private Room room
 
