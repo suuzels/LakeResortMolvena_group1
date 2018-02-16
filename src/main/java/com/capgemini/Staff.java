@@ -5,12 +5,18 @@ public class Staff {
     private String staffName;
     private String password;
     private String username;
+    private boolean isValidPassword;
+
 
     public Staff(String typeofStaff, String staffName, String password, String username) {
         this.typeofStaff = typeofStaff;
         this.staffName = staffName;
         this.password = password;
         this.username = username;
+    }
+
+    public void checkPassword(String password){
+    // pasword gelijk aan opgeslagen password
     }
 
     public String getTypeofStaff() {
