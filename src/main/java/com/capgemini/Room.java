@@ -14,5 +14,9 @@ public abstract class Room {
 
     public abstract void calculateEventPrice();
 
+    public void alterRoom(){
+
+    }
+
 
 }
