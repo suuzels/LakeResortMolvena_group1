@@ -1,4 +1,4 @@
-package com.capgemini;
+package com.capgemini.HotelMolvenaGr1.model;
 
 public class Staff {
     private String typeofStaff;
@@ -15,9 +15,11 @@ public class Staff {
         this.username = username;
     }
 
+
     public void checkPassword(String password){
-    // pasword gelijk aan opgeslagen password
+        // pasword gelijk aan opgeslagen password
     }
+
 
     public String getTypeofStaff() {
         return typeofStaff;

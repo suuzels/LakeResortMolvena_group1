@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+<!--Inladen menu-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
+    <a class="navbar-brand" href="index.html">Hotel Molvena</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="guests.html">Guests</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+        <h1 id="title">Guest details</h1>
+
+<input type = "text" id="search" placeholder="search guest">
+<button type="button" class="btn btn-secondary addSearchButton" data-toggle="modal" data-target="#addSearchModal">Search</button>
+<button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
+<button type="button" class="btn btn-secondary addAlterButton" data-toggle="modal" data-target="#addAlterModal">Alter guests</button>
+
+<div class="modal fade" id="addGuestModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new guest</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="modaltest">
+                    <input type="text" id="lastname" name="lastname" placeholder="last name" required>
+                    <input type="text" id="firstname" name="firstname" placeholder="first name" required>
+                    <input type="text" id="address" name="address" placeholder="address">
+                    <input type="text" id="postalcode" name="postalcode" placeholder="postal code">
+                    <input type="text" id="town" name="town" placeholder="town">
+                    <input type="text" id="country" name="country" placeholder="country">
+                    <input type="text" id="telephonenumber" name="telephonenumber" placeholder="telephone number">
+                    <input type="text" id="email" name="email" placeholder="e-mail">
+                    <!--<button type="button" onclick="postData();">Save Guest</button>-->
+
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+        <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+        <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
+
+<!--<form>-->
+    <!--<h2> Search:-->
+        <!--<input type = "text" id="search">-->
+        <!--<button type="button"> Search guest </button>-->
+        <!--<button type="button" id="alterBtn"> Alter guest </button>-->
+        <!--<button type="button"> Remove guest </button>-->
+    <!--</h2>-->
+<!--</form>-->
+
+<!--<p id="text">hello</p>-->
+<br>
+<br>
+<table id="guest" class="table table-hover">
+    <tr>
+        <thead>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Address</th>
+            <th>Country</th>
+            <th>Town</th>
+            <th>Postalcode</th>
+            <th>Telephonenumber</th>
+            <th>Email</th>
+            <th id="tableDelete">Delete</th>
+        </thead>
+    </tr>
+
+
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!--<script src="js/Script.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script src="js/Guestlist.js"></script>
+</body>
+</html>

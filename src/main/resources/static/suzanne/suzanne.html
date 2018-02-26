@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Hello World</title>
+
+    <style>
+    table{
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>Rooms</h1>
+<hr>
+<h2>Add a room</h2>
+<hr>
+<form>
+<input type="text" placeholder="room number" id="roomNumberInput">
+<input type="text" placeholder="room type" id="roomTypeInput">
+<input type="text" placeholder="price" id="priceInput">
+<input type="text" placeholder="available" id="availableInput">
+<button type="button" id="addRoomBtn" onclick="addRoom();">Add room</button>
+</form>
+        <table class="table table-hover" id="roomsTbl">
+            <thead>
+            <tr>
+                <th scope="col" id="roomNumberTbl">Room ID</th>
+                <th scope="col" id="roomTypeTbl">Room Type</th>
+                <th scope="col" id="priceTbl">Price</th>
+                <th scope="col" id="availableTbl">Availability</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- In the JS file roomRegistration are the room items being added to this table body-->
+            </tbody>
+        </table>
+
+<hr>
+<h2>Delete rooms</h2>
+<button type="button" id="deleteRoomBtn" onclick="deleteRoom();">Delete rooms</button>
+<hr>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/suzanne/suzanne.js"></script>
+</body>
+</html>

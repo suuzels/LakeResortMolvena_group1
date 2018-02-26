@@ -1,6 +1,7 @@
-package com.capgemini.Booking;
+package com.capgemini.HotelMolvenaGr1.booking;
+import com.capgemini.HotelMolvenaGr1.model.Guest;
+import com.capgemini.HotelMolvenaGr1.model.Room;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
 
  Date checkInDate = theFormatOfDate.parse("12-10-2018");
  Date checkOutDate = theFormatOfDate.parse("12-12-2018");
- Booking enterDate = new Booking(checkInDate, checkOutDate);
+ booking enterDate = new booking(checkInDate, checkOutDate);
 
  enterDate.checkAvailability();
  */
@@ -22,13 +23,21 @@ public class Booking {
     private Date checkInDate;
     private Date checkOutDate;
 
-    private boolean isRoomAvailable=true;
-    private int quantityOfRooms=1;
+    private int numberOfGuests;
 
     // extra properties
     private boolean isPaid;
-    private boolean wantsBabybed;
 
+    private boolean babybed;
+
+    private int bookingID;
+
+    private Guest guest;
+    private Room room;
+
+    public Booking(){
+
+    }
 
     /**
      * You want to check if check in date if rooms are available and after say check out
@@ -60,24 +69,6 @@ public class Booking {
      * @return
      */
 
-    public void checkAvailability(){
-        // go into database to check dates
-
-        if(!this.isRoomAvailable){
-            System.out.println("Sorry, there are no rooms available");
-            return;
-        }
-
-        this.quantityOfRooms--;
-        System.out.println("\n quantity " + this.quantityOfRooms);
-
-        if(this.quantityOfRooms == 0){
-            this.isRoomAvailable = false;
-            System.out.println(this.isRoomAvailable);
-            return;
-        }
-
-    }
 
     public Date getCheckInDate() {
         return checkInDate;
@@ -103,27 +94,43 @@ public class Booking {
         isPaid = paid;
     }
 
-    public boolean isWantsBabybed() {
-        return wantsBabybed;
+    public int getNumberOfGuests() {
+        return numberOfGuests;
     }
 
-    public void setWantsBabybed(boolean wantsBabybed) {
-        this.wantsBabybed = wantsBabybed;
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
     }
 
-    public int getQuantityOfRooms() {
-        return quantityOfRooms;
+    public boolean isBabybed() {
+        return babybed;
     }
 
-    public void setQuantityOfRooms(int quantityOfRooms) {
-        this.quantityOfRooms = quantityOfRooms;
+    public void setBabybed(boolean babybed) {
+        this.babybed = babybed;
     }
 
-    public boolean isRoomAvailable() {
-        return isRoomAvailable;
+    public int getBookingID() {
+        return bookingID;
     }
 
-    public void setRoomAvailable(boolean roomAvailable) {
-        isRoomAvailable = roomAvailable;
+    public void setBookingID(int bookingID) {
+        this.bookingID = bookingID;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

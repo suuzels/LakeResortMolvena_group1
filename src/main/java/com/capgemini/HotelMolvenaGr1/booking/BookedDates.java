@@ -1,6 +1,5 @@
-package com.capgemini.Booking;
+package com.capgemini.HotelMolvenaGr1.booking;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class BookedDates {
