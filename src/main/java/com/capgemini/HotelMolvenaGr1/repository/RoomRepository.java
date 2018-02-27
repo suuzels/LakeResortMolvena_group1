@@ -63,8 +63,9 @@ public class RoomRepository {
 
     public void deleteRoom(String roomID) {
         for (Room room : this.rooms) {
-            if (room.getRoomID() == roomID)
-            rooms.remove(room);
+            if (room.getRoomID() == roomID) {
+                rooms.remove(room);
+            }
         }
     }
 
