@@ -7,9 +7,6 @@ $(document).ready(function(){
 
 });
 
-
-
-
 function getData() {
 
 	$.ajax({
