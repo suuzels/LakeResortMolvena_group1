@@ -61,8 +61,9 @@ public class RoomRepository {
         return room;
     }
 
-    public void deleteRoom(Room room) {
-            rooms.remove(room);
+    public void deleteRoom() {
+        for (Room room : rooms){
+            rooms.remove(room);}
         }
 
     public void changeRoom(String roomID, ERoomType roomType) {
