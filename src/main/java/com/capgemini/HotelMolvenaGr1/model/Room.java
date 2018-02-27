@@ -6,7 +6,7 @@ public class Room {
 
     // Variables
     private ERoomType roomType;
-    private boolean isAvailable;
+    private boolean isOccupied;
     private String roomID;
     private double defaultPrice;
     private String roomName;
@@ -17,9 +17,9 @@ public class Room {
 
     public Room(){}
 
-    public Room(ERoomType roomType, boolean isAvailable, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
+    public Room(ERoomType roomType, boolean isOccupied, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
         this.roomType = roomType;
-        this.isAvailable = isAvailable;
+        this.isOccupied = isOccupied;
         this.roomID = roomID;
         this.defaultPrice = defaultPrice;
         this.roomName = roomName;
@@ -27,7 +27,8 @@ public class Room {
         this.eBedsType = eBedsType;
     }
 
-    // Getters and setters
+
+// Getters and setters
 
 
     public ERoomType getRoomType() {
@@ -38,12 +39,12 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean isOccupied() {
+        return isOccupied;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
     }
 
     public String getRoomID() {
