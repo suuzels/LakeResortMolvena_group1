@@ -12,7 +12,8 @@ function getData() {
                         var columnRow = "<tr><td>" + value.firstName + "</td><td>" +
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" + value.emailAddress +
+                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
+                         "<button type='button' class='btn btn-danger' onclick='editRoom(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
                          "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + value.FirstName + ")'> Delete </button>" + "</td></tr>";
 
                         guestList+=columnRow;
