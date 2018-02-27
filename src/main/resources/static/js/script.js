@@ -20,7 +20,7 @@ function getData() {
 
 				$.each(data, function(index, current) {
                     console.log("each function");
-				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.available + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
+				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
