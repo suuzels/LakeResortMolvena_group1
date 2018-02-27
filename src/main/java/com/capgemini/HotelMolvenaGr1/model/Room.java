@@ -1,29 +1,33 @@
 package com.capgemini.HotelMolvenaGr1.model;
+import com.capgemini.HotelMolvenaGr1.EBedsType;
 import com.capgemini.HotelMolvenaGr1.ERoomType;
 
 public class Room {
 
-    // Variabelen
+    // Variables
     private ERoomType roomType;
     private boolean isAvailable;
     private String roomID;
     private double defaultPrice;
     private String roomName;
+    private int numberOfPeople;
+    private EBedsType eBedsType;
 
-
-    // Constructor
+    // Constructors
 
     public Room(){}
 
-    public Room(ERoomType roomType, boolean isAvailable, String roomID, double defaultPrice, String roomName) {
+    public Room(ERoomType roomType, boolean isAvailable, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
         this.roomType = roomType;
         this.isAvailable = isAvailable;
         this.roomID = roomID;
         this.defaultPrice = defaultPrice;
         this.roomName = roomName;
+        this.numberOfPeople = numberOfPeople;
+        this.eBedsType = eBedsType;
     }
 
-    // Getters setters
+    // Getters and setters
 
 
     public ERoomType getRoomType() {
@@ -67,18 +71,28 @@ public class Room {
         this.roomName = roomName;
     }
 
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public EBedsType geteBedsType() {
+        return eBedsType;
+    }
+
+    public void seteBedsType(EBedsType eBedsType) {
+        this.eBedsType = eBedsType;
+    }
+
     // Methodess
-    public void alterRoom(){
 
-    }
-
-    public void addRoom(){
-    }
-
-    public double calculateEventPrice() {
-        double eventPrice = defaultPrice * 2;
-        System.out.println("The new price of the room is: " + eventPrice + " euro.");
-        return eventPrice;
-    }
+//    public double calculateEventPrice() {
+//        double eventPrice = defaultPrice * 2;
+//        System.out.println("The new price of the room is: " + eventPrice + " euro.");
+//        return eventPrice;
+//    }
 
 }
