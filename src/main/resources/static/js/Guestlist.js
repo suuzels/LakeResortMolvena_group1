@@ -1,9 +1,11 @@
 // get data for the table
 function getData() {
+    console.log("i am in getting data for list")
     $.ajax({
         url:"http://localhost:8080/api/guest/get",
         type:"get",
         success : function(data){
+            console.log("in success")
             console.log(data);
             var guestList = '';
 
@@ -17,7 +19,6 @@ function getData() {
 
                         guestList+=columnRow;
                     });
-
              $("#guest").append(guestList);
         }
     });
@@ -57,8 +58,6 @@ function finalDeleteData(){
 
 function editGuest(){
     console.log("you are going to edit");
-
-
 }
 
 getData();
@@ -123,7 +122,7 @@ function postData() {
     console.log(newGuest);
 
     $.ajax({
-        url : "http://localhost:8080/api/guest/change",
+        url : "http://localhost:8080/api/guest/saved",
         type : "post",
         data : newGuest,
         contentType : "application/json",
@@ -161,11 +160,15 @@ function searchData() {
         searchTerm : inputsearchTerm,
     };
 
+    console.log("new search object")
+    console.log(newsearchObject);
+
     var newSearch = JSON.stringify(newsearchObject);
+    console.log("new search")
     console.log(newSearch);
 
     $.ajax({
-        url : "http://localhost:8080/api/search/{0}",
+        url : "http://localhost:8080/api/search/{searchTerm}",
         type : "post",
         data : newSearch,
         contentType : "application/json",

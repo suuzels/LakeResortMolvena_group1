@@ -29,21 +29,13 @@ public class GuestController {
         return this.guestRepository.search(searchTerm);
     }
 
-<<<<<<< HEAD
-    @RequestMapping("/api/guest")
-    public List<Guest> removeGuest() {
-        GuestRegister removeGuest = new GuestRegister();
-        removeGuest.removeGuest("Sasha");
-        return removeGuest.getGuestList();
-=======
-    @RequestMapping(value = "api/guest/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
     public void deleteGuest()
     {
         guestRepository.deleteGuest();
->>>>>>> lastguest
     }
 
-    @RequestMapping(value = "api/guest/change", method = RequestMethod.POST)
+    @RequestMapping(value = "change", method = RequestMethod.POST)
     public void changeGuest(@RequestBody String firstName, String lastName, String address, String postalCode, String town, String country, String telephoneNumber, String emailAddress){
         guestRepository.changeGuest(firstName, lastName, address, postalCode, town, country, telephoneNumber, emailAddress);
     }
