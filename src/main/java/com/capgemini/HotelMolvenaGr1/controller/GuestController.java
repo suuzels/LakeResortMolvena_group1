@@ -31,7 +31,6 @@ public class GuestController {
         guestRepository.rememberGuest(guestToRemember);
     }
 
-
     @RequestMapping("/api/guest")
     public List<Guest> removeGuest() {
         GuestRegister removeGuest = new GuestRegister();

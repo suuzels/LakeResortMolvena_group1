@@ -45,7 +45,6 @@ function deleteRoom(roomID){
                         success : function() {
                             console.log("Delete is initiated");
                             $("#roomTable").html("");
-
                         }
                     })
                     getData();
