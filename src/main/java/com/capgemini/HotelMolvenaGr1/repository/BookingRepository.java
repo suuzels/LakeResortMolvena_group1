@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class BookingRepository {
 
     private Booking booking;
-
     // List of bookings
 
     ArrayList<Booking> bookings = new ArrayList<>();
@@ -18,6 +17,13 @@ public class BookingRepository {
         this.bookings = new ArrayList<>();
 
         Booking booking1 = new Booking();
+        booking1.setBookingId(1);
+        booking1.setCheckInDate("1 maart");
+        booking1.setCheckOutDate("2 maart");
+        booking1.setGuest(null);
+        booking1.setRoom(null);
+        booking1.setWantsBreakfast(true);
+        booking1.setWantsBbabybed(true);
 
         this.bookings.add(booking1);
     }
@@ -36,9 +42,7 @@ public class BookingRepository {
     }
 
 
-
     // Getters and setters
-
 
     public Booking getBooking() {
         return booking;

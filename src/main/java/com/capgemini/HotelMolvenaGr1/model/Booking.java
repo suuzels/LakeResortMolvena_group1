@@ -1,4 +1,5 @@
 package com.capgemini.HotelMolvenaGr1.model;
+
 import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.model.Room;
 
@@ -11,8 +12,8 @@ public class Booking {
     private int bookingId;
     private Guest guest;
     private Room room;
-    private Date checkInDate;
-    private Date checkOutDate;
+    private String checkInDate;
+    private String checkOutDate;
     private int numberOfNights;
     private int numberOfGuests;
     private boolean isPaid;
@@ -23,7 +24,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int bookingId, Guest guest, Room room, Date checkInDate, Date checkOutDate, int numberOfNights, int numberOfGuests, boolean isPaid, boolean wantsBbabybed, boolean wantsBreakfast) {
+    public Booking(int bookingId, Guest guest, Room room, String checkInDate, String checkOutDate, int numberOfNights, int numberOfGuests, boolean isPaid, boolean wantsBbabybed, boolean wantsBreakfast) {
         this.bookingId = bookingId;
         this.guest = guest;
         this.room = room;
@@ -36,11 +37,15 @@ public class Booking {
         this.wantsBreakfast = wantsBreakfast;
     }
 
-// Getters and setters
+    // Getters and setters
 
 
     public int getBookingId() {
         return bookingId;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
     public Guest getGuest() {
@@ -59,19 +64,19 @@ public class Booking {
         this.room = room;
     }
 
-    public Date getCheckInDate() {
+    public String getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(Date checkInDate) {
+    public void setCheckInDate(String checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public Date getCheckOutDate() {
+    public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(Date checkOutDate) {
+    public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
