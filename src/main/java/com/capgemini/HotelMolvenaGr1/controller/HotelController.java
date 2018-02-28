@@ -41,25 +41,25 @@ public class HotelController {
     private RoomRepository roomRepository;
 
 
-    @RequestMapping(value = "api/rooms/get", method = RequestMethod.GET)
-    public Iterable<Room> index() {
-        return roomRepository.getRooms();
-    }
+//    @RequestMapping(value = "api/rooms/get", method = RequestMethod.GET)
+//    public Iterable<Room> index() {
+//        return roomRepository.getRooms();
+//    }
 
     @RequestMapping(value = "api/rooms/save", method = RequestMethod.POST)
     public void save(@RequestBody Room roomToSave) {
         roomRepository.save(roomToSave);
     }
 
-    @RequestMapping(value = "api/rooms/delete", method = RequestMethod.DELETE)
-    public void deleteRoom() {
-        roomRepository.deleteRoom();
-    }
-
-    @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
-    public void changeRoom(@RequestBody String roomID, ERoomType roomType) {
-        roomRepository.changeRoom(roomID, roomType);
-    }
+//    @RequestMapping(value = "api/rooms/delete", method = RequestMethod.DELETE)
+//    public void deleteRoom() {
+//        roomRepository.deleteRoom();
+//    }
+//
+//    @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
+//    public void changeRoom(@RequestBody String roomID, ERoomType roomType) {
+//        roomRepository.changeRoom(roomID, roomType);
+//    }
 
     // public void checkIn();
 
