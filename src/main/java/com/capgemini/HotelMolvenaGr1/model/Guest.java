@@ -1,6 +1,17 @@
 package com.capgemini.HotelMolvenaGr1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Guest {
+    // automatic id guest
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     // start data of the guests
     private String firstName;
     private String lastName;
@@ -11,6 +22,11 @@ public class Guest {
     private String telephoneNumber;
     private String emailAddress;
 
+
+    //Getter and setter
+    public long getId() {
+        return id;
+    }
 
     public void greetGuest(){
         System.out.println("Welcome " + this.firstName + " " + this.lastName);
