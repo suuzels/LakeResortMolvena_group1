@@ -52,8 +52,8 @@ public class HotelController {
     }
 
     @RequestMapping(value = "api/rooms/delete", method = RequestMethod.DELETE)
-    public void deleteRoom() {
-        roomRepository.deleteRoom();
+    public void deleteRoom(@RequestParam String roomID) {
+        roomRepository.deleteRoom(roomID);
     }
 
     @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
