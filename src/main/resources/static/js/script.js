@@ -38,6 +38,7 @@ function getData() {
 
 function deleteRoom(roomID){
                 console.log("function deleteroom is being used")
+
                     $.ajax({
                         url : "http://localhost:8080/api/rooms/delete",
                         type : "delete",
