@@ -1,10 +1,11 @@
-
-
+// get data for the table
 function getData() {
+    console.log("i am in getting data for list")
     $.ajax({
         url:"http://localhost:8080/api/guest/get",
         type:"get",
         success : function(data){
+            console.log("in success")
             console.log(data);
             var guestList = '';
 
@@ -13,19 +14,54 @@ function getData() {
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' onclick='editRoom(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + value.FirstName + ")'> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-danger' id='deleted' onclick='deleteGuest(" + value.FirstName + ")'> Delete </button>" + "</td></tr>";
 
                         guestList+=columnRow;
                     });
-
              $("#guest").append(guestList);
         }
     });
 }
 
-getData();
+//<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
+// remove data by POST information to java //url delete
+function deleteGuest(){
+    console.log("you are going to edit");
 
+    // first illustrate delete in a pop up modal
+    // popup deleteGuestModal
+    $('#deleteGuestModal').modal('show');
+
+   //remember the information from that table
+    // you want to data from id=deleted after the button is pushed
+//    var table = $('#guest').DataTable();
+//    console.log(table);
+//    console.log( table.row( this ).data());
+
+}
+
+function finalDeleteData(){
+    console.log("you are going to delete");
+                    $.ajax({
+                        url : "http://localhost:8080/api/guests/delete",
+                        type : "delete",
+                        contentType : "application/json",
+                        success : function() {
+                            console.log("Delete is initiated");
+                            $("#guest").html("");
+
+                        }
+                    })
+                    getData();
+}
+
+function editGuest(){
+    console.log("you are going to edit");
+}
+
+getData();
+// post data into java
 function postData() {
     var inputLastname = $("#lastname").val();
     var inputFirstname = $("#firstname").val();
@@ -86,7 +122,7 @@ function postData() {
     console.log(newGuest);
 
     $.ajax({
-        url : "http://localhost:8080/api/guest/change",
+        url : "http://localhost:8080/api/guest/saved",
         type : "post",
         data : newGuest,
         contentType : "application/json",
@@ -107,28 +143,49 @@ function postData() {
 
 
 
+// search all the data
+function searchData() {
+    console.log("you clicked");
+    var inputsearchTerm = $("#searchTerm").val();
 
-////when click on checkbox, go to alter website
-//$(document).ready(function(){
-//    $("#alterBtn").click(function(){
-//        $("#checkbox").trigger("select");
-//        location.href="http://localhost:8080/alterguest.html";
-//    });
-//
-//});
 
-//
-//function alterData() {
-//      //iterate over the table to find the checkbox
-// $("#alterBtn").click(function(){
-//      $("#guest tr").each(function(){
-//
-//          $("input:checked").each(function(){
-//
-//              console.log("found");
-//
-//          });
-//      });
-//
-//      });
-//}
+    console.log(inputsearchTerm);
+
+    if(inputsearchTerm == "") {
+        $("#errorMessage").val("Fill in search term.")
+        return;
+    }
+
+    var newsearchObject = {
+        searchTerm : inputsearchTerm,
+    };
+
+    console.log("new search object")
+    console.log(newsearchObject);
+
+    var newSearch = JSON.stringify(newsearchObject);
+    console.log("new search")
+    console.log(newSearch);
+
+    $.ajax({
+        url : "http://localhost:8080/api/search/{searchTerm}",
+        type : "post",
+        data : newSearch,
+        contentType : "application/json",
+        success : function(data) {
+
+            console.log(data);
+            $("#searchTerm").val("");
+            $.each(data, function(index, value){
+                        var columnRow = "<tr><td><input type='checkbox' id='checkbox' </td><td>" + value.firstName + "</td><td>" +
+                        value.lastName + "<td>" + value.address + "</td><td>" + value.country +
+                        "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
+                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td></tr>";
+                        guestList+=columnRow;
+                    });
+             $("#guest").append(searchResults);
+        }
+    });
+}
+
+

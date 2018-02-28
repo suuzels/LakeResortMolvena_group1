@@ -1,6 +1,6 @@
 package com.capgemini.HotelMolvenaGr1.controller;
 
-import com.capgemini.HotelMolvenaGr1.booking.Booking;
+import com.capgemini.HotelMolvenaGr1.model.Booking;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

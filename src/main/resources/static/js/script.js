@@ -10,7 +10,6 @@ $(document).ready(function(){
 function getData() {
 
 	$.ajax({
-
 		url : "http://localhost:8080/api/rooms/get",
 		type : "get",
 		success: function(data){
@@ -45,7 +44,6 @@ function deleteRoom(roomID){
                         success : function() {
                             console.log("Delete is initiated");
                             $("#roomTable").html("");
-
                         }
                     })
                     getData();
