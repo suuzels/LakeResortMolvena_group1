@@ -2,15 +2,11 @@
 //
 
 // AJAX gebruiken om backend data in te laden naar jquery
-$(document).ready(function(){
-   getData();
-
-});
 
 function getData() {
 
 	$.ajax({
-		url : "http://localhost:8080/api/rooms/get",
+		url : "http://localhost:8080/api/rooms",
 		type : "get",
 		success: function(data){
 
@@ -19,7 +15,7 @@ function getData() {
 
 				$.each(data, function(index, current) {
                     console.log("each function is initiated");
-				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
+				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
@@ -31,15 +27,16 @@ function getData() {
 
 				}
 
-
 		});
 }
 
-function deleteRoom(roomID){
+getData();
+
+function deleteRoom(id){
                 console.log("function deleteroom is being used")
 
                     $.ajax({
-                        url : "http://localhost:8080/api/rooms/delete",
+                        url : "http://localhost:8080/api/rooms/"+id,
                         type : "delete",
                         contentType : "application/json",
                         success : function() {
@@ -55,7 +52,6 @@ function postData(){
 	// The postData function is triggered by the add new room button. This function has to post the filled in data into the table.
 
     // First we need to put the values of the input fields into variables
-    var inputRoomID = $("#roomId").val();
     var inputRoomType = $("#roomType").val();
     var inputRoomName = $("#roomName").val();
     var inputPrice = $("#roomPrice").val();
@@ -66,7 +62,6 @@ function postData(){
     // Here we make a new object
     var newRoomObject = {
     roomType : inputRoomType,
-    roomID : inputRoomID,
     defaultPrice : inputPrice,
     roomName : inputRoomName,
     occupied : inputAvailability
@@ -78,7 +73,7 @@ function postData(){
 
     // Save the actual data to the repository
     $.ajax({
-        url : "http://localhost:8080/api/rooms/save",
+        url : "http://localhost:8080/api/rooms",
         type : "post",
         data : newRoom,
         contentType : "application/json",

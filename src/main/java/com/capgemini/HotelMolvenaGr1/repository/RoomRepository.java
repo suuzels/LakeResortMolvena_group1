@@ -11,12 +11,9 @@ import java.util.ArrayList;
 public interface RoomRepository extends CrudRepository<Room, Long> {
 
 
+
 //
-//    // Methodes
-//    public Room save(Room room) {
-//        rooms.add(room);
-//        return room;
-//    }
+//
 //
 //    public ArrayList<Room> getRooms() {
 //        return rooms;

@@ -19,30 +19,12 @@ public class Room {
     // Variables
     private ERoomType roomType;
     private boolean isOccupied;
-    private String roomID;
     private double defaultPrice;
     private String roomName;
     private int numberOfPeople;
     private EBedsType eBedsType;
 
-
-
-    // Constructors
-
-    // !The empty constructor may not be removed as long as there is another constructor that contains parameters!
-    public Room() {
-    }
-
-    public Room(ERoomType roomType, boolean isOccupied, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
-        this.roomType = roomType;
-        this.isOccupied = isOccupied;
-        this.roomID = roomID;
-        this.defaultPrice = defaultPrice;
-        this.roomName = roomName;
-        this.numberOfPeople = numberOfPeople;
-        this.eBedsType = eBedsType;
-    }
-
+    
 
     // Getters and setters
 
@@ -62,15 +44,6 @@ public class Room {
     public void setOccupied(boolean occupied) {
         isOccupied = occupied;
     }
-
-    public String getRoomID() {
-        return roomID;
-    }
-
-    public void setRoomID(String roomID) {
-        this.roomID = roomID;
-    }
-
 
     public double getDefaultPrice() {
         return defaultPrice;
@@ -104,10 +77,16 @@ public class Room {
         this.eBedsType = eBedsType;
     }
 
+    public long getId() {
+        return id;
+    }
+
+
     // Methodess
 
 //    public double calculateEventPrice() {
 //        double eventPrice = defaultPrice * 2;
+
 //        System.out.println("The new price of the room is: " + eventPrice + " euro.");
 //        return eventPrice;
 //    }

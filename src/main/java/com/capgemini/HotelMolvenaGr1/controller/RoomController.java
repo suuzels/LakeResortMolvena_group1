@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class HotelController {
+public class RoomController {
 
     private Guest guest;
 
@@ -41,20 +41,20 @@ public class HotelController {
     private RoomRepository roomRepository;
 
 
-//    @RequestMapping(value = "api/rooms/get", method = RequestMethod.GET)
-//    public Iterable<Room> index() {
-//        return roomRepository.getRooms();
-//    }
+    @RequestMapping(value = "api/rooms", method = RequestMethod.GET)
+    public Iterable<Room> index() {
+        return roomRepository.findAll();
+    }
 
-    @RequestMapping(value = "api/rooms/save", method = RequestMethod.POST)
+    @RequestMapping(value = "api/rooms", method = RequestMethod.POST)
     public void save(@RequestBody Room roomToSave) {
         roomRepository.save(roomToSave);
     }
 
-//    @RequestMapping(value = "api/rooms/delete", method = RequestMethod.DELETE)
-//    public void deleteRoom() {
-//        roomRepository.deleteRoom();
-//    }
+    @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.DELETE)
+    public void deleteRoom(@PathVariable long id) {
+        roomRepository.delete(id);
+    }
 //
 //    @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
 //    public void changeRoom(@RequestBody String roomID, ERoomType roomType) {
