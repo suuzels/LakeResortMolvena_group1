@@ -15,7 +15,7 @@ function getData() {
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' id='deleted' onclick='deleteGuest(" + value.FirstName + ")'> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest(" + value.firstName + ")'> Delete </button>" + "</td></tr>";
 
                         guestList+=columnRow;
                     });
@@ -26,9 +26,9 @@ function getData() {
 
 //<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
 // remove data by POST information to java //url delete
-function deleteGuest(){
-    console.log("you are going to edit");
+function deleteGuest(guestFirstname){
 
+    console.log("you are going to delete");
     // first illustrate delete in a pop up modal
     // popup deleteGuestModal
     $('#deleteGuestModal').modal('show');
@@ -41,7 +41,7 @@ function deleteGuest(){
 
 }
 
-function finalDeleteData(){
+function finalDeleteData(guestID){
     console.log("you are going to delete");
                     $.ajax({
                         url : "http://localhost:8080/api/guests/delete",
