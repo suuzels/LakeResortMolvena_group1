@@ -20,8 +20,8 @@ public class BookingRepository {
         booking1.setBookingId(1);
         booking1.setCheckInDate("1 maart");
         booking1.setCheckOutDate("2 maart");
-        booking1.setGuest(null);
-        booking1.setRoom(null);
+        booking1.setGuest("Pietje");
+        booking1.setRoom("2");
         booking1.setWantsBreakfast(true);
         booking1.setWantsBbabybed(true);
 

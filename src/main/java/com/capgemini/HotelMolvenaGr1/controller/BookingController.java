@@ -3,6 +3,7 @@ package com.capgemini.HotelMolvenaGr1.controller;
 import com.capgemini.HotelMolvenaGr1.model.Booking;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class BookingController {
     }
 
     @RequestMapping(value = "api/bookings/save", method = RequestMethod.POST)
-    public void save(Booking bookingToSave) {
+    public void save(@RequestBody Booking bookingToSave) {
         bookingRepository.save(bookingToSave);
     }
 

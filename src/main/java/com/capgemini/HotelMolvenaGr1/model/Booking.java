@@ -10,8 +10,8 @@ public class Booking {
 
     // Variables
     private int bookingId;
-    private Guest guest;
-    private Room room;
+    private String guest;
+    private String room;
     private String checkInDate;
     private String checkOutDate;
     private int numberOfNights;
@@ -24,18 +24,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int bookingId, Guest guest, Room room, String checkInDate, String checkOutDate, int numberOfNights, int numberOfGuests, boolean isPaid, boolean wantsBbabybed, boolean wantsBreakfast) {
-        this.bookingId = bookingId;
-        this.guest = guest;
-        this.room = room;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.numberOfNights = numberOfNights;
-        this.numberOfGuests = numberOfGuests;
-        this.isPaid = isPaid;
-        this.wantsBbabybed = wantsBbabybed;
-        this.wantsBreakfast = wantsBreakfast;
-    }
+
 
     // Getters and setters
 
@@ -48,19 +37,19 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Guest getGuest() {
+    public String getGuest() {
         return guest;
     }
 
-    public void setGuest(Guest guest) {
+    public void setGuest(String guest) {
         this.guest = guest;
     }
 
-    public Room getRoom() {
+    public String getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(String room) {
         this.room = room;
     }
 
