@@ -40,25 +40,29 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
-
+    // Gets all rooms
     @RequestMapping(value = "api/rooms", method = RequestMethod.GET)
     public Iterable<Room> index() {
         return roomRepository.findAll();
     }
 
+    // Posts a new room on add button click
     @RequestMapping(value = "api/rooms", method = RequestMethod.POST)
     public void save(@RequestBody Room roomToSave) {
         roomRepository.save(roomToSave);
     }
 
+    // Deletes a database item when clicked
     @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable long id) {
         roomRepository.delete(id);
     }
-//
-//    @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
-//    public void changeRoom(@RequestBody String roomID, ERoomType roomType) {
-//        roomRepository.changeRoom(roomID, roomType);
+
+
+//    Changes a roomtype to the selected roomtype
+//    @RequestMapping(value = "api/rooms/{id, roomType}", method = RequestMethod.POST)
+//    public void editRoom(@PathVariable long id, ERoomType roomType) {
+//        roomRepository.save(id, roomType);
 //    }
 
     // public void checkIn();

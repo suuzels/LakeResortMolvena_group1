@@ -6,12 +6,16 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/navstyling.css">
+
 </head>
 <body>
 
 <!--Inladen menu-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-    <a class="navbar-brand" href="index.html">Hotel Molvena</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-faded navbar-dani" id="navigation">
+    <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top"
+                                                   style="width:50px;"
+                                                   src="logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,14 +38,16 @@
     </div>
 </nav>
 
-<br>
 
-<div class="container-fluid">
+<div class="container-fluid body-styling">
+    <br>
+    <br>
     <h2> Hotel Rooms </h2>
+    <br>
 
     <!--This button makes the modal to add a new room appear-->
-    <button type="button" class="btn btn-secondary addRoomButton" data-toggle="modal" data-target="#addRoomModal">Add
-        new room
+    <button type="button" class="btn btn-success addRoomButton" data-toggle="modal" data-target="#addRoomModal">
+        Add new room
     </button>
 
     <div class="modal fade" id="addRoomModal" role="dialog">
@@ -58,6 +64,9 @@
 
                     <div class="form-group">
                         <form>
+
+                            <label for="roomNumber" class="col-form-label">Room number:</label>
+                            <input type="text" class="form-control" id="roomNumber" placeholder="Room number">
 
                             <label for="roomName" class="col-form-label">Room name:</label>
                             <input type="text" class="form-control" id="roomName" placeholder="Room name">
@@ -85,8 +94,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="postData();">Add
                     </button>
+
                     <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
@@ -101,12 +112,13 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col" id="tableRoomID">Room ID</th>
+            <th scope="col" id="tableRoomNumber">Room Number</th>
             <th scope="col" id="tableRoomName">Room Name</th>
             <th scope="col" id="tableRoomType">Room Type</th>
             <th scope="col" id="tablePrice">Price</th>
             <th scope="col" id="tableAvailability">Occupied</th>
             <th scope="col" id="tableDelete"></th>
+            <!--<th scope="col" id="tableAlter"></th>-->
 
         </tr>
         </thead>
@@ -115,17 +127,32 @@
         </tbody>
     </table>
 
+    <!-- Delete Modal -->
+    <!--<div id="delete_modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"-->
+         <!--tabindex="-1">-->
+        <!--<div class="modal-header">-->
+            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+            <!--<h3 id="myModalLabel">Delete</h3>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+            <!--<div class="row-fluid">-->
+                <!--<div class="span12"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+            <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
+            <!--<button id="delete_confirm" class="btn red btn-primary" data-dismiss="modal">Delete</button>-->
+        <!--</div>-->
+    <!--</div>-->
 
-</div>
 
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="js/script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </body>
 </html>

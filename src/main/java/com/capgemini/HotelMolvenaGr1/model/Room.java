@@ -17,6 +17,7 @@ public class Room {
     private long id;
 
     // Variables
+    private int roomNumber;
     private ERoomType roomType;
     private boolean isOccupied;
     private double defaultPrice;
@@ -24,10 +25,18 @@ public class Room {
     private int numberOfPeople;
     private EBedsType eBedsType;
 
-    
+
 
     // Getters and setters
 
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public ERoomType getRoomType() {
         return roomType;

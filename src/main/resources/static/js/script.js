@@ -3,8 +3,11 @@
 
 // AJAX gebruiken om backend data in te laden naar jquery
 
+
 function getData() {
 
+    $(document).ready(function(){
+   
 	$.ajax({
 		url : "http://localhost:8080/api/rooms",
 		type : "get",
@@ -15,22 +18,24 @@ function getData() {
 
 				$.each(data, function(index, current) {
                     console.log("each function is initiated");
-				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td></tr>";
+				 	var columnRow = "<tr><td>" + current.roomNumber + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" 
+                    + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
 				});
 
                 console.log(roomTableContent);
+                            
                 $(".roomTable").empty();
 				$(".roomTable").append(roomTableContent);
 
 				}
 
 		});
-}
+    });
 
-getData();
+}
 
 function deleteRoom(id){
                 console.log("function deleteroom is being used")
@@ -42,9 +47,10 @@ function deleteRoom(id){
                         success : function() {
                             console.log("Delete is initiated");
                             $("#roomTable").html("");
+                             getData();
                         }
                     })
-                    getData();
+                   
                 }
 
 
@@ -52,6 +58,7 @@ function postData(){
 	// The postData function is triggered by the add new room button. This function has to post the filled in data into the table.
 
     // First we need to put the values of the input fields into variables
+    var inputRoomNumber = $("#roomNumber").val();
     var inputRoomType = $("#roomType").val();
     var inputRoomName = $("#roomName").val();
     var inputPrice = $("#roomPrice").val();
@@ -61,6 +68,7 @@ function postData(){
 
     // Here we make a new object
     var newRoomObject = {
+    roomNumber : inputRoomNumber,
     roomType : inputRoomType,
     defaultPrice : inputPrice,
     roomName : inputRoomName,
