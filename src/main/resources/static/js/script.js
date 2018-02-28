@@ -19,7 +19,7 @@ function getData() {
 
 				$.each(data, function(index, current) {
                     console.log("each function");
-				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.available + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
+				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
@@ -37,8 +37,9 @@ function getData() {
 
 function deleteRoom(roomID){
                 console.log("function deleteroom is being used")
+
                     $.ajax({
-                        url : "http://localhost:8080/api/rooms/delete", 
+                        url : "http://localhost:8080/api/rooms/delete",
                         type : "delete",
                         contentType : "application/json",
                         success : function() {
@@ -56,20 +57,19 @@ function postData(){
     // First we need to put the values of the input fields into variables
     var inputRoomID = $("#roomId").val();
     var inputRoomType = $("#roomType").val();
+    var inputRoomName = $("#roomName").val();
     var inputPrice = $("#roomPrice").val();
     var inputAvailability = $("#roomAvailability").val();
 
-    if(inputRoomID == "") {
-            $("#errorMessage").val("Fill in RoomID")
-            return;
-        }
+
 
     // Here we make a new object
     var newRoomObject = {
     roomType : inputRoomType,
     roomID : inputRoomID,
     defaultPrice : inputPrice,
-    available : inputAvailability
+    roomName : inputRoomName,
+    occupied : inputAvailability
     };
 
     // Make the object readable for the backend by parsing it to JSON

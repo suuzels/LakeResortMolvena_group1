@@ -4,36 +4,25 @@ import com.capgemini.HotelMolvenaGr1.model.Room;
 
 import java.util.Date;
 
-/**
- *    System.out.println( "Ciao Lago di Molvena!" );
- DateFormat theFormatOfDate = new SimpleDateFormat("d-M-yyyy");
 
- ArrayList<BookedDates> listOfDatesBooked = new ArrayList<BookedDates>();
- BookedDates guest1 = new BookedDates(theFormatOfDate.parse("12-10-2018"),theFormatOfDate.parse("12-10-2018"));
- listOfDatesBooked.add(guest1);
- System.out.println(guest1.toString());
-
- Date checkInDate = theFormatOfDate.parse("12-10-2018");
- Date checkOutDate = theFormatOfDate.parse("12-12-2018");
- booking enterDate = new booking(checkInDate, checkOutDate);
-
- enterDate.checkAvailability();
- */
 public class Booking {
+
+    private Guest guest;
+
+    private Room room;
+
     private Date checkInDate;
+
     private Date checkOutDate;
 
     private int numberOfGuests;
 
-    // extra properties
     private boolean isPaid;
 
     private boolean babybed;
 
     private int bookingID;
 
-    private Guest guest;
-    private Room room;
 
     public Booking(){
 

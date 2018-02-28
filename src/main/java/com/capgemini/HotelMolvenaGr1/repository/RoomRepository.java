@@ -20,21 +20,21 @@ public class RoomRepository {
 
         Room room1 = new Room();
         room1.setRoomType(ERoomType.STANDARD);
-        room1.setAvailable(true);
+        room1.setOccupied(false);
         room1.setRoomID("1");
         room1.setDefaultPrice(89);
         room1.setRoomName("Iron Man");
 
         Room room2 = new Room();
         room2.setRoomType(ERoomType.LUXURY);
-        room2.setAvailable(true);
+        room2.setOccupied(false);
         room2.setRoomID("2");
         room2.setDefaultPrice(149);
         room2.setRoomName("Black Panther");
 
         Room room3 = new Room();
         room3.setRoomType(ERoomType.HONEYMOON_SUITE);
-        room3.setAvailable(true);
+        room3.setOccupied(false);
         room3.setRoomID("3");
         room3.setDefaultPrice(345);
         room3.setRoomName("Hulk");
@@ -61,12 +61,10 @@ public class RoomRepository {
         return room;
     }
 
-    public void deleteRoom(String roomID) {
-        for (Room room : this.rooms) {
-            if (room.getRoomID() == roomID) {
+    public void deleteRoom() {
+        for (Room room : rooms) {
                 rooms.remove(room);
             }
-        }
     }
 
     public void changeRoom(String roomID, ERoomType roomType) {
