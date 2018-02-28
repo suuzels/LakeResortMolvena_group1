@@ -22,21 +22,38 @@ public class GuestRepository {
        return guest;
     }
 
+    public List<Guest> search(String searchTerm) {
+        String searchTermLower;
+        List<Guest> searchResults = new ArrayList<>();
+        searchTermLower = searchTerm.toLowerCase();
 
-    // i want to remember the guest
-    public Guest rememberGuest(Guest guest){
-        guestList.add(guest);
-        return guest;
+        for (Guest guest : guestList) {
+            String lastNameLower = guest.getLastName().toLowerCase();
+            if (lastNameLower.contains(searchTermLower)) {
+                searchResults.add(guest);
+            }
+        }
+        return searchResults;
     }
 
-    public String searchGuest(){
-        GuestRegister guest = new GuestRegister();
-        boolean result = guest.searchGuest("Sasha");
-        if(result) {
-            return "found";
-        }else{
-            return "not found";
+    public void deleteGuest() {
+        for (Guest guest : guestList) {
+            guestList.remove(guest);
         }
     }
+
+    public void changeGuest(String firstName, String lastName, String address, String postalCode, String town, String country, String telephoneNumber, String emailAddress) {
+        for (Guest guest : guestList) {
+            if (guest.getLastName() == lastName & guest.getFirstName() == firstName) {
+                guest.setAddress(address);
+                guest.setPostalCode(postalCode);
+                guest.setTown(town);
+                guest.setTelephoneNumber(telephoneNumber);
+                guest.setEmailAddress(emailAddress);
+            }
+        }
+
+    }
+
 
 }
