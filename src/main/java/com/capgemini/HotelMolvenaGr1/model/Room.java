@@ -1,8 +1,20 @@
 package com.capgemini.HotelMolvenaGr1.model;
+
 import com.capgemini.HotelMolvenaGr1.EBedsType;
 import com.capgemini.HotelMolvenaGr1.ERoomType;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Room {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // This private long id is needed for the Interface RoomRepository
+    private long id;
 
     // Variables
     private ERoomType roomType;
@@ -13,9 +25,13 @@ public class Room {
     private int numberOfPeople;
     private EBedsType eBedsType;
 
+
+
     // Constructors
 
-    public Room(){}
+    // !The empty constructor may not be removed as long as there is another constructor that contains parameters!
+    public Room() {
+    }
 
     public Room(ERoomType roomType, boolean isOccupied, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
         this.roomType = roomType;
@@ -28,7 +44,7 @@ public class Room {
     }
 
 
-// Getters and setters
+    // Getters and setters
 
 
     public ERoomType getRoomType() {

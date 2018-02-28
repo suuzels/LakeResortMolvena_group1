@@ -74,12 +74,12 @@
                             <label for="roomPrice" class="col-form-label">Room Price:</label>
                             <input type="text" class="form-control" id="roomPrice" placeholder="Room Price">
                             <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="roomAvailability">
-                                <label class="form-check-label" for="roomAvailability">
-                                    Check the box if the room is occupied.
-                                </label>
-                            </div>
+
+                            <label for="occupied">Select availability room:</label>
+                            <select class="form-control" id="occupied">
+                                <option value="false">Available</option>
+                                <option value="true">Occupied</option>
+                            </select>
 
                         </form>
                     </div>
@@ -107,8 +107,8 @@
             <th scope="col" id="tableRoomName">Room Name</th>
             <th scope="col" id="tableRoomType">Room Type</th>
             <th scope="col" id="tablePrice">Price</th>
-            <th scope="col" id="tableAvailability">Availability</th>
-            <th scope="col" id="tableDelete">Delete</th>
+            <th scope="col" id="tableAvailability">Occupied</th>
+            <th scope="col" id="tableDelete"></th>
 
         </tr>
         </thead>

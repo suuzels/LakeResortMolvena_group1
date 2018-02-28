@@ -18,7 +18,7 @@ function getData() {
 			console.log("roomObject");
 
 				$.each(data, function(index, current) {
-                    console.log("each function");
+                    console.log("each function is initiated");
 				 	var columnRow = "<tr><td>" + current.roomID + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.roomID + ")'> Delete </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
@@ -59,7 +59,7 @@ function postData(){
     var inputRoomType = $("#roomType").val();
     var inputRoomName = $("#roomName").val();
     var inputPrice = $("#roomPrice").val();
-    var inputAvailability = $("#roomAvailability").val();
+    var inputAvailability = $("#occupied").val();
 
 
 
