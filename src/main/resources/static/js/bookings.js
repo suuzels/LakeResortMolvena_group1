@@ -2,6 +2,43 @@ $(document).ready(function(){
 getData();
     });
 
+function editBooking(id){
+    console.log("Trying to edit data");
+
+    var inputID = id;
+    var inputCheckInDate = $("#checkInDateEdit").val();
+    var inputCheckOutDate = $("#checkOutDateEdit").val();
+    var inputGuest = $("#bookingGuestEdit").val();
+    var inputRoom = $("#bookingRoomEdit").val();
+    var inputBreakfast = $("#bookingBreakfastEdit").val();
+    var inputBabybed = $("#bookingBabybedEdit").val();
+
+    var newBookingUpdateObject = {
+                id : inputID,
+                checkInDate : inputCheckInDate,
+                checkOutDate : inputCheckOutDate,
+                guest : inputGuest,
+                room : inputRoom,
+                wantsBreakfast : inputBreakfast,
+                wantsBabybed : inputBabybed
+                };
+
+    var newBookingUpdate = JSON.stringify(newBookingUpdateObject);
+
+    $.ajax({
+        url : "http://localhost:8080/api/bookings/"+id,
+        type : "put",
+        data : newBookingUpdate,
+        contentType : "application/json",
+        success : function(data){
+            console.log("successful put")
+
+            getData();
+        }
+
+    });
+};
+
 
 function postData(){
     console.log("Trying to post data");
@@ -85,7 +122,7 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td></tr>";
+            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-info' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
 
 
