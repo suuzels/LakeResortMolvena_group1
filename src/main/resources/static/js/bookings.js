@@ -72,19 +72,18 @@ $(document).ready(function(){
             console.log(current);
 
             var boolBreakfastStr = current.wantsBreakfast.toString();
-                    if(current.wantsBreakfast == true){
+                    if(current.wantsBreakfast){
                          boolBreakfastStr = "yes";
                          } else {
                          boolBreakfastStr = "no";
                          }
 
             var boolBabybedStr = current.wantsBabybed.toString();
-                    if(current.wantsBabybed == true){
+                    if(current.wantsBabybed){
                           boolBabybedStr = "yes";
                           } else {
                           boolBabybedStr = "no";
                           }
-
 
             var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td></tr>";
 
