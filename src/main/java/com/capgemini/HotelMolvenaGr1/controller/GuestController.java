@@ -26,8 +26,8 @@ public class GuestController {
 
         // search for item in table
         @RequestMapping(value="search/{searchTerm}", method = RequestMethod.GET)
-    public void searchGuests(@PathVariable String searchTerm) {
-//        return this.guestRepository.search(searchTerm);
+    public List<Guest> searchGuests(@PathVariable String searchTerm) {
+            return guestRepository.findByLastNameContainingIgnoreCase(searchTerm);
     }
 
     // delete a person

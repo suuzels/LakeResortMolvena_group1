@@ -19,7 +19,7 @@ function getData() {
 
                         guestList+=columnRow;
                     });
-             $("#guest").append(guestList);
+             $("#guest").html(guestList);
         }
     });
 }
@@ -148,7 +148,7 @@ function searchData() {
     console.log("you clicked");
     var inputsearchTerm = $("#searchTerm").val();
 
-
+//    alert(inputsearchTerm);
     console.log(inputsearchTerm);
 
     if(inputsearchTerm == "") {
@@ -168,22 +168,26 @@ function searchData() {
     console.log(newSearch);
 
     $.ajax({
-        url : "http://localhost:8080/api/search/{searchTerm}",
-        type : "post",
-        data : newSearch,
+        url : "http://localhost:8080/api/guest/search/"+inputsearchTerm,
+        type : "get",
         contentType : "application/json",
         success : function(data) {
-
+            console.log("na de get");
             console.log(data);
             $("#searchTerm").val("");
+            var guestSearch = '';
+
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td><input type='checkbox' id='checkbox' </td><td>" + value.firstName + "</td><td>" +
+                        var columnRow = "<tr><td>" + value.firstName + "</td><td>" +
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td></tr>";
-                        guestList+=columnRow;
+                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest(" + value.firstName + ")'> Delete </button>" + "</td></tr>";
+
+                        guestSearch+=columnRow;
                     });
-             $("#guest").append(searchResults);
+             $("#guest").html(guestSearch);
         }
     });
 }
