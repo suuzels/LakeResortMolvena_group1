@@ -2,7 +2,10 @@
 //
 
 // AJAX gebruiken om backend data in te laden naar jquery
-
+$(document).ready(function(){
+getData()
+var deleteId = id;
+    });
 
 function getData() {
 
@@ -19,7 +22,10 @@ function getData() {
 				$.each(data, function(index, current) {
                     console.log("each function is initiated");
 				 	var columnRow = "<tr><td>" + current.roomNumber + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" 
-                    + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td></tr>";
+                    + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + 
+                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
+
+                    "<button type='button' class='btn btn-secondary' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
@@ -37,11 +43,21 @@ function getData() {
 
 }
 
-function deleteRoom(id){
+
+function modalDeleteRoom(id){
+                console.log("function modalDeleteRoom is being used")
+
+                deleteId = id;
+
+                $("#deleteRoomModal").modal('show');
+                
+}
+
+ function deleteRoom(){
                 console.log("function deleteroom is being used")
 
                     $.ajax({
-                        url : "http://localhost:8080/api/rooms/"+id,
+                        url : "http://localhost:8080/api/rooms/"+deleteId,
                         type : "delete",
                         contentType : "application/json",
                         success : function() {
@@ -52,6 +68,15 @@ function deleteRoom(id){
                     })
                    
                 }
+
+function modalEditRoom(id){
+                console.log("function modalDeleteRoom is being used")
+
+                
+
+                $("#deleteRoomModal").modal('show');
+                
+}
 
 
 function postData(){
