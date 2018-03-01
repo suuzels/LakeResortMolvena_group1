@@ -23,9 +23,8 @@ function getData() {
                     console.log("each function is initiated");
 				 	var columnRow = "<tr><td>" + current.roomNumber + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" 
                     + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + 
-                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>" +
-
-                    "<button type='button' class='btn btn-secondary' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
+                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>" 
+                    + "<button type='button' class='btn btn-secondary' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
 				 	roomTableContent += columnRow;
 
@@ -33,8 +32,8 @@ function getData() {
 
                 console.log(roomTableContent);
                             
-                $(".roomTable").empty();
-				$(".roomTable").append(roomTableContent);
+                $("#roomTable").empty();
+				$("#roomTable").append(roomTableContent);
 
 				}
 
@@ -72,9 +71,7 @@ function modalDeleteRoom(id){
 function modalEditRoom(id){
                 console.log("function modalDeleteRoom is being used")
 
-                
-
-                $("#deleteRoomModal").modal('show');
+                $("#editRoomModal").modal('show');
                 
 }
 
