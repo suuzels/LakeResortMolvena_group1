@@ -3,13 +3,21 @@ package com.capgemini.HotelMolvenaGr1.model;
 import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.model.Room;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
-
+@Entity
 public class Booking {
 
     // Variables
-    private int bookingId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+
     private String guest;
     private String room;
     private String checkInDate;
@@ -17,7 +25,7 @@ public class Booking {
     private int numberOfNights;
     private int numberOfGuests;
     private boolean isPaid;
-    private boolean wantsBbabybed;
+    private boolean wantsBabybed;
     private boolean wantsBreakfast;
 
     // Constructor
@@ -29,12 +37,8 @@ public class Booking {
     // Getters and setters
 
 
-    public int getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public long getId() {
+        return id;
     }
 
     public String getGuest() {
@@ -94,11 +98,11 @@ public class Booking {
     }
 
     public boolean isWantsBbabybed() {
-        return wantsBbabybed;
+        return wantsBabybed;
     }
 
     public void setWantsBbabybed(boolean wantsBbabybed) {
-        this.wantsBbabybed = wantsBbabybed;
+        this.wantsBabybed = wantsBbabybed;
     }
 
     public boolean isWantsBreakfast() {

@@ -4,7 +4,7 @@ getData();
 
 function deleteBooking(){
     $.ajax({
-        url : "http://localhost:8080/api/bookings/delete",
+        url : "http://localhost:8080/api/bookings/{id}",
         type : "delete",
         contentType : "application/json",
         success : function() {
@@ -12,7 +12,6 @@ function deleteBooking(){
             $("#bookingTable").html("");
 
             getData();
-
         }
 
     });
@@ -30,7 +29,7 @@ function postData(){
         var inputBabybed = $("#bookingBabybed").val();
 
         var newBookingObject = {
-            bookingId : inputBookingId,
+            id : inputBookingId,
             checkInDate : inputCheckInDate,
             checkOutDate : inputCheckOutDate,
             guest : inputGuest,
@@ -71,7 +70,7 @@ function getData(){
         				$.each(data, function(index, current) {
                             console.log("each function");
                             console.log(current);
-        				 	var columnRow = "<tr><td>" + current.bookingId + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + current.wantsBreakfast + "</td><td>" + current.wantsBabybed + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.bookingId + ")'> Delete </button>" + "</td></tr>";
+        				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + current.wantsBreakfast + "</td><td>" + current.wantsBabybed + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td></tr>";
 
         				 	bookingTableContent += columnRow;
 
