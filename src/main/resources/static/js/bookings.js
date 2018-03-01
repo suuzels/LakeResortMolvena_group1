@@ -3,7 +3,6 @@ getData();
     });
 
 
-
 function postData(){
     console.log("Trying to post data");
 
@@ -68,19 +67,39 @@ $(document).ready(function(){
         success : function(data){
 
         var bookingTableContent = "";
+        	$.each(data, function(index, current) {
+            console.log("each function");
+            console.log(current);
 
-        				$.each(data, function(index, current) {
-                            console.log("each function");
-                            console.log(current);
-        				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + current.wantsBreakfast + "</td><td>" + current.wantsBabybed + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td></tr>";
+            var boolBreakfastStr = current.wantsBreakfast.toString();
+                    if(current.wantsBreakfast == true){
+                         boolBreakfastStr = "yes";
+                         } else {
+                         boolBreakfastStr = "no";
+                         }
 
-        				 	bookingTableContent += columnRow;
+            var boolBabybedStr = current.wantsBabybed.toString();
+                    if(current.wantsBabybed == true){
+                          boolBabybedStr = "yes";
+                          } else {
+                          boolBabybedStr = "no";
+                          }
 
-        				});
+
+            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td></tr>";
+
+
+
+
+            bookingTableContent += columnRow;
+            });
+
 
                         console.log(bookingTableContent);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingTableContent);
+
+
         }
 
     });

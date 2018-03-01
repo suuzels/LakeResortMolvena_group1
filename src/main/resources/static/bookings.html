@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
 </head>
 <body>
 
@@ -73,11 +75,21 @@
                             <label for="bookingGuest" class="col-form-label">Guest:</label>
                             <input type="text" class="form-control" id="bookingGuest" placeholder="Guest">
 
-                            <label for="bookingBreakfast" class="col-form-label">Breakfast:</label>
-                            <input type="text" class="form-control" id="bookingBreakfast" placeholder="Breakfast">
+                            <div class="form-group">
+                                <label for="bookingBreakfast">Breakfast:</label>
+                                <select class="form-control" id="bookingBreakfast">
+                                    <option value="true">yes</option>
+                                    <option value="true">no</option>
+                                </select>
+                            </div>
 
-                            <label for="bookingBabybed" class="col-form-label">Babybed:</label>
-                            <input type="text" class="form-control" id="bookingBabybed" placeholder="Babybed">
+                            <div class="form-group">
+                                <label for="bookingBabybed">Babybed:</label>
+                                <select class="form-control" id="bookingBabybed">
+                                    <option value="true">yes</option>
+                                    <option value="true">no</option>
+                                </select>
+                            </div>
                             <br>
 
 
@@ -103,14 +115,14 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col" id="tableBookingId">Booking ID</th>
+            <th scope="col" id="tableBookingId">Booking Number</th>
             <th scope="col" id="tableCheckInDate">Check-in date</th>
             <th scope="col" id="tableCheckOutDate">Check-out date</th>
-            <th scope="col" id="tableBookingGuest">Guest</th>
+            <th scope="col" id="tableBookingGuest">Name of Guest</th>
             <th scope="col" id="tableBookingRoom">Room</th>
             <th scope="col" id="tableBookingBreakfast">Breakfast</th>
             <th scope="col" id="tableBookingBabybed">Babybed</th>
-            <th scope="col" id="tableDelete">Delete</th>
+            <th scope="col" id="tableDelete"></th>
 
         </tr>
         </thead>
