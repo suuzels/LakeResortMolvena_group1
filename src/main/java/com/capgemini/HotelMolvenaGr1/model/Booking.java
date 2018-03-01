@@ -97,12 +97,12 @@ public class Booking {
         isPaid = paid;
     }
 
-    public boolean isWantsBbabybed() {
+    public boolean isWantsBabybed() {
         return wantsBabybed;
     }
 
-    public void setWantsBbabybed(boolean wantsBbabybed) {
-        this.wantsBabybed = wantsBbabybed;
+    public void setWantsBabybed(boolean wantsBabybed) {
+        this.wantsBabybed = wantsBabybed;
     }
 
     public boolean isWantsBreakfast() {

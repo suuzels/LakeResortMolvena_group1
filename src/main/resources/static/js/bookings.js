@@ -1,26 +1,12 @@
 $(document).ready(function(){
 getData();
-});
-
-function deleteBooking(){
-    $.ajax({
-        url : "http://localhost:8080/api/bookings/{id}",
-        type : "delete",
-        contentType : "application/json",
-        success : function() {
-            console.log("Deletion is initiated");
-            $("#bookingTable").html("");
-
-            getData();
-        }
-
     });
-}
+
+
 
 function postData(){
     console.log("Trying to post data");
 
-        var inputBookingId = $("#bookingId").val();
         var inputCheckInDate = $("#checkInDate").val();
         var inputCheckOutDate = $("#checkOutDate").val();
         var inputGuest = $("#bookingGuest").val();
@@ -29,7 +15,6 @@ function postData(){
         var inputBabybed = $("#bookingBabybed").val();
 
         var newBookingObject = {
-            id : inputBookingId,
             checkInDate : inputCheckInDate,
             checkOutDate : inputCheckOutDate,
             guest : inputGuest,
@@ -57,7 +42,24 @@ function postData(){
     });
 }
 
+function deleteBooking(id){
+    $.ajax({
+        url : "http://localhost:8080/api/bookings/"+id,
+        type : "delete",
+        contentType : "application/json",
+        success : function() {
+            console.log("Deletion is initiated");
+            $("#bookingTable").html("");
+
+            getData();
+        }
+
+    });
+}
+
 function getData(){
+$(document).ready(function(){
+
     console.log("Trying to get the data.")
 
     $.ajax({
@@ -81,6 +83,7 @@ function getData(){
         				$(".bookingTable").append(bookingTableContent);
         }
 
+    });
     });
 }
 
