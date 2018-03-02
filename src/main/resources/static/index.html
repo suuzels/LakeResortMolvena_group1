@@ -6,14 +6,17 @@
     <title>Hotel Applicatie Group 1</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/homepage.css">
+
 </head>
 
 <body>
 
-
 <!--Inladen menu-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-    <a class="navbar-brand" href="index.html">Hotel Molvena</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-faded navbar-dani" id="navigation">
+    <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top"
+                                                   style="width:50px;"
+                                                   src="logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,11 +25,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="bookings.html">Booking</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="guests.html">Guests</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
+            </li>
+
         </ul>
         <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
         <!--<form class="form-inline my-2 my-lg-0">-->
@@ -36,21 +43,64 @@
     </div>
 </nav>
 
-<br>
-<br>
-<h1>Dit is de homepagina</h1>
+<!--Background image container-->
+<div class="container-fluid" id="background-image">
+
+
+    <div class="container-fluid welcome">
+        <h1>Welcome</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Bookings</h5>
+                        <p class="card-text">Here you can create, search for or edit bookings.</p>
+                        <a href="bookings.html" class="btn btn-primary">Go to bookings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Guests</h5>
+                        <p class="card-text">Here you can add, search for or edit guests.</p>
+                        <a href="guests.html" class="btn btn-primary">Go to guests</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Rooms</h5>
+                        <p class="card-text">Here you can create, search for or edit rooms.</p>
+                        <a href="rooms.html" class="btn btn-primary">Go to rooms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<!--<script src="js/Script.js"></script>-->
+<script src="js/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
 </body>
 </html>
 

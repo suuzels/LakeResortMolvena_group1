@@ -1,35 +1,42 @@
 package com.capgemini.HotelMolvenaGr1.model;
+
 import com.capgemini.HotelMolvenaGr1.EBedsType;
 import com.capgemini.HotelMolvenaGr1.ERoomType;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Room {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // This private long id is needed for the Interface RoomRepository
+    private long id;
+
     // Variables
+    private int roomNumber;
     private ERoomType roomType;
     private boolean isOccupied;
-    private String roomID;
     private double defaultPrice;
     private String roomName;
     private int numberOfPeople;
     private EBedsType eBedsType;
 
-    // Constructors
 
-    public Room(){}
 
-    public Room(ERoomType roomType, boolean isOccupied, String roomID, double defaultPrice, String roomName, int numberOfPeople, EBedsType eBedsType) {
-        this.roomType = roomType;
-        this.isOccupied = isOccupied;
-        this.roomID = roomID;
-        this.defaultPrice = defaultPrice;
-        this.roomName = roomName;
-        this.numberOfPeople = numberOfPeople;
-        this.eBedsType = eBedsType;
+    // Getters and setters
+
+
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-
-// Getters and setters
-
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public ERoomType getRoomType() {
         return roomType;
@@ -46,15 +53,6 @@ public class Room {
     public void setOccupied(boolean occupied) {
         isOccupied = occupied;
     }
-
-    public String getRoomID() {
-        return roomID;
-    }
-
-    public void setRoomID(String roomID) {
-        this.roomID = roomID;
-    }
-
 
     public double getDefaultPrice() {
         return defaultPrice;
@@ -88,10 +86,16 @@ public class Room {
         this.eBedsType = eBedsType;
     }
 
+    public long getId() {
+        return id;
+    }
+
+
     // Methodess
 
 //    public double calculateEventPrice() {
 //        double eventPrice = defaultPrice * 2;
+
 //        System.out.println("The new price of the room is: " + eventPrice + " euro.");
 //        return eventPrice;
 //    }

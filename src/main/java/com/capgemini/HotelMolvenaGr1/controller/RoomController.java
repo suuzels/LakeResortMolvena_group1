@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class HotelController {
+public class RoomController {
 
     private Guest guest;
 
@@ -40,26 +40,30 @@ public class HotelController {
     @Autowired
     private RoomRepository roomRepository;
 
-
-    @RequestMapping(value = "api/rooms/get", method = RequestMethod.GET)
+    // Gets all rooms
+    @RequestMapping(value = "api/rooms", method = RequestMethod.GET)
     public Iterable<Room> index() {
-        return roomRepository.getRooms();
+        return roomRepository.findAll();
     }
 
-    @RequestMapping(value = "api/rooms/save", method = RequestMethod.POST)
+    // Posts a new room on add button click
+    @RequestMapping(value = "api/rooms", method = RequestMethod.POST)
     public void save(@RequestBody Room roomToSave) {
         roomRepository.save(roomToSave);
     }
 
-    @RequestMapping(value = "api/rooms/delete", method = RequestMethod.DELETE)
-    public void deleteRoom() {
-        roomRepository.deleteRoom();
+    // Deletes a database item when clicked
+    @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.DELETE)
+    public void deleteRoom(@PathVariable long id) {
+        roomRepository.delete(id);
     }
 
-    @RequestMapping(value = "api/rooms/change", method = RequestMethod.POST)
-    public void changeRoom(@RequestBody String roomID, ERoomType roomType) {
-        roomRepository.changeRoom(roomID, roomType);
-    }
+
+//    Changes a roomtype to the selected roomtype
+//    @RequestMapping(value = "api/rooms/{id, roomType}", method = RequestMethod.POST)
+//    public void editRoom(@PathVariable long id, ERoomType roomType) {
+//        roomRepository.save(id, roomType);
+//    }
 
     // public void checkIn();
 
