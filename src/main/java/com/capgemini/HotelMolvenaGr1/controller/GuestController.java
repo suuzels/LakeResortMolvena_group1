@@ -31,10 +31,10 @@ public class GuestController {
     }
 
     // delete a person
-    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public void deleteGuest(@RequestBody Guest guestToDelete)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void deleteGuest(@PathVariable long id)
     {
-        guestRepository.delete(guestToDelete);
+        guestRepository.delete(id);
     }
 
     // alter a person

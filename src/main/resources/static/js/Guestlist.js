@@ -10,51 +10,70 @@ function getData() {
             var guestList = '';
 
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td>" + value.firstName + "</td><td>" +
-                        value.lastName + "<td>" + value.address + "</td><td>" + value.country +
-                        "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
+                        var columnRow = "<tr><td>" + value.id + "</td><td>" +
+                        value.firstName + "</td><td>" +
+                        value.lastName + "</td><td>" +
+                        value.address + "</td><td>" +
+                        value.country + "</td><td>" +
+                        value.town + "</td><td>" +
+                         value.postalCode + "</td><td>" +
+                         value.telephoneNumber + "</td><td>" +
+                         value.emailAddress + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest(" + value.firstName + ")'> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
 
                         guestList+=columnRow;
                     });
-             $("#guest").html(guestList);
+             $("#guestTable").html(guestList);
         }
     });
 }
 
 //<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
 // remove data by POST information to java //url delete
-function deleteGuest(guestFirstname){
+function deleteGuest(obj){
 
     console.log("you are going to delete");
-    // first illustrate delete in a pop up modal
-    // popup deleteGuestModal
-    $('#deleteGuestModal').modal('show');
+//    // first illustrate delete in a pop up modal
+//    // popup deleteGuestModal
+    $('#modalDelete').modal('show');
 
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
-//    var table = $('#guest').DataTable();
-//    console.log(table);
-//    console.log( table.row( this ).data());
+
+                                                      var idDeleted = $(obj).attr("id");
+                                                      console.log(idDeleted);
+
+                                                      $("#finalDelete").click(function(){
+                                                             console.log("final delete");
+                                                             $.ajax({
+                                                                 url: "http://localhost:8080/api/guest/"+idDeleted,
+                                                                 type:"delete",
+                                                                 contentType: "application/json",
+                                                                 success:function(){
+                                                                     console.log("Deletion is initiated");
+                                                                     $("#guestTable").html("");
+                                                                     getData();
+                                                                 }
+                                                             });
+                                                      });
 
 }
-
-function finalDeleteData(guestID){
-    console.log("you are going to delete");
-                    $.ajax({
-                        url : "http://localhost:8080/api/guests/delete",
-                        type : "delete",
-                        contentType : "application/json",
-                        success : function() {
-                            console.log("Delete is initiated");
-                            $("#guest").html("");
-
-                        }
-                    })
-                    getData();
-}
+//
+//function finalDeleteData(guestID){
+//    console.log("you are going to delete");
+//                    $.ajax({
+//                        url : "http://localhost:8080/api/guests/delete",
+//                        type : "delete",
+//                        contentType : "application/json",
+//                        success : function() {
+//                            console.log("Delete is initiated");
+//                            $("#guest").html("");
+//
+//                        }
+//                    })
+//                    getData();
+//}
 
 function editGuest(){
     console.log("you are going to edit");
@@ -187,7 +206,7 @@ function searchData() {
 
                         guestSearch+=columnRow;
                     });
-             $("#guest").html(guestSearch);
+             $("#guestTable").html(guestSearch);
         }
     });
 }

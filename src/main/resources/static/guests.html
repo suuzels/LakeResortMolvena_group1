@@ -30,16 +30,18 @@
         </ul>
     </div>
 </nav>
-        <h1 id="title">Guest details</h1>
 
-<input type = "text" id="searchTerm" placeholder="search guest">
-<button type="button" class="btn btn-secondary addSearchButton" onclick="searchData();" data-toggle="modal" data-target="#addSearchModal">Search</button>
-<button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
-<button type="button" class="btn btn-secondary addAlterButton" data-toggle="modal" data-target="#addAlterModal">Alter guests</button>
+<div class="container-fluid">
+    <h1>Guest details</h1>
+
+    <input type = "text" id="searchTerm" placeholder="search guest">
+    <button type="button" class="btn btn-secondary addSearchButton" onclick="searchData();" data-toggle="modal" data-target="#addSearchModal">Search</button>
+    <button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
+    <button type="button" class="btn btn-secondary addAlterButton" data-toggle="modal" data-target="#addAlterModal">Alter guests</button>
 
 
 <!--popup for add guest-->
-<div class="modal fade" id="addGuestModal" role="dialog">
+    <div class="modal fade" id="addGuestModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -69,13 +71,37 @@
             </div>
         </div>
     </div>
+    </div>
+    <br>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Address</th>
+            <th>Country</th>
+            <th>Town</th>
+            <th>Postalcode</th>
+            <th>Telephonenumber</th>
+            <th>Email</th>
+            <th >Edit</th>
+            <th >Delete</th>
+         </tr>
+        </thead>
+            <tbody  id="guestTable">
+
+            </tbody>
+    </table>
 </div>
+
         <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
         <!--<form class="form-inline my-2 my-lg-0">-->
         <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
         <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
         <!--</form>-->
-<div class="modal fade" id="deleteGuestModal" role="dialog">
+<div class="modal fade" id="modalDelete" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -88,13 +114,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <form>
-                        <label for="guestFirstname" class="col-form-label">First name:</label>
-                        <p class="form-control" id="guestFirstname"></p>
+                        <label class="col-form-label">First name:</label>
+
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="finalDeleteData();">Delete
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="finalDelete">Delete
                 </button>
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
             </div>
@@ -103,24 +129,7 @@
     </div>
 </div>
 
-<br>
-<br>
-<table id="guest" class="table table-hover">
-    <tr>
-        <thead>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Address</th>
-            <th>Country</th>
-            <th>Town</th>
-            <th>Postalcode</th>
-            <th>Telephonenumber</th>
-            <th>Email</th>
-            <th id="tableEdit">Edit</th>
-            <th id="tableDelete">Delete</th>
-        </thead>
-    </tr>
-</table>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
