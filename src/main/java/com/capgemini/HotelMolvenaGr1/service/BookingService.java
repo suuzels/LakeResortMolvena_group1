@@ -18,6 +18,12 @@ public class BookingService {
     @PostConstruct
     public void init() {
         Booking b1 = new Booking();
+        b1.setCheckInDate("2018-03-05");
+        b1.setCheckOutDate("2018-03-07");
+        b1.setGuest("Versnel");
+        b1.setRoom("123");
+        b1.setWantsBreakfast(true);
+        b1.setWantsBabybed(false);
 
         this.bookingRepository.save(b1);
     }
