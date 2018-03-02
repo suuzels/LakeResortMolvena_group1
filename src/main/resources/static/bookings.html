@@ -14,8 +14,10 @@
 <body>
 
 <!--Inladen menu-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-    <a class="navbar-brand" href="index.html">Hotel Molvena</a>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-dani" id="navigation" style="background-color: #002800">
+    <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top"
+                                                   style="width:50px;"
+                                                   src="logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,7 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link active" href="bookings.html">Bookings<span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="bookings.html">Booking</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="guests.html">Guests</a>
@@ -32,23 +34,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
             </li>
-
         </ul>
-        <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
-        <!--<form class="form-inline my-2 my-lg-0">-->
-        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-        <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
-        <!--</form>-->
     </div>
 </nav>
 
 <br>
 
 <div class="container-fluid">
+
+    <br>
     <h2> Bookings </h2>
+    <br>
 
     <!--This button makes the modal to add a new room appear-->
-    <button type="button" class="btn btn-secondary addBookingButton" data-toggle="modal" data-target="#addBookingModal">
+    <button type="button" class="btn btn-success addBookingButton" data-toggle="modal" data-target="#addBookingModal">
         Add
         new booking
     </button>

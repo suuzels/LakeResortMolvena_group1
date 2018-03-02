@@ -12,8 +12,10 @@
 
 
 <!--Inladen menu-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-    <a class="navbar-brand" href="index.html">Hotel Molvena</a>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-dani" id="navigation" style="background-color: #002800">
+    <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top"
+                                                   style="width:50px;"
+                                                   src="logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,21 +24,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="bookings.html">Booking</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="guests.html">Guests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="rooms.html">Rooms<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <h1>Guest details</h1>
+    <br>
+    <br>
+    <h2>Guest details</h2>
+    <br>
 
     <input type = "text" id="searchTerm" placeholder="search last name">
     <button type="button" class="btn btn-secondary addSearchButton" onclick="searchData();" data-toggle="modal" data-target="#addSearchModal">Search</button>
-    <button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
+    <button type="button" class="btn btn-success addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
 
 
 <!--popup for add guest-->

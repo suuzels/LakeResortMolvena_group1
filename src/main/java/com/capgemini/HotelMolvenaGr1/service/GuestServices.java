@@ -1,4 +1,4 @@
-package com.capgemini.HotelMolvenaGr1.services;
+package com.capgemini.HotelMolvenaGr1.service;
 
 import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.repository.IGuestRepository;
