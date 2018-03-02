@@ -14,28 +14,6 @@ public class RoomController {
 
     private Room room;
 
-    //private Staff staff;
-
-    //private booking booking;
-
-    @GetMapping("/voorbeeld")
-    public String Voorbeeld() {
-        return "<h1> Het voorbeeld werkt ook! <br><br> Verander deze pagina in de HotelController </h1>";
-    }
-
-    public void greet() {
-        guest.greetGuest();
-    }
-//
-//    @RequestMapping("/api/guest")
-//    public List<guest> getGuests(){
-//        GuestRegister newGuest = new GuestRegister();
-//        newGuest.addGuest("Sasha", "Vollebregt", "Sportlaan 116", "1072GG",
-//                "London", "Netheraldo", "0640718383", "volle@gmail.com");
-//        newGuest.addGuest("Frank", "Vollebregt", "Sportlaan 116", "1072GG",
-//                "Paris", "Netheraldo", "8282282883", "volle@gmail.com");
-//        return newGuest.getGuestList();
-//    }
 
     @Autowired
     private RoomRepository roomRepository;
@@ -59,16 +37,5 @@ public class RoomController {
     }
 
 
-//    Changes a roomtype to the selected roomtype
-//    @RequestMapping(value = "api/rooms/{id, roomType}", method = RequestMethod.POST)
-//    public void editRoom(@PathVariable long id, ERoomType roomType) {
-//        roomRepository.save(id, roomType);
-//    }
-
-    // public void checkIn();
-
-    // public void checkOut();
-
-    // public void pay();
 
 }
