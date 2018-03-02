@@ -197,14 +197,15 @@ function searchData() {
             var guestSearch = '';
 
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td>" + value.firstName + "</td><td>" +
+                        var columnRow = "<tr><td>" + value.id + "</td><td>" +
+                        value.firstName + "</td><td>" +
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest(" + value.firstName + ")'> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
 
-                        guestSearch+=columnRow;
+                         guestSearch+=columnRow;
                     });
              $("#guestTable").html(guestSearch);
         }
