@@ -28,7 +28,7 @@ public class BookingController {
         bookingRepository.delete(id);
     }
 
-    @RequestMapping(value ="api/bookings/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/bookings/{id}", method = RequestMethod.PUT)
     public void editBooking(@PathVariable long id, @RequestBody Booking bookingToEdit) {
         bookingRepository.save(bookingToEdit);
     }

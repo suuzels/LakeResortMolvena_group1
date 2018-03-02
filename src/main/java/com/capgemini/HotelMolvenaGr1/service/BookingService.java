@@ -16,10 +16,9 @@ public class BookingService {
     private BookingRepository bookingRepository;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         Booking b1 = new Booking();
 
         this.bookingRepository.save(b1);
-
     }
 }

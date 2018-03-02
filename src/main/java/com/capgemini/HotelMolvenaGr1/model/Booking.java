@@ -32,11 +32,8 @@ public class Booking {
     public Booking() {
     }
 
-
-
     // Getters and setters
-
-
+    
     public long getId() {
         return id;
     }
