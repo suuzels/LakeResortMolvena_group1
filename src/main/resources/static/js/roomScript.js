@@ -1,4 +1,4 @@
-// Javascript bestand HOTELPROJECT
+// Javascript bestand roompagina @Daniëlle
 //
 
 // AJAX gebruiken om backend data in te laden naar jquery
