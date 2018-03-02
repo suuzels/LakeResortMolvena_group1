@@ -32,8 +32,8 @@ public class GuestRepository {
             if (lastNameLower.contains(searchTermLower)) {
                 searchResults.add(guest);
             }
-        }
-        return searchResults;
+        }return searchResults;
+
     }
 
     public void deleteGuest() {
