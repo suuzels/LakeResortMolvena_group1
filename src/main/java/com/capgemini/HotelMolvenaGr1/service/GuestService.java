@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class GuestServices {
+public class GuestService {
 
     @Autowired
     private IGuestRepository guestRepository;
