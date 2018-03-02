@@ -30,16 +30,17 @@
         </ul>
     </div>
 </nav>
-        <h1 id="title">Guest details</h1>
 
-<input type = "text" id="searchTerm" placeholder="search guest">
-<button type="button" class="btn btn-secondary addSearchButton" onclick="searchData();" data-toggle="modal" data-target="#addSearchModal">Search</button>
-<button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
-<button type="button" class="btn btn-secondary addAlterButton" data-toggle="modal" data-target="#addAlterModal">Alter guests</button>
+<div class="container-fluid">
+    <h1>Guest details</h1>
+
+    <input type = "text" id="searchTerm" placeholder="search last name">
+    <button type="button" class="btn btn-secondary addSearchButton" onclick="searchData();" data-toggle="modal" data-target="#addSearchModal">Search</button>
+    <button type="button" class="btn btn-secondary addGuestButton" data-toggle="modal" data-target="#addGuestModal">Add new guest</button>
 
 
 <!--popup for add guest-->
-<div class="modal fade" id="addGuestModal" role="dialog">
+    <div class="modal fade" id="addGuestModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -52,7 +53,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <h6> first name </h6>
-                    <input type="text" id="firstname" name="firstname" placeholder="first name" required>
+                    <input type="text" id="firstname" name="firstname" placeholder="first name" autofocus>
                     <input type="text" id="lastname" name="lastname" placeholder="last name" required>
                     <input type="text" id="address" name="address" placeholder="address">
                     <input type="text" id="postalcode" name="postalcode" placeholder="postal code">
@@ -69,45 +70,13 @@
             </div>
         </div>
     </div>
-</div>
-        <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
-        <!--<form class="form-inline my-2 my-lg-0">-->
-        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-        <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
-        <!--</form>-->
-<div class="modal fade" id="deleteGuestModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete a guest</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-            </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <form>
-                       <h6 id="informationGuest"> </h6>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="finalDeleteData();">Delete
-                </button>
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-            </div>
-        </div>
-
     </div>
-</div>
-
-<br>
-<br>
-<table id="guest" class="table table-hover">
-    <tr>
+    <br>
+    <br>
+    <table class="table table-hover">
         <thead>
+            <tr>
+                <th>ID</th>
             <th>First name</th>
             <th>Last name</th>
             <th>Address</th>
@@ -116,11 +85,50 @@
             <th>Postalcode</th>
             <th>Telephonenumber</th>
             <th>Email</th>
-            <th id="tableEdit">Edit</th>
-            <th id="tableDelete">Delete</th>
+            <th >Edit</th>
+            <th >Delete</th>
+         </tr>
         </thead>
-    </tr>
-</table>
+            <tbody  id="guestTable">
+
+            </tbody>
+    </table>
+</div>
+
+        <!--Hieronder staat een searchbar voor in het menu, momenteel even gedisabled-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+        <!--<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
+<div class="modal fade" id="modalDelete" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete a guest</h4>
+                <button type="button" class="close" data-dismiss="modal">Delete</button>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form>
+                        <label class="col-form-label">Are you sure you want to remove this guest?</label>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="finalDelete">Delete
+                </button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
