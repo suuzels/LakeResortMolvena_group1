@@ -4,7 +4,10 @@ getData();
 
 function editBooking(id){
     console.log("Trying to edit data");
+    console.log("Dit is ID: " + id);
 
+    $("#finalEdit").click(function(){
+    console.log("clicked Edit");
     var inputID = id;
     var inputCheckInDate = $("#checkInDateEdit").val();
     var inputCheckOutDate = $("#checkOutDateEdit").val();
@@ -12,6 +15,8 @@ function editBooking(id){
     var inputRoom = $("#bookingRoomEdit").val();
     var inputBreakfast = $("#bookingBreakfastEdit").val();
     var inputBabybed = $("#bookingBabybedEdit").val();
+
+    console.log(inputID);
 
     var newBookingUpdateObject = {
                 id : inputID,
@@ -22,8 +27,10 @@ function editBooking(id){
                 wantsBreakfast : inputBreakfast,
                 wantsBabybed : inputBabybed
                 };
-
+    console.log(newBookingUpdateObject);
     var newBookingUpdate = JSON.stringify(newBookingUpdateObject);
+    console.log(newBookingUpdate);
+
 
     $.ajax({
         url : "http://localhost:8080/api/bookings/"+id,
@@ -36,6 +43,7 @@ function editBooking(id){
             getData();
         }
 
+    });
     });
 };
 
@@ -122,7 +130,7 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-info' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
+            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
 
 

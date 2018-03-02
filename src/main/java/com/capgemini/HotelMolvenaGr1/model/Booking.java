@@ -1,13 +1,10 @@
 package com.capgemini.HotelMolvenaGr1.model;
 
-import com.capgemini.HotelMolvenaGr1.model.Guest;
-import com.capgemini.HotelMolvenaGr1.model.Room;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+
 
 @Entity
 public class Booking {
@@ -33,7 +30,7 @@ public class Booking {
     }
 
     // Getters and setters
-    
+
     public long getId() {
         return id;
     }
