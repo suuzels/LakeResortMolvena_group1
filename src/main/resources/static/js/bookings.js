@@ -130,7 +130,7 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
+            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
 
 
