@@ -84,9 +84,11 @@ function postData(){
     }
 
     });
-}
+};
 
 function deleteBooking(id){
+
+$("#finalDelete").click(function(){
     $.ajax({
         url : "http://localhost:8080/api/bookings/"+id,
         type : "delete",
@@ -99,6 +101,7 @@ function deleteBooking(id){
         }
 
     });
+});
 }
 
 function getData(){
@@ -130,7 +133,12 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr + "</td><td>" + boolBabybedStr + "</td><td>" + "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + current.id + ")'> Delete </button>" + "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" + "</td></tr>";
+            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate +
+            "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr +
+            "</td><td>" + boolBabybedStr +
+            "</td><td>" + "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
+            "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
+            "</td></tr>";
 
 
 
