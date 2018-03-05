@@ -169,7 +169,7 @@ function searchBooking(){
         contentType : "application/json",
         success : function(data){
         console.log("Successful get of item: " + newBookingSearch);
-        $("#bookingSearchTerm").val("");
+
 
             var bookingSearch = "";
             console.log("bookingSearch: " + bookingSearch);
@@ -185,6 +185,7 @@ function searchBooking(){
             });
 
             $(".bookingTable").html(bookingSearch);
+            $("#searchBookingNumber").val("");
 
         }
 
