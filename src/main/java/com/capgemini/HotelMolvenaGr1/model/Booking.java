@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Booking {
 
@@ -13,7 +12,6 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
 
     private String guest;
     private String room;
@@ -24,6 +22,7 @@ public class Booking {
     private boolean isPaid;
     private boolean wantsBabybed;
     private boolean wantsBreakfast;
+    private boolean isCheckedIn;
 
     // Constructor
     public Booking() {
@@ -105,6 +104,14 @@ public class Booking {
 
     public void setWantsBreakfast(boolean wantsBreakfast) {
         this.wantsBreakfast = wantsBreakfast;
+    }
+
+    public boolean isCheckedIn() {
+        return isCheckedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        isCheckedIn = checkedIn;
     }
 }
 

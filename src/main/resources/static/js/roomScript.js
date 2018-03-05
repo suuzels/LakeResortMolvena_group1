@@ -21,6 +21,7 @@ function getData() {
 
 				$.each(data, function(index, current) {
                     console.log("each function is initiated");
+
 				 	var columnRow = "<tr><td>" + current.roomNumber + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" 
                     + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + 
                     "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>" 
