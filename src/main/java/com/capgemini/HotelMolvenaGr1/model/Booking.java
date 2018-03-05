@@ -22,6 +22,7 @@ public class Booking {
     private boolean isPaid;
     private boolean wantsBabybed;
     private boolean wantsBreakfast;
+    private boolean isCheckedIn;
 
     // Constructor
     public Booking() {
@@ -103,6 +104,14 @@ public class Booking {
 
     public void setWantsBreakfast(boolean wantsBreakfast) {
         this.wantsBreakfast = wantsBreakfast;
+    }
+
+    public boolean isCheckedIn() {
+        return isCheckedIn;
+    }
+
+    public void setCheckedIn(boolean checkedIn) {
+        isCheckedIn = checkedIn;
     }
 }
 
