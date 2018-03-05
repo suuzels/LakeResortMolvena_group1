@@ -150,3 +150,45 @@ $(document).ready(function(){
     });
 }
 
+function searchBooking(){
+    console.log("Trying to search data");
+
+    var inputSearchTerm = $("#searchBookingNumber").val();
+
+    var newBookingSearchObject = {
+        searchTerm : inputSearchTerm
+    };
+
+    var newBookingSearch = JSON.stringify(newBookingSearchObject);
+    console.log(newBookingSearch);
+
+    $.ajax({
+        url : "http://localhost:8080/api/bookings/search/"+inputSearchTerm,
+        type : "get",
+//        data : newBookingSearch,
+        contentType : "application/json",
+        success : function(data){
+        console.log("Successful get of item: " + newBookingSearch);
+        $("#bookingSearchTerm").val("");
+
+            var bookingSearch = "";
+            console.log("bookingSearch: " + bookingSearch);
+            $.each(data, function(index, value){
+                var columnRow = "<tr><td>" + value.id + "</td><td>" + value.checkInDate +
+                "</td><td>" + value.checkOutDate + "</td><td>" + value.guest + "</td><td>" + value.room +
+                "</td><td>" + value.wantsBreakfast + "</td><td>" + value.wantsBabybed + "</td><td>" +
+                "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + value.id + ")'> Delete </button>" +
+                "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+                bookingSearch +=columnRow;
+                console.log("bookingSearch: " + bookingSearch);
+            });
+
+            $(".bookingTable").html(bookingSearch);
+
+        }
+
+    });
+
+}
+

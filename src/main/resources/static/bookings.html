@@ -46,11 +46,18 @@
     <h2> Bookings </h2>
     <br>
 
+
+
     <!--This button makes the modal to add a new room appear-->
     <button type="button" class="btn btn-success addBookingButton" data-toggle="modal" data-target="#addBookingModal">
         Add
         new booking
     </button>
+
+    <br><br>
+    <input type = "text" id="searchBookingNumber" placeholder="search booking">
+    <button type="button" class="btn btn-secondary" onclick="searchBooking();">Search!</button>
+    <br>
 
     <div class="modal fade" id="addBookingModal" role="dialog">
         <div class="modal-dialog">
@@ -101,6 +108,7 @@
 
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add
                     </button>
