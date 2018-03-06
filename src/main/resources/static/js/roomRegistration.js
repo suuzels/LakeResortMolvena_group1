@@ -23,7 +23,10 @@ function getData() {
                 // For each object from roomObjects, the previous object is concatenated with the current object in the list, this prints
 				$.each(data, function(index, current) {
 
-				 	roomObject = roomObject + "</br>" + "Roomtype: " + current.roomType + " RoomID: " + current.roomID + " Price: " + current.defaultPrice + " Availability: " + current.available;
+
+
+				 	roomObject = roomObject + "</br>" + "Roomtype: " + current.roomType + " RoomID: "
+				 	+ current.roomID + " Price: " + current.defaultPrice + " Availability: " + current.available;
 
 				});
 

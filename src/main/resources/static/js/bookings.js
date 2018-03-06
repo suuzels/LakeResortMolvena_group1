@@ -2,6 +2,10 @@ $(document).ready(function(){
 getData();
     });
 
+function editModalValues(){
+    $("#bookingRoomEdit").val("");
+}
+
 function editBooking(id){
     console.log("Trying to edit data");
     console.log("Dit is ID: " + id);
@@ -87,7 +91,7 @@ function postData(){
 };
 
 function deleteBooking(id){
-
+$("#deleteThisBooking").html("Are you sure you want to delete booking #" + id + "?");
 $("#finalDelete").click(function(){
     $.ajax({
         url : "http://localhost:8080/api/bookings/"+id,
@@ -95,6 +99,8 @@ $("#finalDelete").click(function(){
         contentType : "application/json",
         success : function() {
             console.log("Deletion is initiated");
+
+
             $("#bookingTable").html("");
 
             getData();
@@ -137,16 +143,17 @@ $(document).ready(function(){
             "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr +
             "</td><td>" + boolBabybedStr +
             "</td><td>" + "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
-            "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
+            "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
             "</td></tr>";
 
 
-
+            $("#checkInDateEdit").val(current.checkInDate);
+            $("#checkOutDateEdit").val(current.checkOutDate);
+            $("#bookingRoomEdit").val(current.room);
+            $("#bookingGuestEdit").val(current.guest);
 
             bookingTableContent += columnRow;
             });
-
-
                         console.log(bookingTableContent);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingTableContent);
@@ -188,12 +195,14 @@ function searchBooking(){
                 "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + value.id + ")'> Delete </button>" +
                 "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
+
                 bookingSearch +=columnRow;
                 console.log("bookingSearch: " + bookingSearch);
             });
 
             $(".bookingTable").html(bookingSearch);
             $("#searchBookingNumber").val("");
+
 
         }
 
