@@ -40,7 +40,7 @@ public class RoomController {
 
     // Find available rooms
     @RequestMapping(value = "api/rooms/available/{searchBool}", method = RequestMethod.GET)
-    public List<Room> searchAvailableRooms(@PathVariable boolean searchBool){
+    public Iterable<Room> searchAvailableRooms(@PathVariable boolean searchBool){
         return roomRepository.findByIsOccupied(searchBool);
     }
 

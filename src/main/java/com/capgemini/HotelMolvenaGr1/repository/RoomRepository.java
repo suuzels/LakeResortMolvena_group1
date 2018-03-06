@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface RoomRepository extends CrudRepository<Room, Long> {
 
-    List<Room> findByRoomNumberContaining(String roomNumber);
+    Iterable<Room> findByRoomNumbeContaining(String roomNumber);
 
-    List<Room> findByIsOccupied(boolean isOccupied);
+    Iterable<Room> findByIsOccupied(boolean isOccupied);
 }

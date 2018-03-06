@@ -18,12 +18,9 @@ function searchListOfRooms(){
 
 
                 var roomSearch = "";
-                console.log("roomSearch: " + roomSearch);
                 $.each(data, function(index, value){
                     var searchRoomItem = "<option>" + value.roomNumber + "</option>"
-
                     roomSearch +=searchRoomItem;
-                    console.log("roomSearch: " + roomSearch);
                 });
 
                 $("#bookingRoomSelect").html(roomSearch);
