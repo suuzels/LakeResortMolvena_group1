@@ -91,7 +91,7 @@ function postData(){
 };
 
 function deleteBooking(id){
-
+$("#deleteThisBooking").html("Are you sure you want to delete booking #" + id + "?");
 $("#finalDelete").click(function(){
     $.ajax({
         url : "http://localhost:8080/api/bookings/"+id,
@@ -99,6 +99,8 @@ $("#finalDelete").click(function(){
         contentType : "application/json",
         success : function() {
             console.log("Deletion is initiated");
+
+
             $("#bookingTable").html("");
 
             getData();

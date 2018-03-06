@@ -22,8 +22,19 @@ function getData() {
 				$.each(data, function(index, current) {
                     console.log("each function is initiated");
 
-				 	var columnRow = "<tr><td>" + current.roomNumber + "</td><td>" + current.roomName + "</td><td>" + current.roomType + "</td><td>" 
-                    + current.defaultPrice + "</td><td>" + current.occupied + "</td><td>" + 
+                    var boolOccupiedStr = current.occupied.toString();
+                        if(current.occupied){
+                             boolOccupiedStr = "occupied";
+                              } else {
+                              boolOccupiedStr = "available";
+                              }
+                     console.log(current.occupied);
+                     console.log(boolOccupiedStr);
+
+
+				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
+				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
+                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
                     "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>" 
                     + "<button type='button' class='btn btn-secondary' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
@@ -49,12 +60,14 @@ function modalDeleteRoom(id){
 
                 deleteId = id;
 
+                $("#deleteThisRoom").html("Are you sure you want to delete room #" + deleteId + "?");
                 $("#deleteRoomModal").modal('show');
                 
 }
 
  function deleteRoom(){
                 console.log("function deleteroom is being used")
+
 
                     $.ajax({
                         url : "http://localhost:8080/api/rooms/"+deleteId,
