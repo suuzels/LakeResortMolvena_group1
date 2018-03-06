@@ -119,47 +119,24 @@
         </div>
     </div>
 
+    <!--Table containing all the rooms from the backend-->
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col" id="tableRoomId">Room ID</th>
+            <th scope="col" id="tableRoomId" data-sortable="true">Room ID</th>
             <th scope="col" id="tableRoomNumber">Room Number</th>
             <th scope="col" id="tableRoomName">Room Name</th>
             <th scope="col" id="tableRoomType">Room Type</th>
             <th scope="col" id="tablePrice">Price</th>
             <th scope="col" id="tableAvailability">Occupied</th>
-            <th scope="col" id="tableDelete">Delete</th>
-            <th scope="col" id="tableEdit">Edit</th>
-
+            <th scope="col" id="tableDelete"></th>
+            <th scope="col" id="tableEdit"></th>
         </tr>
         </thead>
         <tbody class="roomTable" id="roomTable">
         <!-- In the JS file roomRegistration are the room items being added to this table body-->
         </tbody>
     </table>
-
-
-    <!-- Delete Modal -->
-    <!--<div id="deleteRoomModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"-->
-    <!--tabindex="-1">-->
-    <!--console.log("delete room modal is pressed")-->
-    <!--<div class="modal-header">-->
-    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
-    <!--<h3 id="myModalLabel">Delete</h3>-->
-    <!--</div>-->
-    <!--<div class="modal-body">-->
-    <!--<div class="row-fluid">-->
-    <!--<div class="span12"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="modal-footer">-->
-    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
-    <!--<button id="delete_confirm" class="btn red btn-primary" onclick='deleteRoom();' data-dismiss="modal">-->
-    <!--Delete-->
-    <!--</button>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <!-- Modal delete room-->
     <div id="deleteRoomModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"
@@ -176,7 +153,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteRoom();">Confirm
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteRoom();">Confirm
                         Delete
                     </button>
                 </div>
@@ -204,7 +181,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editRoom();">Confirm
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="editRoom();">Confirm
                         Edit
                     </button>
                 </div>
