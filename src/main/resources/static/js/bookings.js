@@ -1,6 +1,39 @@
 $(document).ready(function(){
 getData();
+searchListOfRooms();
     });
+
+function searchListOfRooms(){
+    console.log("Trying to find available rooms");
+
+        var searchBool = false;
+
+
+        $.ajax({
+            url : "http://localhost:8080/api/rooms/available/"+searchBool,
+            type : "get",
+            contentType : "application/json",
+            success : function(data){
+            console.log("Successful get of item: " );
+
+
+                var roomSearch = "";
+                console.log("roomSearch: " + roomSearch);
+                $.each(data, function(index, value){
+                    var searchRoomItem = "<option>" + value.roomNumber + "</option>"
+
+                    roomSearch +=searchRoomItem;
+                    console.log("roomSearch: " + roomSearch);
+                });
+
+                $("#bookingRoomSelect").html(roomSearch);
+            }
+
+        });
+
+
+
+}
 
 function editModalValues(){
     $("#bookingRoomEdit").val("");
@@ -58,7 +91,7 @@ function postData(){
         var inputCheckInDate = $("#checkInDate").val();
         var inputCheckOutDate = $("#checkOutDate").val();
         var inputGuest = $("#bookingGuest").val();
-        var inputRoom = $("#bookingRoom").val();
+        var inputRoom = $("#bookingRoomSelect").val();
         var inputBreakfast = $("#bookingBreakfast").val();
         var inputBabybed = $("#bookingBabybed").val();
 
