@@ -24,6 +24,7 @@ public class Guest {
     private String telephoneNumber;
     private String emailAddress;
 
+    public Guest(){}
 
     //Getter and setter
     public List<Booking> getBooking() {

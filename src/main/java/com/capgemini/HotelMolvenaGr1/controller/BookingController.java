@@ -1,6 +1,7 @@
 package com.capgemini.HotelMolvenaGr1.controller;
 
 import com.capgemini.HotelMolvenaGr1.model.Booking;
+import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
 import com.capgemini.HotelMolvenaGr1.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,6 @@ public class BookingController {
     public Iterable<Booking> searchBooking(@PathVariable String searchTerm) {
         return bookingRepository.findByGuestContainingIgnoreCase(searchTerm);
     }
+
 
 }

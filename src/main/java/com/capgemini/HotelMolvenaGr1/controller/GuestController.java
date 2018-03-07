@@ -13,6 +13,7 @@ public class GuestController {
     @Autowired
     private IGuestRepository guestRepository;
 
+
     // find all table
     @RequestMapping(value="get", method= RequestMethod.GET)
     public Iterable<Guest> index(){
