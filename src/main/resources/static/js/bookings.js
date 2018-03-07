@@ -1,7 +1,31 @@
 $(document).ready(function(){
 getData();
 searchListOfRooms();
+searchAllGuests();
     });
+
+function searchAllGuests(){
+    console.log("Trying to find existing guests...")
+
+    $.ajax({
+        url : "http://localhost:8080/api/guest/get",
+        type : "get",
+        contentType : "application/json",
+        success : function(data){
+            console.log("Successfully found guests.")
+
+            var guestSearch = "";
+            $.each(data, function(index, value){
+                var searchGuestItem = "<option>" + value.lastName + ", " + value.firstName + "</option>"
+                guestSearch += searchGuestItem;
+            });
+
+            $("#bookingGuestSelect").html(guestSearch);
+        }
+
+    });
+
+}
 
 function searchListOfRooms(){
     console.log("Trying to find available rooms");
@@ -87,7 +111,7 @@ function postData(){
 
         var inputCheckInDate = $("#checkInDate").val();
         var inputCheckOutDate = $("#checkOutDate").val();
-        var inputGuest = $("#bookingGuest").val();
+        var inputGuest = $("#bookingGuestSelect").val();
         var inputRoom = $("#bookingRoomSelect").val();
         var inputBreakfast = $("#bookingBreakfast").val();
         var inputBabybed = $("#bookingBabybed").val();
