@@ -21,6 +21,7 @@ function searchAllGuests(){
             });
 
             $("#bookingGuestSelect").html(guestSearch);
+            $("#bookingGuestEdit").html(guestSearch);
         }
 
     });
@@ -48,6 +49,7 @@ function searchListOfRooms(){
                 });
 
                 $("#bookingRoomSelect").html(roomSearch);
+                $("#bookingRoomEdit").html(roomSearch);
             }
 
         });
