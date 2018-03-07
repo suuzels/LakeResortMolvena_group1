@@ -7,6 +7,8 @@ import com.capgemini.HotelMolvenaGr1.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RoomController {
 
@@ -36,6 +38,7 @@ public class RoomController {
         roomRepository.delete(id);
     }
 
+
     // Edit room
     @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.PUT)
     public void editRoom(@PathVariable long id, @RequestBody Room roomToEdit) {
@@ -48,6 +51,11 @@ public class RoomController {
         return roomRepository.findByRoomNameContainingIgnoreCase(searchTerm);
     }
 
+    // Find available rooms
+    @RequestMapping(value = "api/rooms/available/{searchBool}", method = RequestMethod.GET)
+    public Iterable<Room> searchAvailableRooms(@PathVariable boolean searchBool) {
+        return roomRepository.findByIsOccupied(searchBool);
 
+    }
 
 }

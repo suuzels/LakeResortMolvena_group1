@@ -1,9 +1,61 @@
 $(document).ready(function(){
 getData();
+searchListOfRooms();
+searchAllGuests();
     });
 
-function editModalValues(){
-    $("#bookingRoomEdit").val("");
+function searchAllGuests(){
+    console.log("Trying to find existing guests...")
+
+    $.ajax({
+        url : "http://localhost:8080/api/guest/get",
+        type : "get",
+        contentType : "application/json",
+        success : function(data){
+            console.log("Successfully found guests.")
+
+            var guestSearch = "";
+            $.each(data, function(index, value){
+                var searchGuestItem = "<option>" + value.lastName + ", " + value.firstName + "</option>"
+                guestSearch += searchGuestItem;
+            });
+
+            $("#bookingGuestSelect").html(guestSearch);
+            $("#bookingGuestEdit").html(guestSearch);
+        }
+
+    });
+
+}
+
+function searchListOfRooms(){
+    console.log("Trying to find available rooms");
+
+        var searchBool = false;
+
+
+        $.ajax({
+            url : "http://localhost:8080/api/rooms/available/"+searchBool,
+            type : "get",
+            contentType : "application/json",
+            success : function(data){
+            console.log("Successful get of item: " );
+
+
+                var roomSearch = "";
+                $.each(data, function(index, value){
+                    var searchRoomItem = "<option>" + value.roomNumber + "</option>"
+                    roomSearch +=searchRoomItem;
+                });
+
+                $("#bookingRoomSelect").html(roomSearch);
+                $("#bookingRoomEdit").html(roomSearch);
+            }
+
+        });
+
+
+
 }
 
 function editBooking(id){
@@ -57,8 +109,8 @@ function postData(){
 
         var inputCheckInDate = $("#checkInDate").val();
         var inputCheckOutDate = $("#checkOutDate").val();
-        var inputGuest = $("#bookingGuest").val();
-        var inputRoom = $("#bookingRoom").val();
+        var inputGuest = $("#bookingGuestSelect").val();
+        var inputRoom = $("#bookingRoomSelect").val();
         var inputBreakfast = $("#bookingBreakfast").val();
         var inputBabybed = $("#bookingBabybed").val();
 
@@ -157,7 +209,6 @@ $(document).ready(function(){
                         console.log(bookingTableContent);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingTableContent);
-
 
         }
 
