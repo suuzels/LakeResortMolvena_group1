@@ -27,7 +27,6 @@ public class GenericService {
     private RoomRepository iRoomrepository;
 
 
-
     @PostConstruct
     public void init(){
         Booking b1 = new Booking();

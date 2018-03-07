@@ -1,5 +1,7 @@
 package com.capgemini.HotelMolvenaGr1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Guest {
     private long id;
 
     // one guest can be linked with more bookings
+    @JsonIgnore
     @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "guests")
     private List<Booking> booking;
 
