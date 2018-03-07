@@ -10,4 +10,5 @@ import java.util.List;
 public interface IGuestRepository extends CrudRepository<Guest, Long> {
 
     List<Guest> findByLastNameContainingIgnoreCase(String lastName);
+
 }

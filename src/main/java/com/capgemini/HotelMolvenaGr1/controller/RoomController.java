@@ -7,6 +7,8 @@ import com.capgemini.HotelMolvenaGr1.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RoomController {
 
@@ -34,6 +36,12 @@ public class RoomController {
     @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable long id) {
         roomRepository.delete(id);
+    }
+
+    // Find available rooms
+    @RequestMapping(value = "api/rooms/available/{searchBool}", method = RequestMethod.GET)
+    public Iterable<Room> searchAvailableRooms(@PathVariable boolean searchBool){
+        return roomRepository.findByIsOccupied(searchBool);
     }
 
 
