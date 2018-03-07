@@ -1,9 +1,8 @@
 package com.capgemini.HotelMolvenaGr1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Booking {
@@ -12,6 +11,23 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    // more than 1 booking can be linked to 1 guest
+    @ManyToOne
+    private Guest guests;
+
+    // multiple bookings can be linked with multiple rooms
+    @ManyToMany
+    private Set<Room> rooms = new HashSet<>();
+
+    // linked to manytomany
+    public void addRoom(Room r){
+        if(this.rooms == null){
+            this.rooms=new HashSet<>();
+        }
+        this.rooms.add(r);
+        r.getBookingOwner().add(this);
+    }
 
     private String guest;
     private String room;
@@ -29,6 +45,18 @@ public class Booking {
     }
 
     // Getters and setters
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public Guest getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Guest guests) {
+        this.guests = guests;
+    }
 
     public long getId() {
         return id;

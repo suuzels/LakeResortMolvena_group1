@@ -15,6 +15,7 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
+
     @PostConstruct
     public void init() {
         Booking b1 = new Booking();
@@ -26,5 +27,9 @@ public class BookingService {
         b1.setWantsBabybed(false);
 
         this.bookingRepository.save(b1);
+    }
+
+    public void update(long id, Booking bookingToEdit) {
+
     }
 }

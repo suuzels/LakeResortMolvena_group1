@@ -1,9 +1,7 @@
 package com.capgemini.HotelMolvenaGr1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Guest {
@@ -11,6 +9,10 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    // one guest can be linked with more bookings
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "guests")
+    private List<Booking> booking;
 
     // start data of the guests
     private String firstName;
@@ -24,6 +26,14 @@ public class Guest {
 
 
     //Getter and setter
+    public List<Booking> getBooking() {
+        return booking;
+    }
+
+    public void setBooking(List<Booking> booking) {
+        this.booking = booking;
+    }
+
     public long getId() {
         return id;
     }
