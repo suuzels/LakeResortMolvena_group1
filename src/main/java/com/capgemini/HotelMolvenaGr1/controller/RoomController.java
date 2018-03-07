@@ -44,6 +44,4 @@ public class RoomController {
         return roomRepository.findByIsOccupied(searchBool);
     }
 
-
-
 }
