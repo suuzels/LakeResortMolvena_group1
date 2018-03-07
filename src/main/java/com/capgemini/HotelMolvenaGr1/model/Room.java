@@ -16,6 +16,7 @@ public class Room {
     // This private long id is needed for the Interface RoomRepository
     private long id;
 
+
     // Variables
     private int roomNumber;
     private ERoomType roomType;
@@ -25,10 +26,12 @@ public class Room {
     private int numberOfPeople;
     private EBedsType eBedsType;
 
+    // Constructor
+    public Room() {
 
+    }
 
     // Getters and setters
-
 
     public int getRoomNumber() {
         return roomNumber;
@@ -90,14 +93,5 @@ public class Room {
         return id;
     }
 
-
-    // Methodess
-
-//    public double calculateEventPrice() {
-//        double eventPrice = defaultPrice * 2;
-
-//        System.out.println("The new price of the room is: " + eventPrice + " euro.");
-//        return eventPrice;
-//    }
 
 }

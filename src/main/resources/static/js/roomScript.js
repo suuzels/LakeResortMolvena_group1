@@ -82,13 +82,6 @@ function modalDeleteRoom(id){
                    
                 }
 
-function modalEditRoom(id){
-                console.log("function modalDeleteRoom is being used")
-
-                $("#editRoomModal").modal('show');
-                
-}
-
 
 function postData(){
 	// The postData function is triggered by the add new room button. This function has to post the filled in data into the table.
@@ -130,6 +123,57 @@ function postData(){
     })
 
 }
+
+
+
+function modalEditRoom(id){
+
+    deleteId = id;
+    $("#editThisRoom").html("Are you sure you want to delete room #" + deleteId + "?");
+    $("#editRoomModal").modal('show');
+
+    console.log("Trying to edit data");
+    console.log("Dit is ID: " + id);
+
+    $("#editRoom").click(function(){
+        console.log("clicked Edit");
+        var inputID = id;
+        var inputRoomNumber = $("#roomNumberEdit").val();
+        var inputRoomType = $("#roomTypeEdit").val();
+        var inputRoomName = $("#roomNameEdit").val();
+        var inputPrice = $("#roomPriceEdit").val();
+        var inputAvailability = $("#occupiedEdit").val();
+
+        console.log(inputID);
+
+        var newRoomUpdateObject = {
+                    id : inputID,
+                    roomNumber : inputRoomNumber,
+                    roomType : inputRoomType,
+                    roomName : inputRoomName,
+                    defaultPrice : inputPrice,
+                    isOccupied : inputAvailability
+                    };
+        console.log(newRoomUpdateObject);
+        var newRoomUpdate = JSON.stringify(newRoomUpdateObject);
+        console.log(newRoomUpdate);
+
+
+        $.ajax({
+            url : "http://localhost:8080/api/rooms/"+id,
+            type : "put",
+            data : newRoomUpdate,
+            contentType : "application/json",
+            success : function(data){
+                console.log("successful put")
+
+                getData();
+            }
+
+        });
+    });
+};
+
 
 
 function searchRoom(){
