@@ -23,6 +23,7 @@ public class Guest {
     private String emailAddress;
 
 
+
     //Getter and setter
     public long getId() {
         return id;

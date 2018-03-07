@@ -38,8 +38,15 @@ public class GuestController {
     }
 
     // alter a person
-    @RequestMapping(value = "change", method = RequestMethod.POST)
-    public void changeGuest(@RequestBody String firstName, String lastName, String address, String postalCode, String town, String country, String telephoneNumber, String emailAddress){
+    //@RequestMapping(value = "change", method = RequestMethod.POST)
+    //public void changeGuest(@RequestBody String firstName, String lastName, String address, String postalCode, String town, String country, String telephoneNumber, String emailAddress){
 //        guestRepository.changeGuest(firstName, lastName, address, postalCode, town, country, telephoneNumber, emailAddress);
+    //}
+
+    // Edit guest
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.PUT)
+    public void editGuest(@PathVariable long id, @RequestBody Guest guestToEdit) {
+        guestRepository.save(guestToEdit);
     }
+
 }

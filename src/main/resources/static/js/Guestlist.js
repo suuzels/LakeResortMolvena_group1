@@ -1,4 +1,9 @@
+$(document).ready(function(){
+getData();
+    });
+
 // get data for the table
+
 function getData() {
     console.log("i am in getting data for list")
     $.ajax({
@@ -19,8 +24,10 @@ function getData() {
                          value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" +
                          value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+
 
                         guestList+=columnRow;
                     });
@@ -33,53 +40,108 @@ function getData() {
 // remove data by POST information to java //url delete
 function deleteGuest(obj){
 
+    //$("#deleteThisGuest").html("Are you sure you want to delete guest #" + id + "?");
     console.log("you are going to delete");
-//    // first illustrate delete in a pop up modal
-//    // popup deleteGuestModal
+    // popup deleteGuestModal
     $('#modalDelete').modal('show');
 
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
 
-                                                      var idDeleted = $(obj).attr("id");
-                                                      console.log(idDeleted);
-
-                                                      $("#finalDelete").click(function(){
-                                                             console.log("final delete");
-                                                             $.ajax({
-                                                                 url: "http://localhost:8080/api/guest/"+idDeleted,
-                                                                 type:"delete",
-                                                                 contentType: "application/json",
-                                                                 success:function(){
-                                                                     console.log("Deletion is initiated");
-                                                                     $("#guestTable").html("");
-                                                                     getData();
-                                                                 }
-                                                             });
-                                                      });
+                         var idDeleted = $(obj).attr("id");
+                         console.log(idDeleted);
+                         $("#finalDelete").click(function(){
+                            console.log("final delete");
+                            $.ajax({
+                                url: "http://localhost:8080/api/guest/"+idDeleted,
+                                type:"delete",
+                                contentType: "application/json",
+                                success:function(){
+                                    console.log("Deletion is initiated");
+                                    $("#guestTable").html("");
+                                    getData();
+                                }
+                            });
+                         });
 
 }
 //
-//function finalDeleteData(guestID){
-//    console.log("you are going to delete");
-//                    $.ajax({
-//                        url : "http://localhost:8080/api/guests/delete",
-//                        type : "delete",
-//                        contentType : "application/json",
-//                        success : function() {
-//                            console.log("Delete is initiated");
-//                            $("#guest").html("");
-//
-//                        }
-//                    })
-//                    getData();
-//}
 
-function editGuest(){
-    console.log("you are going to edit");
+
+// begin edit guest
+
+function editModalValues(){
+    $("#guestEdit").val("");
 }
 
-getData();
+function editGuest(id){
+    console.log("Trying to edit data");
+    console.log("Dit is ID: " + id);
+
+
+    $('#editGuestModal').modal('show');
+
+
+    $("#finalEdit").click(function(){
+    console.log("clicked Edit");
+
+     //$("#lastnameEdit").val(value.lastName);
+     //$("#firstnameEdit").val(value.firstName);
+     //$("#addressEdit").val(value.address);
+     //$("#countryEdit").val(value.country);
+     //$("#postalcodeEdit").val(value.postalCode);
+     //$("#telephoneNumberEdit").val(value.telephoneNumber);
+     //$("#emailAddressEdit").val(value.emailAddress);
+
+
+
+    var inputID = id;
+    var inputLastname = $("#lastnameEdit").val();
+    var inputFirstname = $("#firstnameEdit").val();
+    var inputAddress = $("#addressEdit").val();
+    var inputPostalcode = $("#postalcodeEdit").val();
+    var inputTown = $("#townEdit").val();
+    var inputCountry = $("#countryEdit").val();
+    var inputTelephonenumber = $("#telephonenumberEdit").val();
+    var inputEmail = $("#emailEdit").val();
+
+    console.log(inputID);
+
+    var newGuestUpdateObject = {
+                id : inputID,
+                lastName : inputLastname,
+                firstName : inputFirstname,
+                address : inputAddress,
+                postalCode : inputPostalcode,
+                town : inputTown,
+                country : inputCountry,
+                telephoneNumber : inputTelephonenumber,
+                emailAddress : inputEmail
+                };
+    console.log(newGuestUpdateObject);
+    var newGuestUpdate = JSON.stringify(newGuestUpdateObject);
+    console.log(newGuestUpdate);
+
+
+    $.ajax({
+        url : "http://localhost:8080/api/guest/edit/"+id,
+        type : "put",
+        data : newGuestUpdate,
+        contentType : "application/json",
+        success : function(data){
+            console.log("successful put")
+
+            getData();
+        }
+
+    });
+    });
+};
+
+// einde van edit guest
+
+
+// begin van add new guest
 // post data into java
 function postData() {
     var inputLastname = $("#lastname").val();
@@ -202,8 +264,9 @@ function searchData() {
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
+                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
 
                          guestSearch+=columnRow;
                     });
