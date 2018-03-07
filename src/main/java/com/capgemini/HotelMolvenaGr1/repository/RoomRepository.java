@@ -11,4 +11,7 @@ import java.util.ArrayList;
 public interface RoomRepository extends CrudRepository<Room, Long> {
 
 
+    Iterable<Room> findByRoomNameContainingIgnoreCase(String roomName);
+
+
 }

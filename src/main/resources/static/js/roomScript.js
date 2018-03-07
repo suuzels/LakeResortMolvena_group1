@@ -132,6 +132,65 @@ function postData(){
 }
 
 
+function searchRoom(){
+    console.log("Trying to search for rooms");
+
+    var inputSearchTerm = $("#searchRoomName").val();
+
+    // searchTerm comes from the backend room object
+    var newRoomSearchObject = {
+        searchTerm : inputSearchTerm
+    };
+
+    var newRoomSearch = JSON.stringify(newRoomSearchObject);
+    console.log(newRoomSearch);
+
+    $.ajax({
+        url : "http://localhost:8080/api/rooms/search/"+inputSearchTerm,
+        type : "get",
+//        data : newRoomSearch,
+        contentType : "application/json",
+        success : function(data){
+        console.log("Successful get of item: " + newRoomSearch);
+
+
+
+
+            var roomSearch = "";
+            console.log("roomSearch: " + roomSearch);
+            $.each(data, function(index, current){
+
+            var boolOccupiedStr = current.occupied.toString();
+                                    if(current.occupied){
+                                         boolOccupiedStr = "occupied";
+                                          } else {
+                                          boolOccupiedStr = "available";
+                                          }
+                                 console.log(current.occupied);
+                                 console.log(boolOccupiedStr);
+
+                var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
+                				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
+                                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
+                                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
+                                    + "<button type='button' class='btn btn-info' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
+
+
+                roomSearch +=columnRow;
+                console.log("roomSearch: " + roomSearch);
+            });
+
+            $(".roomTable").html(roomSearch);
+            $("#searchRoom").val("");
+
+
+        }
+
+    });
+
+}
+
+
                 
 
 

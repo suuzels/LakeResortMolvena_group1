@@ -36,6 +36,12 @@ public class RoomController {
         roomRepository.delete(id);
     }
 
+    // Find booking
+    @RequestMapping(value = "api/rooms/search/{searchTerm}", method = RequestMethod.GET)
+    public Iterable<Room> searchRoom(@PathVariable String searchTerm) {
+        return roomRepository.findByRoomNameContainingIgnoreCase(searchTerm);
+    }
+
 
 
 }
