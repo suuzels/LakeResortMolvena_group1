@@ -21,13 +21,14 @@ function getData() {
                         value.address + "</td><td>" +
                         value.country + "</td><td>" +
                         value.town + "</td><td>" +
-                         value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" +
-                         value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                        value.postalCode + "</td><td>" +
+                        value.telephoneNumber + "</td><td>" +
+                        value.emailAddress + "</td><td>" +
+                        //"<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                        //"<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
-
+                        "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='value.id' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                        "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
                         guestList+=columnRow;
                     });
@@ -39,49 +40,68 @@ function getData() {
 // begin van "delete guest":
 //<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
 // remove data by POST information to java //url delete
-function deleteGuest(obj){
 
-    //$("#deleteThisGuest").html("Are you sure you want to delete guest #" + id + "?");
-    console.log("you are going to delete");
+//function deleteGuest(obj){
+   // var idDeleted = $(obj).attr("id");
+//    console.log(idDeleted);
+    //$("#deleteThisGuest").html("Are you sure you want to delete guest #" + idDeleted + "?");
+//    console.log("you are going to delete");
     // popup deleteGuestModal
-    $('#modalDelete').modal('show');
+//    $('#modalDelete').modal('show');
 
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
 
-                         var idDeleted = $(obj).attr("id");
-                         console.log(idDeleted);
-                         $("#finalDelete").click(function(){
-                            console.log("final delete");
-                            $.ajax({
-                                url: "http://localhost:8080/api/guest/"+idDeleted,
-                                type:"delete",
-                                contentType: "application/json",
-                                success:function(){
-                                    console.log("Deletion is initiated");
-                                    $("#guestTable").html("");
-                                    getData();
-                                }
-                            });
-                         });
-
-}
+ // /                       var idDeleted = $(obj).attr("id");
+ //                        console.log(idDeleted);
+ //                        $("#finalDelete").click(function(){
+ //                           console.log("final delete");
+ //                           $.ajax({
+ //                               url: "http://localhost:8080/api/guest/"+idDeleted,
+ //                               type:"delete",
+ //                               contentType: "application/json",
+ //                               success:function(){
+ //                                   console.log("Deletion is initiated");
+ //                                   $("#guestTable").html("");
+ //                                   getData();
+ //                               }
+ //                           });
+ //                        });
 //
+//}
+
+function deleteGuest(id){
+    $("#deleteThisGuest").html("Are you sure you want to delete guest #" + id + "?");
+    $("#finalDelete").click(function(){
+    $.ajax({
+        url : "http://localhost:8080/api/guest/"+id,
+        type : "delete",
+        contentType : "application/json",
+        success : function() {
+            console.log("Deletion is initiated");
+
+
+            $("#guestTable").html("");
+
+            getData();
+        }
+
+    });
+});
+}
+
+
+
 
 
 // begin edit guest:
 
-function editModalValues(){
-    $("#guestEdit").val("");
-}
 
 function editGuest(id){
     console.log("Trying to edit data");
     console.log("Dit is ID: " + id);
 
-
-    $('#editGuestModal').modal('show');
-
+    //$('#editGuestModal').modal('show');
 
     $("#finalEdit").click(function(){
     console.log("clicked Edit");
@@ -265,8 +285,13 @@ function searchData() {
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                       //  "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                       //  "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+                         "<button type='button' class='btn btn-danger' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+
 
                          guestSearch+=columnRow;
                     });
