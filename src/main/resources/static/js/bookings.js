@@ -16,7 +16,7 @@ function searchAllGuests(){
 
             var guestSearch = "";
             $.each(data, function(index, value){
-                var searchGuestItem = "<option>" + value.id + "</option>"
+                var searchGuestItem = "<option value='" + value.id + "'>" + value.lastName + "</option>"
                 guestSearch += searchGuestItem;
             });
 
@@ -44,7 +44,7 @@ function searchListOfRooms(){
 
                 var roomSearch = "";
                 $.each(data, function(index, value){
-                    var searchRoomItem = "<option>" + value.id + "</option>"
+                    var searchRoomItem = "<option value='" + value.id + "'>" + value.roomNumber + "</option>"
                     roomSearch +=searchRoomItem;
                 });
 
