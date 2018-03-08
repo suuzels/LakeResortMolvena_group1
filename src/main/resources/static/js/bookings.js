@@ -75,17 +75,16 @@ function editBooking(id){
     console.log(inputID);
 
     var newBookingUpdateObject = {
-                id : inputID,
-                checkInDate : inputCheckInDate,
-                checkOutDate : inputCheckOutDate,
-                guest :     {
-                            id : inputGuest
-                            },
-                rooms : [{ id : inputRoom
-                           }],
-                wantsBreakfast : inputBreakfast,
-                wantsBabybed : inputBabybed
-                };
+                            id : id,
+                            checkInDate : inputCheckInDate,
+                            checkOutDate : inputCheckOutDate,
+                            guest :     { id : inputGuest
+                                        },
+                            rooms :     [{ id : inputRoom
+                                                             }],
+                            wantsBreakfast : inputBreakfast,
+                            wantsBabybed : inputBabybed
+                            };
     console.log(newBookingUpdateObject);
     var newBookingUpdate = JSON.stringify(newBookingUpdateObject);
     console.log(newBookingUpdate);
@@ -202,7 +201,7 @@ $(document).ready(function(){
                 roomNumberValue=roomsNumberValues.roomNumber;
             });
 
-            var bookingString = "<tr><td>" + current.guest.firstName + " " + current.guest.lastName + "</td><td>" +
+            var bookingString = "<tr><td>" + current.id + "</td><td>" + current.guest.firstName + " " + current.guest.lastName + "</td><td>" +
             current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
             boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
             "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +

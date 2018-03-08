@@ -15,7 +15,8 @@ public class Guest implements Serializable {
 
     // one guest can be linked with more bookings
     @JsonIgnore
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "guest")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "guest")
+
     private List<Booking> booking;
 
     // start data of the guests
