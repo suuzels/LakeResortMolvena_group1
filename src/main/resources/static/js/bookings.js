@@ -240,6 +240,20 @@ function searchBooking(){
             var bookingSearch = "";
             console.log("bookingSearch: " + bookingSearch);
             $.each(data, function(index, value){
+
+            var boolBreakfastStr = current.wantsBreakfast.toString();
+                                if(current.wantsBreakfast){
+                                     boolBreakfastStr = "yes";
+                                     } else {
+                                     boolBreakfastStr = "no";
+                                     }
+
+                        var boolBabybedStr = current.wantsBabybed.toString();
+                                if(current.wantsBabybed){
+                                      boolBabybedStr = "yes";
+                                      } else {
+                                      boolBabybedStr = "no";
+                                      }
                 var columnRow = "<tr><td>" + value.id + "</td><td>" + value.checkInDate +
                 "</td><td>" + value.checkOutDate + "</td><td>" + value.guest + "</td><td>" + value.room +
                 "</td><td>" + value.wantsBreakfast + "</td><td>" + value.wantsBabybed + "</td><td>" +
