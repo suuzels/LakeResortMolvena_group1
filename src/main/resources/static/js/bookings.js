@@ -213,7 +213,6 @@ $(document).ready(function(){
             bookingList += bookingString;
             });
 
-
                         console.log(bookingList);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingList);
