@@ -214,13 +214,9 @@ $(document).ready(function(){
             });
 
 
-            console.log(bookingList);
-            $(".bookingTable").empty();
-            $(".bookingTable").append(bookingList);
-
-                        console.log(bookingTableContent);
+                        console.log(bookingList);
                         $(".bookingTable").empty();
-        				$(".bookingTable").append(bookingTableContent);
+        				$(".bookingTable").append(bookingList);
 
         }
     });
