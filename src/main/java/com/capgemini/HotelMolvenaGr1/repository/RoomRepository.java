@@ -13,5 +13,7 @@ public interface RoomRepository extends CrudRepository<Room, Long> {
 
     Iterable<Room> findByRoomNumberContaining(String roomNumber);
 
+    Iterable<Room> findByRoomNameContainingIgnoreCase(String roomName);
+
     Iterable<Room> findByIsOccupied(boolean isOccupied);
 }

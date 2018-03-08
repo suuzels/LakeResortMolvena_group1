@@ -58,10 +58,6 @@ function searchListOfRooms(){
 
 }
 
-function editModalValues(){
-    $("#bookingRoomEdit").val("");
-}
-
 function editBooking(id){
     console.log("Trying to edit data");
     console.log("Dit is ID: " + id);
@@ -217,9 +213,15 @@ $(document).ready(function(){
             bookingList += bookingString;
             });
 
+
             console.log(bookingList);
             $(".bookingTable").empty();
             $(".bookingTable").append(bookingList);
+
+                        console.log(bookingTableContent);
+                        $(".bookingTable").empty();
+        				$(".bookingTable").append(bookingTableContent);
+
         }
     });
     });

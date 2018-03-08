@@ -15,6 +15,7 @@ public class Room {
     // This private long id is needed for the Interface RoomRepository
     private long id;
 
+
     @ManyToMany(fetch= FetchType.EAGER)
     private Set<Booking> bookingOwner = new HashSet<>();
 
@@ -36,13 +37,16 @@ public class Room {
     private int numberOfPeople;
     private EBedsType eBedsType;
 
+    // Constructor
+    public Room() {
 
-
+    }
 
     // Getters and setters
     public Set<Booking> getBookingOwner() {
         return bookingOwner;
     }
+
 
     public int getRoomNumber() {
         return roomNumber;
@@ -104,14 +108,5 @@ public class Room {
         return id;
     }
 
-
-    // Methodess
-
-//    public double calculateEventPrice() {
-//        double eventPrice = defaultPrice * 2;
-
-//        System.out.println("The new price of the room is: " + eventPrice + " euro.");
-//        return eventPrice;
-//    }
 
 }
