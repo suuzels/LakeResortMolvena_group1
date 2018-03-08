@@ -2,7 +2,7 @@ $(document).ready(function(){
 getData();
     });
 
-// get data for the table
+// get data for the table: tonen van guest list op scherm
 
 function getData() {
     console.log("i am in getting data for list")
@@ -36,6 +36,7 @@ function getData() {
     });
 }
 
+// begin van "delete guest":
 //<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
 // remove data by POST information to java //url delete
 function deleteGuest(obj){
@@ -68,7 +69,7 @@ function deleteGuest(obj){
 //
 
 
-// begin edit guest
+// begin edit guest:
 
 function editModalValues(){
     $("#guestEdit").val("");
@@ -141,7 +142,7 @@ function editGuest(id){
 // einde van edit guest
 
 
-// begin van add new guest
+// begin van add new guest:
 // post data into java
 function postData() {
     var inputLastname = $("#lastname").val();
@@ -221,9 +222,9 @@ function postData() {
         }
     });
 }
+// einde van "add new guest"
 
-
-
+// begin search guest
 // search all the data
 function searchData() {
     console.log("you clicked");
@@ -266,7 +267,6 @@ function searchData() {
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
                          "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
-
 
                          guestSearch+=columnRow;
                     });
