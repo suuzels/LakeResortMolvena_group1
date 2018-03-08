@@ -3,91 +3,54 @@
 
 // AJAX gebruiken om backend data in te laden naar jquery
 $(document).ready(function(){
-getData()
-var deleteId = id;
+getData();
     });
 
-function getData() {
 
-    $(document).ready(function(){
-   
-	$.ajax({
-		url : "http://localhost:8080/api/rooms",
-		type : "get",
-		success: function(data){
-
-			var roomTableContent = "";
-			console.log("roomObject");
-
-				$.each(data, function(index, current) {
-                    console.log("each function is initiated");
-
-                    var boolOccupiedStr = current.occupied.toString();
-                        if(current.occupied){
-                             boolOccupiedStr = "occupied";
-                              } else {
-                              boolOccupiedStr = "available";
-                              }
-                     console.log(current.occupied);
-                     console.log(boolOccupiedStr);
+function editRoom(id){
+    console.log("Trying to edit data");
+    console.log("Dit is ID: " + id);
 
 
-				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
-				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
-                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
-                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>" 
-                    + "<button type='button' class='btn btn-secondary' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
-				 	roomTableContent += columnRow;
+    $("#editRoom").click(function(){
+        console.log("clicked Edit");
+        var inputID = id;
+        var inputRoomNumber = $("#roomNumberEdit").val();
+        var inputRoomType = $("#roomTypeEdit").val();
+        var inputRoomName = $("#roomNameEdit").val();
+        var inputPrice = $("#roomPriceEdit").val();
+        var inputAvailability = $("#occupiedEdit").val();
 
-				});
+        console.log(inputID);
 
-                console.log(roomTableContent);
-                            
-                $("#roomTable").empty();
-				$("#roomTable").append(roomTableContent);
+        var newRoomUpdateObject = {
+                    id : inputID,
+                    roomNumber : inputRoomNumber,
+                    roomType : inputRoomType,
+                    roomName : inputRoomName,
+                    defaultPrice : inputPrice,
+                    isOccupied : inputAvailability
+                    };
+        console.log(newRoomUpdateObject);
+        var newRoomUpdate = JSON.stringify(newRoomUpdateObject);
+        console.log(newRoomUpdate);
 
-				}
 
-		});
+        $.ajax({
+            url : "http://localhost:8080/api/rooms/"+id,
+            type : "put",
+            data : newRoomUpdate,
+            contentType : "application/json",
+            success : function(data){
+                console.log("successful put")
+
+                getData();
+            }
+
+        });
     });
-
-}
-
-
-function modalDeleteRoom(id){
-                console.log("function modalDeleteRoom is being used")
-
-                deleteId = id;
-
-                $("#deleteThisRoom").html("Are you sure you want to delete room #" + deleteId + "?");
-                $("#deleteRoomModal").modal('show');
-                
-}
-
- function deleteRoom(){
-                console.log("function deleteroom is being used")
-
-
-                    $.ajax({
-                        url : "http://localhost:8080/api/rooms/"+deleteId,
-                        type : "delete",
-                        contentType : "application/json",
-                        success : function() {
-                            console.log("Delete is initiated");
-                            $("#roomTable").html("");
-                             getData();
-                        }
-                    })
-                   
-                }
-
-function modalEditRoom(id){
-                console.log("function modalDeleteRoom is being used")
-
-                $("#editRoomModal").modal('show');
-                
-}
+};
 
 
 function postData(){
@@ -127,7 +90,147 @@ function postData(){
 
         }
 
-    })
+    });
+};
+
+
+
+
+function deleteRoom(id){
+
+$("#deleteThisRoom").html("Are you sure you want to delete room #" + id + "?");
+
+    $("#finalDelete").click(function(){
+
+                console.log("function modalDeleteRoom is being used")
+
+                $.ajax({
+                        url : "http://localhost:8080/api/rooms/"+id,
+                        type : "delete",
+                        contentType : "application/json",
+                        success : function() {
+                            console.log("Deletion is initiated");
+
+                            $("#roomTable").html("");
+
+                            getData();
+                            }
+
+                });
+            });
+}
+
+
+function getData() {
+
+    $(document).ready(function(){
+
+	$.ajax({
+		url : "http://localhost:8080/api/rooms",
+		type : "get",
+		success: function(data){
+
+			var roomTableContent = "";
+			console.log("roomObject");
+
+				$.each(data, function(index, current) {
+                    console.log("each function is initiated");
+
+                    var boolOccupiedStr = current.occupied.toString();
+                        if(current.occupied){
+                             boolOccupiedStr = "occupied";
+                              } else {
+                              boolOccupiedStr = "available";
+                              }
+                     console.log(current.occupied);
+                     console.log(boolOccupiedStr);
+
+
+				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
+				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
+                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
+                    "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteRoomModal' id='current.id' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
+                    + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editRoomModal' id='current.id' onclick='editRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
+
+                    // Prefilling values in the edit modal
+                    $("#roomNumberEdit").val(current.roomNumber);
+                    $("#roomNameEdit").val(current.roomName);
+                    $("#roomPriceEdit").val(current.defaultPrice);
+
+
+				 	roomTableContent += columnRow;
+
+				});
+
+                console.log(roomTableContent);
+
+                $("#roomTable").empty();
+				$("#roomTable").append(roomTableContent);
+
+				}
+
+		});
+    });
+
+}
+
+
+
+function searchRoom(){
+    console.log("Trying to search for rooms");
+
+    var inputSearchTerm = $("#searchRoomName").val();
+
+    // searchTerm comes from the backend room object
+    var newRoomSearchObject = {
+        searchTerm : inputSearchTerm
+    };
+
+    var newRoomSearch = JSON.stringify(newRoomSearchObject);
+    console.log(newRoomSearch);
+
+    $.ajax({
+        url : "http://localhost:8080/api/rooms/search/"+inputSearchTerm,
+        type : "get",
+//        data : newRoomSearch,
+        contentType : "application/json",
+        success : function(data){
+        console.log("Successful get of item: " + newRoomSearch);
+
+
+
+
+            var roomSearch = "";
+            console.log("roomSearch: " + roomSearch);
+            $.each(data, function(index, current){
+
+            var boolOccupiedStr = current.occupied.toString();
+                                    if(current.occupied){
+                                         boolOccupiedStr = "occupied";
+                                          } else {
+                                          boolOccupiedStr = "available";
+                                          }
+                                 console.log(current.occupied);
+                                 console.log(boolOccupiedStr);
+
+                var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
+                				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
+                                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
+                                    "<button type='button' class='btn btn-danger' onclick='modalDeleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
+                                    + "<button type='button' class='btn btn-info' onclick='modalEditRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
+
+
+                roomSearch +=columnRow;
+                console.log("roomSearch: " + roomSearch);
+            });
+
+            $(".roomTable").html(roomSearch);
+            $("#searchRoom").val("");
+
+
+        }
+
+    });
 
 }
 

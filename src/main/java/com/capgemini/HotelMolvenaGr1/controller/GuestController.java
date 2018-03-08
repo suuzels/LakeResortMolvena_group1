@@ -25,7 +25,7 @@ public class GuestController {
         guestRepository.save(guestToSave);}
 
         // search for item in table
-        @RequestMapping(value="search/{searchTerm}", method = RequestMethod.GET)
+   @RequestMapping(value="search/{searchTerm}", method = RequestMethod.GET)
     public List<Guest> searchGuests(@PathVariable String searchTerm) {
             return guestRepository.findByLastNameContainingIgnoreCase(searchTerm);
     }

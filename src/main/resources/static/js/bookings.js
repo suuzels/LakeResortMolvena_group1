@@ -1,9 +1,61 @@
 $(document).ready(function(){
 getData();
+searchListOfRooms();
+searchAllGuests();
     });
 
-function editModalValues(){
-    $("#bookingRoomEdit").val("");
+function searchAllGuests(){
+    console.log("Trying to find existing guests...")
+
+    $.ajax({
+        url : "http://localhost:8080/api/guest/get",
+        type : "get",
+        contentType : "application/json",
+        success : function(data){
+            console.log("Successfully found guests.")
+
+            var guestSearch = "";
+            $.each(data, function(index, value){
+                var searchGuestItem = "<option>" + value.lastName + ", " + value.firstName + "</option>"
+                guestSearch += searchGuestItem;
+            });
+
+            $("#bookingGuestSelect").html(guestSearch);
+            $("#bookingGuestEdit").html(guestSearch);
+        }
+
+    });
+
+}
+
+function searchListOfRooms(){
+    console.log("Trying to find available rooms");
+
+        var searchBool = false;
+
+
+        $.ajax({
+            url : "http://localhost:8080/api/rooms/available/"+searchBool,
+            type : "get",
+            contentType : "application/json",
+            success : function(data){
+            console.log("Successful get of item: " );
+
+
+                var roomSearch = "";
+                $.each(data, function(index, value){
+                    var searchRoomItem = "<option>" + value.roomNumber + "</option>"
+                    roomSearch +=searchRoomItem;
+                });
+
+                $("#bookingRoomSelect").html(roomSearch);
+                $("#bookingRoomEdit").html(roomSearch);
+            }
+
+        });
+
+
+
 }
 
 function editBooking(id){
@@ -57,8 +109,8 @@ function postData(){
 
         var inputCheckInDate = $("#checkInDate").val();
         var inputCheckOutDate = $("#checkOutDate").val();
-        var inputGuest = $("#bookingGuest").val();
-        var inputRoom = $("#bookingRoom").val();
+        var inputGuest = $("#bookingGuestSelect").val();
+        var inputRoom = $("#bookingRoomSelect").val();
         var inputBreakfast = $("#bookingBreakfast").val();
         var inputBabybed = $("#bookingBabybed").val();
 
@@ -120,10 +172,10 @@ $(document).ready(function(){
         type : "get",
         success : function(data){
 
-        var bookingTableContent = "";
+        var bookingList = "";
+
         	$.each(data, function(index, current) {
             console.log("each function");
-            console.log(current);
 
             var boolBreakfastStr = current.wantsBreakfast.toString();
                     if(current.wantsBreakfast){
@@ -139,12 +191,18 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate +
-            "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr +
-            "</td><td>" + boolBabybedStr +
-            "</td><td>" + "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
+            var roomNumberValue="";
+            $.each(current.rooms, function(values, roomsNumberValues){
+                roomNumberValue=roomsNumberValues.roomNumber;
+            });
+
+            var bookingString = "<tr><td>" + current.guest.firstName + "</td><td>" +
+            current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
+            boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
+            "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
             "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
             "</td></tr>";
+
 
 
             $("#checkInDateEdit").val(current.checkInDate);
@@ -152,15 +210,15 @@ $(document).ready(function(){
             $("#bookingRoomEdit").val(current.room);
             $("#bookingGuestEdit").val(current.guest);
 
-            bookingTableContent += columnRow;
+            bookingList += bookingString;
             });
-                        console.log(bookingTableContent);
-                        $(".bookingTable").empty();
-        				$(".bookingTable").append(bookingTableContent);
 
+
+                        console.log(bookingList);
+                        $(".bookingTable").empty();
+        				$(".bookingTable").append(bookingList);
 
         }
-
     });
     });
 }
