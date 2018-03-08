@@ -3,6 +3,7 @@ package com.capgemini.HotelMolvenaGr1.controller;
 import com.capgemini.HotelMolvenaGr1.model.Booking;
 import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
+import com.capgemini.HotelMolvenaGr1.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,10 +40,10 @@ public class BookingController {
     }
 
     // Find booking
-    @RequestMapping(value = "api/bookings/search/{searchTerm}", method = RequestMethod.GET)
-    public Iterable<Booking> searchBooking(@PathVariable String searchTerm) {
-        return bookingRepository.findByGuestContainingIgnoreCase(searchTerm);
-    }
+//    @RequestMapping(value = "api/bookings/search/{searchTerm}", method = RequestMethod.GET)
+//    public Iterable<Booking> searchBooking(@PathVariable String searchTerm) {
+//        return bookingRepository.findByGuestContainingIgnoreCase(searchTerm);
+//    }
 
 
 }

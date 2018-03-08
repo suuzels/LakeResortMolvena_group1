@@ -172,10 +172,10 @@ $(document).ready(function(){
         type : "get",
         success : function(data){
 
-        var bookingTableContent = "";
+        var bookingList = "";
+
         	$.each(data, function(index, current) {
             console.log("each function");
-            console.log(current);
 
             var boolBreakfastStr = current.wantsBreakfast.toString();
                     if(current.wantsBreakfast){
@@ -191,12 +191,18 @@ $(document).ready(function(){
                           boolBabybedStr = "no";
                           }
 
-            var columnRow = "<tr><td>" + current.id + "</td><td>" + current.checkInDate + "</td><td>" + current.checkOutDate +
-            "</td><td>" + current.guest + "</td><td>" + current.room + "</td><td>" + boolBreakfastStr +
-            "</td><td>" + boolBabybedStr +
-            "</td><td>" + "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
+            var roomNumberValue="";
+            $.each(current.rooms, function(values, roomsNumberValues){
+                roomNumberValue=roomsNumberValues.roomNumber;
+            });
+
+            var bookingString = "<tr><td>" + current.guest.firstName + "</td><td>" +
+            current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
+            boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
+            "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
             "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
             "</td></tr>";
+
 
 
             $("#checkInDateEdit").val(current.checkInDate);
@@ -204,14 +210,15 @@ $(document).ready(function(){
             $("#bookingRoomEdit").val(current.room);
             $("#bookingGuestEdit").val(current.guest);
 
-            bookingTableContent += columnRow;
+            bookingList += bookingString;
             });
-                        console.log(bookingTableContent);
+
+
+                        console.log(bookingList);
                         $(".bookingTable").empty();
-        				$(".bookingTable").append(bookingTableContent);
+        				$(".bookingTable").append(bookingList);
 
         }
-
     });
     });
 }

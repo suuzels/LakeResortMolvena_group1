@@ -3,10 +3,9 @@ package com.capgemini.HotelMolvenaGr1.model;
 import com.capgemini.HotelMolvenaGr1.EBedsType;
 import com.capgemini.HotelMolvenaGr1.ERoomType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Room {
@@ -16,6 +15,18 @@ public class Room {
     // This private long id is needed for the Interface RoomRepository
     private long id;
 
+
+    @ManyToMany(fetch= FetchType.EAGER)
+    private Set<Booking> bookingOwner = new HashSet<>();
+
+    // to add booking to the room
+    public void addBooking(Booking b){
+        if(this.bookingOwner == null){
+            this.bookingOwner=new HashSet<>();
+        }
+        this.bookingOwner.add(b);
+        b.getRooms().add(this);
+    }
 
     // Variables
     private int roomNumber;
@@ -32,6 +43,10 @@ public class Room {
     }
 
     // Getters and setters
+    public Set<Booking> getBookingOwner() {
+        return bookingOwner;
+    }
+
 
     public int getRoomNumber() {
         return roomNumber;
