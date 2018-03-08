@@ -1,4 +1,9 @@
-// get data for the table
+$(document).ready(function(){
+getData();
+    });
+
+// get data for the table: tonen van guest list op scherm
+
 function getData() {
     console.log("i am in getting data for list")
     $.ajax({
@@ -16,11 +21,14 @@ function getData() {
                         value.address + "</td><td>" +
                         value.country + "</td><td>" +
                         value.town + "</td><td>" +
-                         value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" +
-                         value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
+                        value.postalCode + "</td><td>" +
+                        value.telephoneNumber + "</td><td>" +
+                        value.emailAddress + "</td><td>" +
+                        //"<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                        //"<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+                        "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='value.id' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                        "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
                         guestList+=columnRow;
                     });
@@ -29,57 +37,132 @@ function getData() {
     });
 }
 
+// begin van "delete guest":
 //<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
 // remove data by POST information to java //url delete
-function deleteGuest(obj){
 
-    console.log("you are going to delete");
-//    // first illustrate delete in a pop up modal
-//    // popup deleteGuestModal
-    $('#modalDelete').modal('show');
+//function deleteGuest(obj){
+   // var idDeleted = $(obj).attr("id");
+//    console.log(idDeleted);
+    //$("#deleteThisGuest").html("Are you sure you want to delete guest #" + idDeleted + "?");
+//    console.log("you are going to delete");
+    // popup deleteGuestModal
+//    $('#modalDelete').modal('show');
 
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
 
-                                                      var idDeleted = $(obj).attr("id");
-                                                      console.log(idDeleted);
-
-                                                      $("#finalDelete").click(function(){
-                                                             console.log("final delete");
-                                                             $.ajax({
-                                                                 url: "http://localhost:8080/api/guest/"+idDeleted,
-                                                                 type:"delete",
-                                                                 contentType: "application/json",
-                                                                 success:function(){
-                                                                     console.log("Deletion is initiated");
-                                                                     $("#guestTable").html("");
-                                                                     getData();
-                                                                 }
-                                                             });
-                                                      });
-
-}
+ // /                       var idDeleted = $(obj).attr("id");
+ //                        console.log(idDeleted);
+ //                        $("#finalDelete").click(function(){
+ //                           console.log("final delete");
+ //                           $.ajax({
+ //                               url: "http://localhost:8080/api/guest/"+idDeleted,
+ //                               type:"delete",
+ //                               contentType: "application/json",
+ //                               success:function(){
+ //                                   console.log("Deletion is initiated");
+ //                                   $("#guestTable").html("");
+ //                                   getData();
+ //                               }
+ //                           });
+ //                        });
 //
-//function finalDeleteData(guestID){
-//    console.log("you are going to delete");
-//                    $.ajax({
-//                        url : "http://localhost:8080/api/guests/delete",
-//                        type : "delete",
-//                        contentType : "application/json",
-//                        success : function() {
-//                            console.log("Delete is initiated");
-//                            $("#guest").html("");
-//
-//                        }
-//                    })
-//                    getData();
 //}
 
-function editGuest(){
-    console.log("you are going to edit");
+function deleteGuest(id){
+    $("#deleteThisGuest").html("Are you sure you want to delete guest #" + id + "?");
+    $("#finalDelete").click(function(){
+    $.ajax({
+        url : "http://localhost:8080/api/guest/"+id,
+        type : "delete",
+        contentType : "application/json",
+        success : function() {
+            console.log("Deletion is initiated");
+
+
+            $("#guestTable").html("");
+
+            getData();
+        }
+
+    });
+});
 }
 
-getData();
+
+
+
+
+// begin edit guest:
+
+
+function editGuest(id){
+    console.log("Trying to edit data");
+    console.log("Dit is ID: " + id);
+
+    //$('#editGuestModal').modal('show');
+
+    $("#finalEdit").click(function(){
+    console.log("clicked Edit");
+
+     //$("#lastnameEdit").val(value.lastName);
+     //$("#firstnameEdit").val(value.firstName);
+     //$("#addressEdit").val(value.address);
+     //$("#countryEdit").val(value.country);
+     //$("#postalcodeEdit").val(value.postalCode);
+     //$("#telephoneNumberEdit").val(value.telephoneNumber);
+     //$("#emailAddressEdit").val(value.emailAddress);
+
+
+
+    var inputID = id;
+    var inputLastname = $("#lastnameEdit").val();
+    var inputFirstname = $("#firstnameEdit").val();
+    var inputAddress = $("#addressEdit").val();
+    var inputPostalcode = $("#postalcodeEdit").val();
+    var inputTown = $("#townEdit").val();
+    var inputCountry = $("#countryEdit").val();
+    var inputTelephonenumber = $("#telephonenumberEdit").val();
+    var inputEmail = $("#emailEdit").val();
+
+    console.log(inputID);
+
+    var newGuestUpdateObject = {
+                id : inputID,
+                lastName : inputLastname,
+                firstName : inputFirstname,
+                address : inputAddress,
+                postalCode : inputPostalcode,
+                town : inputTown,
+                country : inputCountry,
+                telephoneNumber : inputTelephonenumber,
+                emailAddress : inputEmail
+                };
+    console.log(newGuestUpdateObject);
+    var newGuestUpdate = JSON.stringify(newGuestUpdateObject);
+    console.log(newGuestUpdate);
+
+
+    $.ajax({
+        url : "http://localhost:8080/api/guest/edit/"+id,
+        type : "put",
+        data : newGuestUpdate,
+        contentType : "application/json",
+        success : function(data){
+            console.log("successful put")
+
+            getData();
+        }
+
+    });
+    });
+};
+
+// einde van edit guest
+
+
+// begin van add new guest:
 // post data into java
 function postData() {
     var inputLastname = $("#lastname").val();
@@ -159,9 +242,9 @@ function postData() {
         }
     });
 }
+// einde van "add new guest"
 
-
-
+// begin search guest
 // search all the data
 function searchData() {
     console.log("you clicked");
@@ -202,8 +285,13 @@ function searchData() {
                         value.lastName + "<td>" + value.address + "</td><td>" + value.country +
                         "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
                          value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
+                       //  "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
+                       //  "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+                         "<button type='button' class='btn btn-danger' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                         "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+
+
 
                          guestSearch+=columnRow;
                     });
