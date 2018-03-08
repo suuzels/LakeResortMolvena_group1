@@ -72,8 +72,8 @@ public class GenericService {
 
         this.iRoomrepository.save(r1);
 
-        b1.setGuests(g1);
-        b2.setGuests(g1);
+        b1.setGuest(g1);
+        b2.setGuest(g1);
 
         b1.addRoom(r1);
 

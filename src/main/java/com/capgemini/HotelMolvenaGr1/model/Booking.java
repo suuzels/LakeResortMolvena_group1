@@ -16,7 +16,7 @@ public class Booking {
 
     // more than 1 booking can be linked to 1 guest
     @ManyToOne
-    private Guest guests;
+    private Guest guest;
 
     // multiple bookings can be linked with multiple rooms
     @ManyToMany
@@ -31,7 +31,6 @@ public class Booking {
         r.getBookingOwner().add(this);
     }
 
-    private String guest;
     private String room;
     private String checkInDate;
     private String checkOutDate;
@@ -52,25 +51,18 @@ public class Booking {
         return rooms;
     }
 
-    public Guest getGuests() {
-        return guests;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setGuests(Guest guests) {
-        this.guests = guests;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getGuest() {
-        return guest;
-    }
-
-    public void setGuest(String guest) {
-        this.guest = guest;
-    }
 
     public String getRoom() {
         return room;
