@@ -29,6 +29,7 @@ public class Guest {
 
     public Guest(){}
 
+
     //Getter and setter
     public List<Booking> getBooking() {
         return booking;
