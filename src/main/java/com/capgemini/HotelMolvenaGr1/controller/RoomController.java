@@ -38,12 +38,25 @@ public class RoomController {
         roomRepository.delete(id);
     }
 
+
+    // Edit room
+    @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.PUT)
+    public void editRoom(@PathVariable long id, @RequestBody Room roomToEdit) {
+        roomRepository.save(roomToEdit);
+    }
+
+    // Find room
+    @RequestMapping(value = "api/rooms/search/{searchTerm}", method = RequestMethod.GET)
+    public Iterable<Room> searchRoom(@PathVariable String searchTerm) {
+        return roomRepository.findByRoomNameContainingIgnoreCase(searchTerm);
+    }
+
     // Find available rooms
     @RequestMapping(value = "api/rooms/available/{searchBool}", method = RequestMethod.GET)
-    public Iterable<Room> searchAvailableRooms(@PathVariable boolean searchBool){
+    public Iterable<Room> searchAvailableRooms(@PathVariable boolean searchBool) {
         return roomRepository.findByIsOccupied(searchBool);
     }
 
-
-
 }
+
+
