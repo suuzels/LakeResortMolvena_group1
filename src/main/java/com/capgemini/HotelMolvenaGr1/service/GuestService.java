@@ -19,7 +19,7 @@ public class GuestService {
 
     public Iterable<Guest> findAll(){return this.guestRepository.findAll();}
 
-    @PostConstruct
+   @PostConstruct
     public void init(){
         Guest g1 = new Guest();
         g1.setFirstName("Jan");

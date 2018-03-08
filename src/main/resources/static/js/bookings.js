@@ -16,7 +16,7 @@ function searchAllGuests(){
 
             var guestSearch = "";
             $.each(data, function(index, value){
-                var searchGuestItem = "<option>" + value.lastName + ", " + value.firstName + "</option>"
+                var searchGuestItem = "<option>" + value.id + "</option>"
                 guestSearch += searchGuestItem;
             });
 
@@ -44,7 +44,7 @@ function searchListOfRooms(){
 
                 var roomSearch = "";
                 $.each(data, function(index, value){
-                    var searchRoomItem = "<option>" + value.roomNumber + "</option>"
+                    var searchRoomItem = "<option>" + value.id + "</option>"
                     roomSearch +=searchRoomItem;
                 });
 
@@ -67,7 +67,7 @@ function editBooking(id){
     var inputID = id;
     var inputCheckInDate = $("#checkInDateEdit").val();
     var inputCheckOutDate = $("#checkOutDateEdit").val();
-    var inputGuest = $("#bookingGuestEdit").val();
+    var inputGuest = $("#bookingGuestEdit").id;
     var inputRoom = $("#bookingRoomEdit").val();
     var inputBreakfast = $("#bookingBreakfastEdit").val();
     var inputBabybed = $("#bookingBabybedEdit").val();
@@ -78,8 +78,11 @@ function editBooking(id){
                 id : inputID,
                 checkInDate : inputCheckInDate,
                 checkOutDate : inputCheckOutDate,
-                guest : inputGuest,
-                room : inputRoom,
+                guest :     {
+                            id : inputGuest
+                            },
+                rooms : [{ id : inputRoom
+                           }],
                 wantsBreakfast : inputBreakfast,
                 wantsBabybed : inputBabybed
                 };
@@ -115,18 +118,21 @@ function postData(){
         var inputBabybed = $("#bookingBabybed").val();
 
         var newBookingObject = {
+
             checkInDate : inputCheckInDate,
             checkOutDate : inputCheckOutDate,
-            guest : inputGuest,
-            room : inputRoom,
+            guest :     { id : inputGuest
+                        },
+            rooms :     [{ id : inputRoom
+                                             }],
             wantsBreakfast : inputBreakfast,
             wantsBabybed : inputBabybed
             };
 
-            console.log(newBookingObject);
+            console.log("newBookingObject: " + newBookingObject);
 
         var newBooking = JSON.stringify(newBookingObject);
-            console.log(newBooking);
+            console.log("newBooking: " + newBooking);
 
     $.ajax({
         url : "http://localhost:8080/api/bookings/save",
@@ -134,7 +140,7 @@ function postData(){
         data : newBooking,
         contentType : "application/json",
         success : function(data) {
-            console.log("Successful post")
+            console.log("Successful post");
 
             getData();
     }
@@ -196,14 +202,12 @@ $(document).ready(function(){
                 roomNumberValue=roomsNumberValues.roomNumber;
             });
 
-            var bookingString = "<tr><td>" + current.guest.firstName + "</td><td>" +
+            var bookingString = "<tr><td>" + current.guest.firstName + " " + current.guest.lastName + "</td><td>" +
             current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
             boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
             "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
             "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
             "</td></tr>";
-
-
 
             $("#checkInDateEdit").val(current.checkInDate);
             $("#checkOutDateEdit").val(current.checkOutDate);
@@ -212,9 +216,6 @@ $(document).ready(function(){
 
             bookingList += bookingString;
             });
-
-
-                        console.log(bookingList);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingList);
 
