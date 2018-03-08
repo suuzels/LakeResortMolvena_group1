@@ -10,15 +10,18 @@ function getData() {
             var guestList = '';
 
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td>" + value.id + "</td><td>" +
-                        value.firstName + "</td><td>" +
-                        value.lastName + "</td><td>" +
-                        value.address + "</td><td>" +
-                        value.country + "</td><td>" +
-                        value.town + "</td><td>" +
-                         value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" +
-                         value.emailAddress + "</td><td>" +
+                          // give unique value to firstname
+                                                var firstnameID = "firstname"+ (index+1);
+                                                console.log(firstnameID);
+                                                var columnRow = "<tr><td>" + value.id + "</td><td id='"+ firstnameID+ "'>" +
+                                                value.firstName + "</td><td>" +
+                                                value.lastName + "</td><td>" +
+                                                value.address + "</td><td>" +
+                                                value.country + "</td><td>" +
+                                                value.town + "</td><td>" +
+                                                 value.postalCode + "</td><td>" +
+                                                 value.telephoneNumber + "</td><td>" +
+                                                 value.emailAddress + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='editGuest(" + value.FirstName + ")'> Edit </button>" + "</td><td>" +
                          "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td></tr>";
 
@@ -33,10 +36,34 @@ function getData() {
 // remove data by POST information to java //url delete
 function deleteGuest(obj){
 
+
     console.log("you are going to delete");
+
+    var name = "";
+     $("#guestTable").each(function(){
+
+     var firstname = '#firstname' + $(obj).attr("id");
+          console.log(firstname);
+
+            console.log("i wil go through table");
+
+
+            console.log("firstname.html()");
+
+             console.log("firstname1.html()");
+
+            console.log($(firstname).html());
+            name = $(firstname).html();
+            console.log(name);
+//
+//            if(firstname == $(firstname).attr("id")){
+//                console.log($(firstname).attr("id"));
+//            }
+        });
 //    // first illustrate delete in a pop up modal
 //    // popup deleteGuestModal
     $('#modalDelete').modal('show');
+    $('#entername').html(name);
 
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
