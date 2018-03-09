@@ -5,6 +5,8 @@ import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.model.Room;
 import com.capgemini.HotelMolvenaGr1.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +30,8 @@ public class RoomController {
 
     // Posts a new room on add button click
     @RequestMapping(value = "api/rooms", method = RequestMethod.POST)
-    public void save(@RequestBody Room roomToSave) {
-        roomRepository.save(roomToSave);
+    public ResponseEntity<Room> save(@RequestBody Room roomToSave) {
+        return new ResponseEntity<>(roomRepository.save(roomToSave), HttpStatus.CREATED);
     }
 
     // Deletes a database item when clicked
