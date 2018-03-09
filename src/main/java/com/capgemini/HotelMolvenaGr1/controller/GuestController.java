@@ -25,16 +25,29 @@ public class GuestController {
         guestRepository.save(guestToSave);}
 
         // search for item in table
-   @RequestMapping(value="search/{searchTerm}", method = RequestMethod.GET)
+    @RequestMapping(value="search/{searchTerm}", method = RequestMethod.GET)
     public List<Guest> searchGuests(@PathVariable String searchTerm) {
-            return guestRepository.findByLastNameContainingIgnoreCase(searchTerm);
+        for(int i = 0; i <searchTerm.length(); i++){
+            if(searchTerm.charAt(i) == ' '){
+                String[] res = searchTerm.split(" ");
+                String firstname = res[0];
+                String lastname = res[1];
+                System.out.println(firstname + lastname);
+                return guestRepository.findByLastNameAndFirstNameContainingIgnoreCase(lastname, firstname);
+            }
+        }
+        System.out.println("not if");
+        return guestRepository.findByLastNameOrFirstNameContainingIgnoreCase(searchTerm, searchTerm);
     }
+
+
 
     // delete a person
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteGuest(@PathVariable long id)
     {
-        guestRepository.delete(id);
+        Guest guest = guestRepository.findOne(id);
+        guestRepository.delete(guest);
     }
 
     // alter a person
