@@ -37,7 +37,7 @@ public class GuestController {
             }
         }
         System.out.println("not if");
-        return guestRepository.findByLastNameOrFirstNameContainingIgnoreCase(searchTerm, searchTerm);
+        return guestRepository.findByLastNameContainingIgnoreCaseOrFirstNameContainingIgnoreCase(searchTerm, searchTerm);
     }
 
 
