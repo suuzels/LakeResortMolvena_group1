@@ -29,8 +29,8 @@ function getData() {
                         //"<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
                         //"<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
-                        "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='value.id' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
-                        "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                        "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='" + value.id + "' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                        "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='" + value.id + "' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
                         console.log(value.firstName + value.id);
                         guestList+=columnRow;
                     });
