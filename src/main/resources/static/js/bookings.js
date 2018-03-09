@@ -99,7 +99,7 @@ function editBooking(id){
             console.log("successful put")
 
             getData();
-    
+
         }
 
     });

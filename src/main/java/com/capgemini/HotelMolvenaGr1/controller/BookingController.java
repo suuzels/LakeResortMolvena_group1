@@ -49,6 +49,7 @@ public class BookingController {
 
         update.setGuest(g);
 
+        // deze moet uitgecomment blijven anders werkt het niet
 //        update.addRoom(bookingToEdit.getRooms().iterator().next());
         update.setCheckInDate(bookingToEdit.getCheckInDate());
         update.setCheckOutDate(bookingToEdit.getCheckOutDate());
@@ -56,6 +57,8 @@ public class BookingController {
         update.setWantsBreakfast(bookingToEdit.isWantsBreakfast());
 
         this.guestRepository.save(g);
+
+        // deze moet uitgecomment blijven anders werkt het niet
 //        this.roomRepository.save(bookingToEdit.getRooms().iterator().next());
 
         this.bookingRepository.save(bookingToEdit);
