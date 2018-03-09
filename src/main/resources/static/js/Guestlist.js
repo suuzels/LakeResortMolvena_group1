@@ -98,6 +98,13 @@ function deleteGuest(id){
 }
 
 
+function changeplh(){
+       // id nummer firstnameEdit
+          console.log("enter chage");
+          $("#firstnameEdit").attr("placeholder", "what the hell");
+
+}
+
 
 
 
@@ -107,6 +114,20 @@ function deleteGuest(id){
 function editGuest(id){
     console.log("Trying to edit data");
     console.log("Dit is ID: " + id);
+
+     var firstname1 = "";
+
+       $("#guestTable").each(function(){
+            var firstname = '#firstname' + id;
+            console.log(firstname);
+            name1 = $(firstname).html();
+            console.log(name1);
+       });
+
+
+    console.log("Change placeholder")
+//    $("#firstnameEdit").attr('placeholder', 'some text');
+    $("#firstnameEdit").val(name1);
 
     //$('#editGuestModal').modal('show');
 
@@ -134,6 +155,8 @@ function editGuest(id){
     var inputEmail = $("#emailEdit").val();
 
     console.log(inputID);
+
+
 
     var newGuestUpdateObject = {
                 id : inputID,
