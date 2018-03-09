@@ -2,6 +2,7 @@ package com.capgemini.HotelMolvenaGr1.service;
 
 import com.capgemini.HotelMolvenaGr1.model.Booking;
 import com.capgemini.HotelMolvenaGr1.model.Guest;
+import com.capgemini.HotelMolvenaGr1.model.Room;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
 import com.capgemini.HotelMolvenaGr1.repository.GuestRepository;
 import com.capgemini.HotelMolvenaGr1.repository.IGuestRepository;
@@ -29,4 +30,14 @@ public class BookingService {
     public void update(long id, Booking bookingToEdit) {
 
     }
+
+    public void deleteBooking(Long id){
+        Booking victum = this.bookingRepository.findOne(id);
+        for (Room r : victum.getRooms()){
+            r.getBookingOwner().remove(victum);
+            victum.getRooms().remove(r);
+        }
+        this.bookingRepository.delete(id);
+    }
+
 }
