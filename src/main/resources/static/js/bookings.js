@@ -16,7 +16,7 @@ function searchAllGuests(){
 
             var guestSearch = "";
             $.each(data, function(index, value){
-                var searchGuestItem = "<option>" + value.lastName + ", " + value.firstName + "</option>"
+                var searchGuestItem = "<option value='" + value.id + "'>" + value.lastName + "</option>"
                 guestSearch += searchGuestItem;
             });
 
@@ -44,7 +44,7 @@ function searchListOfRooms(){
 
                 var roomSearch = "";
                 $.each(data, function(index, value){
-                    var searchRoomItem = "<option>" + value.roomNumber + "</option>"
+                    var searchRoomItem = "<option value='" + value.id + "'>" + value.roomNumber + "</option>"
                     roomSearch +=searchRoomItem;
                 });
 
@@ -67,7 +67,7 @@ function editBooking(id){
     var inputID = id;
     var inputCheckInDate = $("#checkInDateEdit").val();
     var inputCheckOutDate = $("#checkOutDateEdit").val();
-    var inputGuest = $("#bookingGuestEdit").val();
+    var inputGuest = $("#bookingGuestEdit").id;
     var inputRoom = $("#bookingRoomEdit").val();
     var inputBreakfast = $("#bookingBreakfastEdit").val();
     var inputBabybed = $("#bookingBabybedEdit").val();
@@ -75,14 +75,16 @@ function editBooking(id){
     console.log(inputID);
 
     var newBookingUpdateObject = {
-                id : inputID,
-                checkInDate : inputCheckInDate,
-                checkOutDate : inputCheckOutDate,
-                guest : inputGuest,
-                room : inputRoom,
-                wantsBreakfast : inputBreakfast,
-                wantsBabybed : inputBabybed
-                };
+                            id : id,
+                            checkInDate : inputCheckInDate,
+                            checkOutDate : inputCheckOutDate,
+                            guest :     { id : inputGuest
+                                        },
+                            rooms :     [{ id : inputRoom
+                                                             }],
+                            wantsBreakfast : inputBreakfast,
+                            wantsBabybed : inputBabybed
+                            };
     console.log(newBookingUpdateObject);
     var newBookingUpdate = JSON.stringify(newBookingUpdateObject);
     console.log(newBookingUpdate);
@@ -115,18 +117,21 @@ function postData(){
         var inputBabybed = $("#bookingBabybed").val();
 
         var newBookingObject = {
+
             checkInDate : inputCheckInDate,
             checkOutDate : inputCheckOutDate,
-            guest : inputGuest,
-            room : inputRoom,
+            guest :     { id : inputGuest
+                        },
+            rooms :     [{ id : inputRoom
+                                             }],
             wantsBreakfast : inputBreakfast,
             wantsBabybed : inputBabybed
             };
 
-            console.log(newBookingObject);
+            console.log("newBookingObject: " + newBookingObject);
 
         var newBooking = JSON.stringify(newBookingObject);
-            console.log(newBooking);
+            console.log("newBooking: " + newBooking);
 
     $.ajax({
         url : "http://localhost:8080/api/bookings/save",
@@ -134,7 +139,7 @@ function postData(){
         data : newBooking,
         contentType : "application/json",
         success : function(data) {
-            console.log("Successful post")
+            console.log("Successful post");
 
             getData();
     }
@@ -196,14 +201,12 @@ $(document).ready(function(){
                 roomNumberValue=roomsNumberValues.roomNumber;
             });
 
-            var bookingString = "<tr><td>" + current.guest.firstName + "</td><td>" +
+            var bookingString = "<tr><td>" + current.id + "</td><td>" + current.guest.firstName + " " + current.guest.lastName + "</td><td>" +
             current.checkInDate + "</td><td>" + current.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
             boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
             "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='current.id' onclick='deleteBooking(" + current.id + ")'> Delete </button>" +
             "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + current.id + ")'> Edit </button>" +
             "</td></tr>";
-
-
 
             $("#checkInDateEdit").val(current.checkInDate);
             $("#checkOutDateEdit").val(current.checkOutDate);
@@ -212,9 +215,6 @@ $(document).ready(function(){
 
             bookingList += bookingString;
             });
-
-
-                        console.log(bookingList);
                         $(".bookingTable").empty();
         				$(".bookingTable").append(bookingList);
 
@@ -247,6 +247,20 @@ function searchBooking(){
             var bookingSearch = "";
             console.log("bookingSearch: " + bookingSearch);
             $.each(data, function(index, value){
+
+            var boolBreakfastStr = current.wantsBreakfast.toString();
+                                if(current.wantsBreakfast){
+                                     boolBreakfastStr = "yes";
+                                     } else {
+                                     boolBreakfastStr = "no";
+                                     }
+
+                        var boolBabybedStr = current.wantsBabybed.toString();
+                                if(current.wantsBabybed){
+                                      boolBabybedStr = "yes";
+                                      } else {
+                                      boolBabybedStr = "no";
+                                      }
                 var columnRow = "<tr><td>" + value.id + "</td><td>" + value.checkInDate +
                 "</td><td>" + value.checkOutDate + "</td><td>" + value.guest + "</td><td>" + value.room +
                 "</td><td>" + value.wantsBreakfast + "</td><td>" + value.wantsBabybed + "</td><td>" +

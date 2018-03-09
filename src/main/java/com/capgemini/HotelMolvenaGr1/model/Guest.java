@@ -3,10 +3,11 @@ package com.capgemini.HotelMolvenaGr1.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Guest {
+public class Guest implements Serializable {
     // automatic id guest
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
