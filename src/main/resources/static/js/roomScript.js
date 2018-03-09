@@ -145,10 +145,22 @@ function getData() {
                      console.log(current.occupied);
                      console.log(boolOccupiedStr);
 
+                    var intPriceRoomStr = current.roomType.toString();
+                    console.log("Ik ben je current roomtype: " + current.roomType);
+                        if (current.roomType == "STANDARD"){
+                                intPriceRoomStr = "€89,-"
+                            } else if (current.roomType == "LUXURY"){
+                                intPriceRoomStr = "149,-"
+                            } else if (current.roomType == "HONEYMOON_SUITE"){
+                                intPriceRoomStr = "345,-"
+                            }
+                    console.log(current.roomType);
+                    console.log(intPriceRoomStr);
+
 
 				 	var columnRow = "<tr><td>" + current.id + "</td><td>" + current.roomNumber + "</td><td>"
 				 	+ current.roomName + "</td><td>" + current.roomType + "</td><td>"
-                    + current.defaultPrice + "</td><td>" + boolOccupiedStr + "</td><td>" +
+                    + intPriceRoomStr + "</td><td>" + boolOccupiedStr + "</td><td>" +
                     "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteRoomModal' id='current.id' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
                     + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editRoomModal' id='current.id' onclick='editRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 

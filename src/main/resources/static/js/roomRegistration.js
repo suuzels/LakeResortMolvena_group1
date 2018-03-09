@@ -1,6 +1,5 @@
 // Javascript bestand HOTELPROJECT
-//
-
+// VOLGENS MIJ KAN DIT WEG? (Groetjes, Daniëlle)
 // AJAX gebruiken om backend data in te laden naar jquery
 $(document).ready(function(){
    getData();
