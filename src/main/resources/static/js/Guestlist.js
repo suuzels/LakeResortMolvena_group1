@@ -15,7 +15,9 @@ function getData() {
             var guestList = '';
 
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td>" + value.id + "</td><td>" +
+                        var firstnameID = "firstname" +(value.id);
+                        console.log(firstnameID);
+                        var columnRow = "<tr><td>" + value.id + "</td><td id='"+ firstnameID+ "'>" +
                         value.firstName + "</td><td>" +
                         value.lastName + "</td><td>" +
                         value.address + "</td><td>" +
@@ -29,7 +31,7 @@ function getData() {
 
                         "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='value.id' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
                         "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
-
+                        console.log(value.firstName + value.id);
                         guestList+=columnRow;
                     });
              $("#guestTable").html(guestList);
@@ -52,26 +54,34 @@ function getData() {
    //remember the information from that table
     // you want to data from id=deleted after the button is pushed
 
- // /                       var idDeleted = $(obj).attr("id");
- //                        console.log(idDeleted);
- //                        $("#finalDelete").click(function(){
- //                           console.log("final delete");
- //                           $.ajax({
- //                               url: "http://localhost:8080/api/guest/"+idDeleted,
- //                               type:"delete",
- //                               contentType: "application/json",
- //                               success:function(){
- //                                   console.log("Deletion is initiated");
- //                                   $("#guestTable").html("");
- //                                   getData();
- //                               }
- //                           });
- //                        });
+// /                       var idDeleted = $(obj).attr("id");
+//                        console.log(idDeleted);
+//                        $("#finalDelete").click(function(){
+//                           console.log("final delete");
+//                           $.ajax({
+//                               url: "http://localhost:8080/api/guest/"+idDeleted,
+//                               type:"delete",
+//                               contentType: "application/json",
+//                               success:function(){
+//                                   console.log("Deletion is initiated");
+//                                   $("#guestTable").html("");
+//                                   getData();
+//                               }
+//                           });
+//                        });
 //
 //}
 
 function deleteGuest(id){
-    $("#deleteThisGuest").html("Are you sure you want to delete guest #" + id + "?");
+   var name1 = "";
+
+   $("#guestTable").each(function(){
+        var firstname = '#firstname' + id;
+        console.log(firstname);
+        name1 = $(firstname).html();
+   });
+
+    $("#deleteThisGuest").html("Are you sure you want to delete guest " + name1 + "?");
     $("#finalDelete").click(function(){
     $.ajax({
         url : "http://localhost:8080/api/guest/"+id,
@@ -79,10 +89,7 @@ function deleteGuest(id){
         contentType : "application/json",
         success : function() {
             console.log("Deletion is initiated");
-
-
             $("#guestTable").html("");
-
             getData();
         }
 
@@ -299,5 +306,4 @@ function searchData() {
         }
     });
 }
-
 
