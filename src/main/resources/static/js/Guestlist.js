@@ -229,15 +229,15 @@ function postData() {
         return;
     }
 
-    if(inputTelephonenumber == "") {
-        $("#errorMessage").val("Fill in telephone number.")
+    if(inputTelephonenumber == "" || inputEmail == "") {
+        $("#errorMessage").val("Fill in telephone or email.")
         return;
     }
 
-    if(inputEmail == "") {
-        $("#errorMessage").val("Fill in e-mail.")
-        return;
-    }
+    //if(inputEmail == "") {
+    //    $("#errorMessage").val("Fill in e-mail.")
+    //    return;
+   // }
 
     var newGuestObject = {
         lastName : inputLastname,
