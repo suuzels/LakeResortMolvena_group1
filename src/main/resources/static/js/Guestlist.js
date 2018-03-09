@@ -223,19 +223,8 @@ function postData() {
         return;
     }
 
-<<<<<<< HEAD
-    if(inputTelephonenumber == "" || inputEmail == "") {
-        $("#errorMessage").val("Fill in telephone or email.")
-        return;
-    }
 
-    //if(inputEmail == "") {
-    //    $("#errorMessage").val("Fill in e-mail.")
-    //    return;
-   // }
-=======
 
->>>>>>> master
 
     var newGuestObject = {
         lastName : inputLastname,
