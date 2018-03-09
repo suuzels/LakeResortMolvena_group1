@@ -28,6 +28,12 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
+    // Gets a rooms
+    @RequestMapping(value = "api/rooms/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Room> getById(@PathVariable long id) {
+        return new ResponseEntity<>(roomRepository.findOne(id), HttpStatus.OK);
+    }
+
     // Posts a new room on add button click
     @RequestMapping(value = "api/rooms", method = RequestMethod.POST)
     public ResponseEntity<Room> save(@RequestBody Room roomToSave) {

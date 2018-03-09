@@ -15,13 +15,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.JsonPathResultMatchers;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.core.Is.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,50 +35,75 @@ public class CreateRoomIT {
     @Autowired
     private RoomController roomController;
 
+    private long id;
+
+
     @Before
     public void setUp() {
-
-        // the model and such
-
 
         // the spring controller
         this.mockMvc = MockMvcBuilders.standaloneSetup(this.roomController).build();
     }
 
-    @Test
-    public void testAFirst() {
-        Assert.assertNotNull(this.mockMvc);
-        Assert.assertNotNull(this.roomController);
-    }
 
     @Test
-    public void testBCreateBook() throws Exception {
+    public void testCreateReadUpdateDelete() throws Exception {
 
-        Room room = new Room();
-        room.setRoomName("Saturn");
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(room);
+        Room persistedRoom = null;
 
-        MvcResult result = this.mockMvc.perform(post("/api/rooms")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json)).andDo(print())
-                .andExpect(jsonPath("$.roomName", is(room.getRoomName())))
-//                .andExpect(jsonPath("$.id", is((int) room.getId())))
-                .andExpect(status().isCreated())
-                .andReturn();
+        // save one
+        {
+            Room room = new Room();
+            room.setRoomName("Saturn");
+            room.setRoomNumber(11235);
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writeValueAsString(room);
 
-        String resultAsString = result.getResponse().getContentAsString();
+            MvcResult result = this.mockMvc.perform(post("/api/rooms")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(json)).andDo(print())
+                    .andExpect(jsonPath("$.roomName", is(room.getRoomName())))
+                    .andExpect(jsonPath("$.roomNumber", is(room.getRoomNumber())))
+                    .andExpect(status().isCreated())
+                    .andReturn();
 
-        System.err.println(resultAsString);
+            persistedRoom = mapper.readValue(result.getResponse().getContentAsString(), Room.class);
 
-        Room persistedRoom = mapper.readValue(resultAsString, Room.class);
+            Assert.assertTrue(persistedRoom.getId() > 0);
 
-        System.err.println(persistedRoom.getId());
+        }
 
-    }
+        // fetch one
+        {
+            MvcResult result = this.mockMvc.perform(get("/api/rooms/"+persistedRoom.getId())
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andReturn();
 
-    @Test
-    public void testCGetTheSavedBook() {
+
+            ObjectMapper mapper = new ObjectMapper();
+            Room retrievedRoom = mapper.readValue(result.getResponse().getContentAsString(), Room.class);
+
+            Assert.assertEquals(persistedRoom.getId(), retrievedRoom.getId());
+            Assert.assertEquals(persistedRoom.getRoomNumber(), retrievedRoom.getRoomNumber());
+
+            this.id = retrievedRoom.getId();
+        }
+
+        // update one
+        {
+
+            Room room = new Room();
+            room.setRoomName("Saturn");
+            room.setRoomNumber(11235);
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writeValueAsString(room);
+
+            MvcResult result = this.mockMvc.perform(put("/api/rooms/"+persistedRoom.getId())
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andReturn();
+        }
+
+
 
     }
 }
