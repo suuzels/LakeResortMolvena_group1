@@ -61,21 +61,21 @@ public class GenericService {
 
         this.iGuestrepository.save(g1);
 
-//        Room r1 = new Room();
-//        r1.setDefaultPrice(12);
-//        r1.setOccupied(true);
-//        r1.setRoomName("sasha");
-//        r1.setRoomType(ERoomType.LUXURY);
-//        r1.setRoomNumber(122);
-//        r1.seteBedsType(EBedsType.DOUBLE);
-//        r1.setNumberOfPeople(2);
-//
-//        this.iRoomrepository.save(r1);
+        Room r1 = new Room();
+        r1.setDefaultPrice(12);
+        r1.setOccupied(true);
+        r1.setRoomName("sasha");
+        r1.setRoomType(ERoomType.LUXURY);
+        r1.setRoomNumber(122);
+        r1.seteBedsType(EBedsType.DOUBLE);
+        r1.setNumberOfPeople(2);
+
+        this.iRoomrepository.save(r1);
 
         b1.setGuest(g1);
         b2.setGuest(g1);
 
-//        b1.addRoom(r1);
+        b1.addRoom(r1);
 
         this.iBookingrepository.save(b1);
         this.iBookingrepository.save(b2);

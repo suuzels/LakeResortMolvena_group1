@@ -18,22 +18,22 @@ public class RoomService {
 
     @PostConstruct
 public void init(){
-//    Room r1 = new Room();
-//    r1.setRoomNumber(122);
-//    r1.setRoomName("Lakeview");
-//    r1.setDefaultPrice(89);
-//    r1.setRoomType(ERoomType.STANDARD);
-//    r1.setOccupied(false);
-//
-//    Room r2 = new Room();
-//    r2.setRoomNumber(133);
-//    r2.setRoomName("Carnaval");
-//    r2.setDefaultPrice(149);
-//    r2.setRoomType(ERoomType.LUXURY);
-//    r2.setOccupied(true);
-//
-//    this.roomRepository.save(r1);
-//    this.roomRepository.save(r2);
+    Room r1 = new Room();
+    r1.setRoomNumber(122);
+    r1.setRoomName("Lakeview");
+    r1.setDefaultPrice(89);
+    r1.setRoomType(ERoomType.STANDARD);
+    r1.setOccupied(false);
+
+    Room r2 = new Room();
+    r2.setRoomNumber(133);
+    r2.setRoomName("Carnaval");
+    r2.setDefaultPrice(149);
+    r2.setRoomType(ERoomType.LUXURY);
+    r2.setOccupied(true);
+
+    this.roomRepository.save(r1);
+    this.roomRepository.save(r2);
 
     }
 }
