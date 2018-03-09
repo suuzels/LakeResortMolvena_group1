@@ -31,13 +31,17 @@ public class BookingService {
 
     }
 
-    public void deleteBooking(Long id){
-        Booking victum = this.bookingRepository.findOne(id);
-        for (Room r : victum.getRooms()){
-            r.getBookingOwner().remove(victum);
-            victum.getRooms().remove(r);
-        }
-        this.bookingRepository.delete(id);
-    }
+    @Transactional
+    public void deleteBooking(final long id){
 
+        if(this.bookingRepository.exists(id)) {
+
+            Booking victim = this.bookingRepository.findOne(id);
+            for (Room r : victim.getRooms()){
+                r.getBookingOwner().remove(victim);
+                victim.getRooms().remove(r);
+            }
+            this.bookingRepository.delete(id);
+        }
+    }
 }
