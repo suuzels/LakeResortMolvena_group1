@@ -184,7 +184,7 @@ function getData() {
                     var roomTypeID = "roomType" + (current.id);
                     var intPriceRoomStrID =  "roomPrice" + (current.id);
                     var boolOccupiedStrID = "occupiedBool" + (current.id);
-
+                    
                     // Logging the ID values
                     console.log(roomNumberID);
                     console.log(roomNameID);
@@ -193,12 +193,14 @@ function getData() {
                     console.log(boolOccupiedStrID);
 
                     // columnRow is being created with all the values out of the database
-				 	var columnRow = "<tr><td>" +
-                    current.id + "</td><td id='"+ roomNumberID + "'>" +
-                    current.roomNumber + "</td><td id='" + roomNameID + "'>" +
-                    current.roomName + "</td><td id='" + roomTypeID + "'>" +
-                    current.roomType + "</td><td id='" + intPriceRoomStrID + "'>" +
-                    intPriceRoomStr + "</td><td id='" + boolOccupiedStrID + "'>" +
+
+				 	var columnRow = "<tr><td>" + 
+                    current.id + "</td><td id='"+ roomNumberID + "'>" + 
+                    current.roomNumber + "</td><td id='" + roomNameID + "'>" + 
+                    current.roomName + "</td><td id='" + roomTypeID + "'>" + 
+                    current.roomType + "</td><td id='" + intPriceRoomStrID + "'>" + 
+                    intPriceRoomStr + "</td><td id='" + boolOccupiedStrID + "'>" + 
+
                     boolOccupiedStr + "</td><td>" +
                     "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteRoomModal' id='"+ current.id +"' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
                     + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editRoomModal' id='"+ current.id + "' onclick='editRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
