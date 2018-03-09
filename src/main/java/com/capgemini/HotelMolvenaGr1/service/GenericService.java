@@ -31,7 +31,7 @@ public class GenericService {
     public void init(){
         Booking b1 = new Booking();
         b1.setCheckInDate("22-03-2018");
-        b1.setCheckInDate("23-04-2018");
+        b1.setCheckOutDate("23-03-2018");
         b1.setRoom("5");
         b1.setWantsBabybed(false);
         b1.setWantsBreakfast(true);
@@ -40,8 +40,8 @@ public class GenericService {
 //        b1.setGuest();
 
         Booking b2 = new Booking();
-        b2.setCheckInDate("22-03-2018");
-        b2.setCheckInDate("23-04-2018");
+        b2.setCheckInDate("22-04-2018");
+        b2.setCheckOutDate("23-05-2018");
         b2.setRoom("5");
         b2.setWantsBabybed(false);
         b2.setWantsBreakfast(true);
