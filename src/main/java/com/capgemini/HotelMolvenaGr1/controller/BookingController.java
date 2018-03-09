@@ -40,10 +40,10 @@ public class BookingController {
     }
 
     // Find booking
-//    @RequestMapping(value = "api/bookings/search/{searchTerm}", method = RequestMethod.GET)
-//    public Iterable<Booking> searchBooking(@PathVariable String searchTerm) {
-//        return bookingRepository.findByGuestContainingIgnoreCase(searchTerm);
-//    }
+    @RequestMapping(value = "api/bookings/search/{searchTerm}", method = RequestMethod.GET)
+    public Iterable<Booking> searchBooking(@PathVariable String searchTerm) {
+        return bookingRepository.findByCheckInDateContaining(searchTerm);
+    }
 
 
 }
