@@ -18,7 +18,6 @@ function postData(){
     var inputAvailability = $("#occupied").val();
 
 
-
     // Here we make a new object
     var newRoomObject = {
     roomNumber : inputRoomNumber,
@@ -80,21 +79,28 @@ function editRoom(id){
         
     var roomNumber1 = "";
     var roomNumber = "";
+    var roomName1 = "";
+    var roomName = "";
+    
 
-       $("#tableRoomId").each(function(){
-            roomNumber = '#roomNumber' + id;
-            console.log(roomNumber);
-            roomNumber1 = $(roomNumber).html();
-            console.log(roomNumber1);
-       });
+    $("#roomTable").each(function(){
+        roomNumber = '#roomNumber' + id;
+        roomNumber1 = $(roomNumber).html();
+           
+        roomName = '#roomName' + id;
+        roomName1 = $(roomName).html();
+    });
 
 
     console.log("Change placeholder")
-//    $("#firstnameEdit").attr('placeholder', 'some text');
+    // Changing the placeholder to the current value
     $("#roomNumberEdit").val(roomNumber1);
+    $("#roomNameEdit").val(roomName1);
+   
+
 
     $("#editRoom").click(function(){
-        console.log("clicked Edit");
+        console.log("clicked Edit, check if ID is same as before!");
         var inputID = id;
         var inputRoomNumber = $("#roomNumberEdit").val();
         var inputRoomType = $("#roomTypeEdit").val();
@@ -126,6 +132,7 @@ function editRoom(id){
                 console.log("successful put")
 
                 getData();
+                location.reload();
             }
 
         });
@@ -171,25 +178,35 @@ function getData() {
                     console.log(current.roomType);
                     console.log(intPriceRoomStr);
 
-                    //var firstnameID = "firstname" +(value.id);
+                    // A roomNumberID is created to give an ID to the column piece, so that later the value can be used to change placeholder in edit
                     var roomNumberID = "roomNumber" + (current.id);
+                    var roomNameID = "roomName" + (current.id);
+                    var roomTypeID = "roomType" + (current.id);
+                    var intPriceRoomStrID =  "roomPrice" + (current.id);
+                    var boolOccupiedStrID = "occupiedBool" + (current.id);
+                    
+                    // Logging the ID values
                     console.log(roomNumberID);
+                    console.log(roomNameID);
+                    console.log(roomTypeID);
+                    console.log(intPriceRoomStrID);
+                    console.log(boolOccupiedStrID);
 
                     // columnRow is being created with all the values out of the database
 				 	var columnRow = "<tr><td>" + 
-                    current.id + "</td><td id='"+ roomNumberID+ "'>" + 
-                    current.roomNumber + "</td><td>" + 
-                    current.roomName + "</td><td>" + 
-                    current.roomType + "</td><td>"+ 
-                    intPriceRoomStr + "</td><td>" + 
+                    current.id + "</td><td id='"+ roomNumberID + "'>" + 
+                    current.roomNumber + "</td><td id='" + roomNameID + "'>" + 
+                    current.roomName + "</td><td id='" + roomTypeID + "'>" + 
+                    current.roomType + "</td><td id='" + intPriceRoomStrID + "'>" + 
+                    intPriceRoomStr + "</td><td id='" + boolOccupiedStrID + "'>" + 
                     boolOccupiedStr + "</td><td>" +
                     "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteRoomModal' id='"+ current.id +"' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
                     + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editRoomModal' id='"+ current.id + "' onclick='editRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
 
-                    // Prefilling values in the edit modal
-                    $("#roomNumberEdit").val(current.roomNumber);
-                    $("#roomNameEdit").val(current.roomName);
-                    $("#roomPriceEdit").val(current.defaultPrice);
+                    // Prefilling values in the edit modal - OLD?
+                    // $("#roomNumberEdit").val(current.roomNumber);
+                    // $("#roomNameEdit").val(current.roomName);
+                    // $("#roomPriceEdit").val(current.defaultPrice);
 
 
 				 	roomTableContent += columnRow;
