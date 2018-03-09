@@ -9,8 +9,9 @@ import java.util.List;
 @Repository
 public interface IGuestRepository extends CrudRepository<Guest, Long> {
 
-    List<Guest> findByLastNameContainingIgnoreCase(String lastName);
+    List<Guest> findByLastNameOrFirstNameContainingIgnoreCase(String lastName, String firstName);
 
+    List<Guest> findByLastNameAndFirstNameContainingIgnoreCase(String lastName, String firstName);
 
 
 }
