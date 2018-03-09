@@ -31,6 +31,7 @@ public class Guest implements Serializable {
 
     public Guest(){}
 
+
     //Getter and setter
     public List<Booking> getBooking() {
         return booking;
