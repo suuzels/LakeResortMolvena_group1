@@ -1,8 +1,10 @@
 package com.capgemini.HotelMolvenaGr1.controller;
 
 import com.capgemini.HotelMolvenaGr1.model.Booking;
+import com.capgemini.HotelMolvenaGr1.model.Guest;
 import com.capgemini.HotelMolvenaGr1.repository.BookingRepository;
 import com.capgemini.HotelMolvenaGr1.repository.IGuestRepository;
+import com.capgemini.HotelMolvenaGr1.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ public class BookingController {
 
     @Autowired
     private IGuestRepository guestRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
 
     // RequestMappings
 
@@ -38,7 +43,22 @@ public class BookingController {
     // Edit booking
     @RequestMapping(value = "api/bookings/{id}", method = RequestMethod.PUT)
     public void editBooking(@PathVariable long id, @RequestBody Booking bookingToEdit) {
-        bookingRepository.save(bookingToEdit);
+        Booking update = this.bookingRepository.findOne(id);
+
+        Guest g = this.guestRepository.findOne(bookingToEdit.getGuest().getId());
+
+        update.setGuest(g);
+
+//        update.addRoom(bookingToEdit.getRooms().iterator().next());
+        update.setCheckInDate(bookingToEdit.getCheckInDate());
+        update.setCheckOutDate(bookingToEdit.getCheckOutDate());
+        update.setWantsBabybed(bookingToEdit.isWantsBabybed());
+        update.setWantsBreakfast(bookingToEdit.isWantsBreakfast());
+
+        this.guestRepository.save(g);
+//        this.roomRepository.save(bookingToEdit.getRooms().iterator().next());
+
+        this.bookingRepository.save(bookingToEdit);
     }
 
     // Find booking
