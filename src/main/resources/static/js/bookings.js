@@ -161,6 +161,8 @@ $("#finalDelete").click(function(){
             $("#bookingTable").html("");
 
             getData();
+            location.reload();
+
         }
 
     });
@@ -248,25 +250,31 @@ function searchBooking(){
             console.log("bookingSearch: " + bookingSearch);
             $.each(data, function(index, value){
 
-            var boolBreakfastStr = current.wantsBreakfast.toString();
-                                if(current.wantsBreakfast){
+            var boolBreakfastStr = value.wantsBreakfast.toString();
+                                if(value.wantsBreakfast){
                                      boolBreakfastStr = "yes";
                                      } else {
                                      boolBreakfastStr = "no";
                                      }
 
-                        var boolBabybedStr = current.wantsBabybed.toString();
-                                if(current.wantsBabybed){
+            var boolBabybedStr = value.wantsBabybed.toString();
+                                if(value.wantsBabybed){
                                       boolBabybedStr = "yes";
                                       } else {
                                       boolBabybedStr = "no";
                                       }
-                var columnRow = "<tr><td>" + value.id + "</td><td>" + value.checkInDate +
-                "</td><td>" + value.checkOutDate + "</td><td>" + value.guest + "</td><td>" + value.room +
-                "</td><td>" + value.wantsBreakfast + "</td><td>" + value.wantsBabybed + "</td><td>" +
-                "<button type='button' class='btn btn-danger' onclick='deleteBooking(" + value.id + ")'> Delete </button>" +
-                "</td><td>" + "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editBookingModal' id='current.id' onclick='editBooking(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
+            var roomNumberValue="";
+                 $.each(value.rooms, function(values, roomsNumberValues){
+                  roomNumberValue=roomsNumberValues.roomNumber;
+                  });
+
+                var columnRow = "<tr><td>" + value.id + "</td><td>" + value.guest.firstName + " " + value.guest.lastName + "</td><td>" +
+                            value.checkInDate + "</td><td>" + value.checkOutDate + "</td><td>" + roomNumberValue + "</td><td>" +
+                            boolBreakfastStr +"</td><td>" + boolBabybedStr +  "</td><td>" +
+                            "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' id='value.id' onclick='deleteBooking(" + value.id + ")'> Delete </button>" +
+                            "</td><td>" + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editBookingModal' id='value.id' onclick='editBooking(" + value.id + ")'> Edit </button>" +
+                            "</td></tr>";
 
                 bookingSearch +=columnRow;
                 console.log("bookingSearch: " + bookingSearch);
@@ -274,7 +282,6 @@ function searchBooking(){
 
             $(".bookingTable").html(bookingSearch);
             $("#searchBookingNumber").val("");
-
 
         }
 
