@@ -16,18 +16,24 @@ function getData() {
 
             $.each(data, function(index, value){
                         var firstnameID = "firstname" +(value.id);
+                        var lastnameID = "lastname" +(value.id);
+                        var addressID = "address" +(value.id);
+                        var countryID = "country" +(value.id);
+                        var townID = "town" +(value.id);
+                        var postalcodeID = "postcalcode" + (value.id);
+                        var telephonenumberID= "telephonennumber" +(value.id);
+                        var emailAddressID  = "email" +(value.id);
+
                         console.log(firstnameID);
-                        var columnRow = "<tr><td>" + value.id + "</td><td id='"+ firstnameID+ "'>" +
-                        value.firstName + "</td><td>" +
-                        value.lastName + "</td><td>" +
-                        value.address + "</td><td>" +
-                        value.country + "</td><td>" +
-                        value.town + "</td><td>" +
-                        value.postalCode + "</td><td>" +
-                        value.telephoneNumber + "</td><td>" +
+                        var columnRow = "<tr><td id='"+ firstnameID+ "'>" +
+                        value.firstName + "</td><td id='"+ lastnameID+ "'>" +
+                        value.lastName + "</td><td id='"+ addressID +"'>" +
+                        value.address + "</td><td id='"+ countryID + "'>" +
+                        value.country + "</td><td id='"+ townID + "'>" +
+                        value.town + "</td><td id='"+ postalcodeID + "'>" +
+                        value.postalCode + "</td><td id='"+ telephonenumberID + "'>" +
+                        value.telephoneNumber + "</td><td id='"+ emailAddressID + "'>" +
                         value.emailAddress + "</td><td>" +
-                        //"<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
-                        //"<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
 
                         "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='" + value.id + "' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
                         "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='" + value.id + "' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
@@ -39,49 +45,20 @@ function getData() {
     });
 }
 
-// begin van "delete guest":
-//<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="postData();">Add</button>
-// remove data by POST information to java //url delete
-
-//function deleteGuest(obj){
-   // var idDeleted = $(obj).attr("id");
-//    console.log(idDeleted);
-    //$("#deleteThisGuest").html("Are you sure you want to delete guest #" + idDeleted + "?");
-//    console.log("you are going to delete");
-    // popup deleteGuestModal
-//    $('#modalDelete').modal('show');
-
-   //remember the information from that table
-    // you want to data from id=deleted after the button is pushed
-
-// /                       var idDeleted = $(obj).attr("id");
-//                        console.log(idDeleted);
-//                        $("#finalDelete").click(function(){
-//                           console.log("final delete");
-//                           $.ajax({
-//                               url: "http://localhost:8080/api/guest/"+idDeleted,
-//                               type:"delete",
-//                               contentType: "application/json",
-//                               success:function(){
-//                                   console.log("Deletion is initiated");
-//                                   $("#guestTable").html("");
-//                                   getData();
-//                               }
-//                           });
-//                        });
-//
-//}
-
 function deleteGuest(id){
    var name1 = "";
+   var namelast = "";
 
    $("#guestTable").each(function(){
         var firstname = '#firstname' + id;
         console.log(firstname);
         name1 = $(firstname).html();
+        var lastname = '#lastname' + id;
+        namelast = $(lastname).html();
+        console.log(lastname);
    });
 
-    $("#deleteThisGuest").html("Are you sure you want to delete guest " + name1 + "?");
+    $("#deleteThisGuest").html("Are you sure you want to delete guest " + name1 + " " + namelast +"?");
     $("#finalDelete").click(function(){
     $.ajax({
         url : "http://localhost:8080/api/guest/"+id,
@@ -98,41 +75,73 @@ function deleteGuest(id){
 }
 
 
-function changeplh(){
-       // id nummer firstnameEdit
-          console.log("enter chage");
-          $("#firstnameEdit").attr("placeholder", "what the hell");
-
-}
-
-
-
-
-// begin edit guest:
-
 
 function editGuest(id){
-    console.log("Trying to edit data");
-    console.log("Dit is ID: " + id);
 
-     var firstname1 = "";
 
-       $("#guestTable").each(function(){
-            var firstname = '#firstname' + id;
-            console.log(firstname);
-            name1 = $(firstname).html();
-            console.log(name1);
-       });
+ var name1 = "";
+   var namelast = "";
+   var nametown ="";
+   var nameaddress="";
+   var namepostal="";
+   var namecountry="";
+   var namephone= "";
+   var namemail= "";
+
+   $("#guestTable").each(function(){
+        var firstname = '#firstname' + id;
+        console.log(firstname);
+        name1 = $(firstname).html();
+
+        var lastname = '#lastname' + id;
+        namelast = $(lastname).html();
+        console.log(lastname);
+
+        var town = '#town' + id;
+        nametown = $(town).html();
+        console.log(nametown);
+
+        var address = '#address' + id;
+        nameaddress = $(address).html();
+        console.log(nameaddress);
+
+        var postalcode = '#postcalcode' + id;
+        namepostal =$(postalcode).html();
+        console.log(namepostal);
+
+        var country = '#country' +id;
+        namecountry = $(country).html();
+        console.log(namecountry);
+
+        var telephonenumber = '#telephonennumber' + id;
+        namephone = $(telephonenumber).html();
+        console.log(namephone);
+
+        var email = '#email' +id;
+        namemail = $(email).html();
+        console.log(namemail);
+
+   });
 
 
     console.log("Change placeholder")
 //    $("#firstnameEdit").attr('placeholder', 'some text');
     $("#firstnameEdit").val(name1);
+    $("#lastnameEdit").val(namelast);
+      $("#addressEdit").val(nameaddress);
+      $("#postalcodeEdit").val(namepostal);
+      $("#townEdit").val(nametown);
+      $("#countryEdit").val(namecountry);
+      $("#telephonenumberEdit").val(namephone);
+      $("#emailEdit").val(namemail);
+
+
 
     //$('#editGuestModal').modal('show');
 
     $("#finalEdit").click(function(){
     console.log("clicked Edit");
+
 
      //$("#lastnameEdit").val(value.lastName);
      //$("#firstnameEdit").val(value.firstName);
@@ -156,6 +165,10 @@ function editGuest(id){
 
     console.log(inputID);
 
+      if(inputLastname == "" ||inputFirstname == "" || inputTelephonenumber == "" || inputEmail == "") {
+                $("#errorMessage").val("Fill in last name.");
+                return;
+            }
 
 
     var newGuestUpdateObject = {
@@ -183,6 +196,7 @@ function editGuest(id){
             console.log("successful put")
 
             getData();
+            location.reload();
         }
 
     });
@@ -204,31 +218,12 @@ function postData() {
     var inputTelephonenumber = $("#telephonenumber").val();
     var inputEmail = $("#email").val();
 
-    if(inputLastname == "") {
-        $("#errorMessage").val("Fill in last name.")
+    if(inputLastname == "" ||inputFirstname == "" || inputTelephonenumber == "" || inputEmail == "") {
+        $("#errorMessage").val("Fill in last name.");
         return;
     }
 
-    if(inputFirstname == "") {
-        $("#errorMessage").val("Fill in first name.")
-        return;
-    }
-
-    if(inputAddress == "") {
-        $("#errorMessage").val("Fill in address.")
-        return;
-    }
-
-    if(inputPostalcode == "") {
-        $("#errorMessage").val("Fill in postal code.")
-        return;
-    }
-
-    if(inputTown == "") {
-        $("#errorMessage").val("Fill in town.")
-        return;
-    }
-
+<<<<<<< HEAD
     if(inputTelephonenumber == "" || inputEmail == "") {
         $("#errorMessage").val("Fill in telephone or email.")
         return;
@@ -238,6 +233,9 @@ function postData() {
     //    $("#errorMessage").val("Fill in e-mail.")
     //    return;
    // }
+=======
+
+>>>>>>> master
 
     var newGuestObject = {
         lastName : inputLastname,
@@ -310,19 +308,29 @@ function searchData() {
             var guestSearch = '';
 
             $.each(data, function(index, value){
-                        var columnRow = "<tr><td>" + value.id + "</td><td>" +
-                        value.firstName + "</td><td>" +
-                        value.lastName + "<td>" + value.address + "</td><td>" + value.country +
-                        "</td><td>" + value.town + "</td><td>" + value.postalCode + "</td><td>" +
-                         value.telephoneNumber + "</td><td>" + value.emailAddress + "</td><td>" +
-                       //  "<button type='button' class='btn btn-danger' data-dismiss='modal' data-target='#modalDelete'  name='deleted[]' id='" + value.id + "' onclick='deleteGuest(this)';> Delete </button>" + "</td><td>" +
-                       //  "<button type='button' class='btn btn-info' data-dismiss='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                         var firstnameID = "firstname" +(value.id);
+                                                var lastnameID = "lastname" +(value.id);
+                                                var addressID = "address" +(value.id);
+                                                var countryID = "country" +(value.id);
+                                                var townID = "town" +(value.id);
+                                                var postalcodeID = "postcalcode" + (value.id);
+                                                var telephonenumberID= "telephonennumber" +(value.id);
+                                                var emailAddressID  = "email" +(value.id);
 
-                         "<button type='button' class='btn btn-danger' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
-                         "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#editGuestModal' id='value.id' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                                                console.log(firstnameID);
+                                                var columnRow = "<tr><td id='"+ firstnameID+ "'>" +
+                                                value.firstName + "</td><td id='"+ lastnameID+ "'>" +
+                                                value.lastName + "</td><td id='"+ addressID +"'>" +
+                                                value.address + "</td><td id='"+ countryID + "'>" +
+                                                value.country + "</td><td id='"+ townID + "'>" +
+                                                value.town + "</td><td id='"+ postalcodeID + "'>" +
+                                                value.postalCode + "</td><td id='"+ telephonenumberID + "'>" +
+                                                value.telephoneNumber + "</td><td id='"+ emailAddressID + "'>" +
+                                                value.emailAddress + "</td><td>" +
 
-
-
+                                                "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' id='" + value.id + "' onclick='deleteGuest(" + value.id + ")'> Delete </button>" + "</td><td>" +
+                                                "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editGuestModal' id='" + value.id + "' onclick='editGuest(" + value.id + ")'> Edit </button>" + "</td></tr>";
+                                                console.log(value.firstName + value.id);
                          guestSearch+=columnRow;
                     });
              $("#guestTable").html(guestSearch);

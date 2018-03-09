@@ -21,16 +21,16 @@ public class GuestService {
 
    @PostConstruct
     public void init(){
-        Guest g1 = new Guest();
-        g1.setFirstName("Jan");
-        g1.setLastName("Jansen");
-
-        Guest g2 = new Guest();
-        g2.setFirstName("Henk");
-        g2.setLastName("Henkstra");
-
-        this.guestRepository.save(g1);
-        this.guestRepository.save(g2);
+//        Guest g1 = new Guest();
+//        g1.setFirstName("Jan");
+//        g1.setLastName("Jansen");
+//
+//        Guest g2 = new Guest();
+//        g2.setFirstName("Henk");
+//        g2.setLastName("Henkstra");
+//
+//        this.guestRepository.save(g1);
+//        this.guestRepository.save(g2);
 
     }
 }

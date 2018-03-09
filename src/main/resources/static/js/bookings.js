@@ -67,7 +67,7 @@ function editBooking(id){
     var inputID = id;
     var inputCheckInDate = $("#checkInDateEdit").val();
     var inputCheckOutDate = $("#checkOutDateEdit").val();
-    var inputGuest = $("#bookingGuestEdit").id;
+    var inputGuest = $("#bookingGuestEdit").val();
     var inputRoom = $("#bookingRoomEdit").val();
     var inputBreakfast = $("#bookingBreakfastEdit").val();
     var inputBabybed = $("#bookingBabybedEdit").val();
@@ -99,6 +99,7 @@ function editBooking(id){
             console.log("successful put")
 
             getData();
+
         }
 
     });

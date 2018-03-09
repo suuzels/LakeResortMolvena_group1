@@ -135,5 +135,8 @@ public class Booking {
     public void setCheckedIn(boolean checkedIn) {
         isCheckedIn = checkedIn;
     }
-}
+
+
+    }
+
 
