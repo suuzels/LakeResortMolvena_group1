@@ -45,14 +45,14 @@
     <div class="row" id="topbar">
 
         <div class="col-7" id="addroom">
-                <!--This button makes the modal #addRoomModal appear-->
-                <button type="button" class="btn btn-success addRoomButton" data-toggle="modal" data-target="#addRoomModal">
-                    Add new room
-                </button>
+            <!--This button makes the modal #addRoomModal appear-->
+            <button type="button" class="btn btn-success addRoomButton" data-toggle="modal" data-target="#addRoomModal">
+                Add new room
+            </button>
         </div>
 
         <div class="col-4" id="searchRoom">
-                <input type="text" class="form-control" id="searchRoomName" placeholder="search booking">
+            <input type="text" class="form-control" id="searchRoomName" placeholder="search booking">
 
         </div>
         <div class ="col-1" id="searchRoomButton">
@@ -166,47 +166,49 @@
                     <h4 class="modal-title">Edit room</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                    <div class="modal-body">
-                        <form>
-                            <label for="roomNumberEdit" class="col-form-label">Room number:</label>
-                            <input type="text" class="form-control" id="roomNumberEdit" placeholder="Room number">
 
-                            <label for="roomNameEdit" class="col-form-label">Room name:</label>
-                            <input type="text" class="form-control" id="roomNameEdit" placeholder="Room name">
+                <div class="modal-body">
+                    <form>
+                        <label for="roomNumberEdit" class="col-form-label">Room number:</label>
+                        <input type="text" class="form-control" id="roomNumberEdit" placeholder="Room number">
 
-                            <label for="roomTypeEdit">Select type of room (select one):</label>
-                            <select class="form-control" id="roomTypeEdit">
-                                <option value="0">Standard</option>
-                                <option value="1">Luxury</option>
-                                <option value="2">Honeymoon Suite</option>
-                            </select>
+                        <label for="roomNameEdit" class="col-form-label">Room name:</label>
+                        <input type="text" class="form-control" id="roomNameEdit" placeholder="Room name">
+
+                        <label for="roomTypeEdit">Select type of room (select one):</label>
+                        <select class="form-control" id="roomTypeEdit">
+                            <option value="0">Standard</option>
+                            <option value="1">Luxury</option>
+                            <option value="2">Honeymoon Suite</option>
+                        </select>
 
 
-                            <label for="occupiedEdit">Select availability room:</label>
-                            <select class="form-control" id="occupiedEdit">
-                                <option value="false">Available</option>
-                                <option value="true">Occupied</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal" id="editRoom">Save
-                        </button>
-                    </div>
+                        <label for="occupiedEdit">Select availability room:</label>
+                        <select class="form-control" id="occupiedEdit">
+                            <option value="false">Available</option>
+                            <option value="true">Occupied</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="editRoom">Save
+                    </button>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="js/roomScript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/roomScript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>

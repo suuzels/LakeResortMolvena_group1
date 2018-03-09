@@ -76,17 +76,17 @@ $("#deleteThisRoom").html("Are you sure you want to delete room #" + id + "?");
 function editRoom(id){
     console.log("Trying to edit data");
     console.log("Dit is het ID: " + id);
-        
+
     var roomNumber1 = "";
     var roomNumber = "";
     var roomName1 = "";
     var roomName = "";
-    
+
 
     $("#roomTable").each(function(){
         roomNumber = '#roomNumber' + id;
         roomNumber1 = $(roomNumber).html();
-           
+
         roomName = '#roomName' + id;
         roomName1 = $(roomName).html();
     });
@@ -96,7 +96,7 @@ function editRoom(id){
     // Changing the placeholder to the current value
     $("#roomNumberEdit").val(roomNumber1);
     $("#roomNameEdit").val(roomName1);
-   
+
 
 
     $("#editRoom").click(function(){
@@ -193,12 +193,14 @@ function getData() {
                     console.log(boolOccupiedStrID);
 
                     // columnRow is being created with all the values out of the database
+
 				 	var columnRow = "<tr><td>" + 
                     current.id + "</td><td id='"+ roomNumberID + "'>" + 
                     current.roomNumber + "</td><td id='" + roomNameID + "'>" + 
                     current.roomName + "</td><td id='" + roomTypeID + "'>" + 
                     current.roomType + "</td><td id='" + intPriceRoomStrID + "'>" + 
                     intPriceRoomStr + "</td><td id='" + boolOccupiedStrID + "'>" + 
+
                     boolOccupiedStr + "</td><td>" +
                     "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteRoomModal' id='"+ current.id +"' onclick='deleteRoom(" + current.id + ")'> Delete </button>" + "</td><td>"
                     + "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#editRoomModal' id='"+ current.id + "' onclick='editRoom(" + current.id + ")'> Edit </button>" + "</td></tr>";
