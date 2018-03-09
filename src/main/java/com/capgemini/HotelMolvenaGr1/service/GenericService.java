@@ -64,7 +64,7 @@ public class GenericService {
         Room r1 = new Room();
         r1.setDefaultPrice(12);
         r1.setOccupied(true);
-        r1.setRoomName("sasha");
+        r1.setRoomName("Italy");
         r1.setRoomType(ERoomType.LUXURY);
         r1.setRoomNumber(122);
         r1.seteBedsType(EBedsType.DOUBLE);
