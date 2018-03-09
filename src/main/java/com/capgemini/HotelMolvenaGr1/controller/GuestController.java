@@ -34,7 +34,8 @@ public class GuestController {
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteGuest(@PathVariable long id)
     {
-        guestRepository.delete(id);
+        Guest guest = guestRepository.findOne(id);
+        guestRepository.delete(guest);
     }
 
     // alter a person

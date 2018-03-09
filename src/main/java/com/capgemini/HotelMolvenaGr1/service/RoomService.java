@@ -19,7 +19,7 @@ public class RoomService {
     @PostConstruct
 public void init(){
     Room r1 = new Room();
-    r1.setRoomNumber(122);
+    r1.setRoomNumber(130);
     r1.setRoomName("Lakeview");
     r1.setDefaultPrice(89);
     r1.setRoomType(ERoomType.STANDARD);

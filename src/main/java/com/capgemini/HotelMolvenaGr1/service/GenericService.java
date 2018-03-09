@@ -29,6 +29,7 @@ public class GenericService {
 
     @PostConstruct
     public void init(){
+
 //        Booking b1 = new Booking();
 //        b1.setCheckInDate("22-03-2018");
 //        b1.setCheckOutDate("23-03-2018");
@@ -64,7 +65,7 @@ public class GenericService {
 //        Room r1 = new Room();
 //        r1.setDefaultPrice(12);
 //        r1.setOccupied(true);
-//        r1.setRoomName("sasha");
+//        r1.setRoomName("Italy");
 //        r1.setRoomType(ERoomType.LUXURY);
 //        r1.setRoomNumber(122);
 //        r1.seteBedsType(EBedsType.DOUBLE);
@@ -80,6 +81,7 @@ public class GenericService {
 //        this.iBookingrepository.save(b1);
 //        this.iBookingrepository.save(b2);
 //        this.iGuestrepository.save(g1);
+
     }
 
 }
